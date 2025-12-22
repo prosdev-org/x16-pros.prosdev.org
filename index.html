@@ -1,0 +1,1409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link href="styles.css" rel="stylesheet" />
+  <link href="prism.css" rel="stylesheet" />
+  <script src="script.js"></script>
+  <script src="prism.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-nasm.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <title>x16 PRos</title>
+  <meta name="description" content="x16 PRos — a minimalist 16-bit OS. Image, documentation, source code. Modern responsive landing page." />
+</head>
+<body>
+  <button id="scrollTopBtn" aria-label="Scroll to top"><svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 717 614">
+    <path fill="currentColor" d="M360 337L115 582L0 464l354-355l363 363l-112 112z"/>
+</svg></button>
+  <div class="sky-container">
+    <span class="star"></span>
+    <span class="star"></span>
+    <span class="star"></span>
+    <span class="star"></span>
+    <span class="star"></span>
+  </div>
+  
+  <div class="container">
+    <header>
+      <a class="brand" href="#" onclick="showMain();return false;">
+        <div class="logo"><img src="logo.png" alt="x16 PRos Logo"></div>
+        <div>
+          <h1>x16 PRos</h1>
+          <div style="font-size:12px;color:var(--muted)">Minimalistic 16-bit OS</div>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a class="btn" href="#" onclick="showMain();return false;">About project</a>
+        <a class="btn" href="#" onclick="showDocs();return false;">Docs</a>
+      </nav>
+    </header>
+
+    <main id="mainContent">
+      <section class="hero">
+        <div class="panel reveal">
+          <h2 class="headline">x16 PRos — Fast and lightweight</h2>
+          <p class="lead">PRos is a minimalistic 16-bit operating system written in NASM for x86 architecture. It features a command-line interface, FAT12 file system support, and a rich set of system calls.</p>
+
+          <div class="features">
+            <div class="feature">
+              <h3>System Lightweight</h3>
+              <p>Occupies &lt; 200 KB on disk and optimized for 1.44 MB floppy disks.</p>
+            </div>
+            <div class="feature">
+              <h3>Rich API</h3>
+              <p>Provides interrupt-driven APIs for output, file operations, and string manipulation.</p>
+            </div>
+            <div class="feature">
+              <h3>Educational</h3>
+              <p>Ideal for learning OS development and low-level programming.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn primary" href="#download" aria-label="Download x16 PRos Image">
+              <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 304 384">
+                <path fill="#000000" d="M299 128L149 277L0 128h85V0h128v128h86zM0 320h299v43H0v-43z"/>
+              </svg> Download Image
+            </a>
+            <a class="btn" href="https://github.com/" target="_blank" rel="noopener" aria-label="View Source on GitHub">
+              <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 432 416">
+                <path fill="currentColor" d="M213.5 0q88.5 0 151 62.5T427 213q0 70-41 125.5T281 416q-14 2-14-11v-58q0-27-15-40q44-5 70.5-27t26.5-77q0-34-22-58q11-26-2-57q-18-5-58 22q-26-7-54-7t-53 7q-18-12-32.5-17.5T107 88h-6q-12 31-2 57q-22 24-22 58q0 55 27 77t70 27q-11 10-13 29q-42 18-62-18q-12-20-33-22q-2 0-4.5.5t-5 3.5t8.5 9q14 7 23 31q1 2 2 4.5t6.5 9.5t13 10.5T130 371t30-2v36q0 13-14 11q-64-22-105-77.5T0 213q0-88 62.5-150.5T213.5 0z"/>
+              </svg> Source on GitHub
+            </a>
+            <a class="btn" href="#" onclick="showDocs();return false;" aria-label="Read Documentation">
+              <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
+                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+                  <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
+                  <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/>
+                </g>
+              </svg> Read Docs
+            </a>
+          </div>
+        </div>
+
+        <aside class="term reveal delay" aria-label="Terminal emulation">
+          <div class="bar">
+            <div class="dot"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+            <div style="flex:1"></div>
+            <div class="small">PRos Terminal</div>
+          </div>
+          <div class="cmd" id="terminal">
+            <div><span class="prompt">[user@PRos] &gt;</span> <span id="typed">boot</span><span class="cursor" aria-hidden="true"></span></div>
+          </div>
+        </aside>
+      </section>
+
+           <section class="hero2 gallery-section">
+        <div class="panel reveal">
+          <div class="gallery-container">
+            <button class="gallery-nav prev" aria-label="Previous image">‹</button>
+            <div class="gallery-image-wrapper">
+              <img id="galleryImage" src="images/screenshots/terminal.png" alt="PRos Screenshot">
+            </div>
+            <button class="gallery-nav next" aria-label="Next image">›</button>
+          </div>
+          
+          <div class="gallery-info">
+            <h3 id="galleryTitle">PRos Terminal</h3>
+            <p id="galleryDesc">The main command-line interface of x16 PRos operating system.</p>
+          </div>
+          
+          <div class="gallery-thumbnails">
+            <div class="thumbnail active" data-index="0">
+              <img src="images/screenshots/terminal.png" alt="">
+            </div>
+            <div class="thumbnail" data-index="1">
+              <img src="images/screenshots/setup.png" alt="">
+            </div>
+            <div class="thumbnail" data-index="2">
+              <img src="images/screenshots/help_menu.png" alt="">
+            </div>
+            <div class="thumbnail" data-index="3">
+              <img src="images/screenshots/dir.png" alt="">
+            </div>
+            <div class="thumbnail" data-index="4">
+              <img src="images/screenshots/cpu_comand.png" alt="">
+            </div>
+            <div class="thumbnail" data-index="5">
+              <img src="images/screenshots/view_comand.png" alt="">
+            </div>
+            <div class="thumbnail" data-index="6">
+              <img src="images/screenshots/file_managment.png" alt="">
+            </div>
+            <div class="thumbnail" data-index="7">
+              <img src="images/screenshots/fetch.png" alt="">
+            </div>
+            <div class="thumbnail" data-index="8">
+              <img src="images/screenshots/password_screen.png" alt="">
+            </div>
+          </div>
+          
+        </div>
+      </section>
+
+      <section id="about" class="hero2">
+        <div class="panel reveal">
+          <h3>System Requirements</h3>
+          <div class="requirements-table">
+            <div class="req-column">
+              <h4 class="req-title minimal">Minimal</h4>
+              <ul class="req-list">
+                <li><strong>CPU:</strong> Intel 8086 / 8088</li>
+                <li><strong>RAM:</strong> 64 KB</li>
+                <li><strong>Storage:</strong> 1.44 MB floppy (FAT12)</li>
+                <li><strong>GPU:</strong> CGA compatible</li>
+                <li><strong>Input:</strong> Keyboard (PS/2 or USB)</li>
+              </ul>
+            </div>
+            <div class="req-column">
+              <h4 class="req-title recommended">Recommended</h4>
+              <ul class="req-list">
+                <li><strong>CPU:</strong> Intel 8086 / 8088</li>
+                <li><strong>RAM:</strong> 256 KB</li>
+                <li><strong>Storage:</strong> 1.44 MB floppy (FAT12)</li>
+                <li><strong>GPU:</strong> VGA compatible</li>
+                <li><strong>Input:</strong> Keyboard and mouse (PS/2 or USB)</li>
+                <li><strong>Sound:</strong> PC Speaker</li>
+              </ul>
+            </div>
+            <div class="req-column">
+              <h4 class="req-title maximum">Maximum</h4>
+              <ul class="req-list">
+                <li><strong>CPU:</strong> Intel 80486 / Pentium</li>
+                <li><strong>RAM:</strong> 512 KB</li>
+                <li><strong>Storage:</strong> 1.44 MB floppy (FAT12)</li>
+                <li><strong>GPU:</strong> VGA or better</li>
+                <li><strong>Input:</strong> Keyboard and mouse (PS/2 or USB)</li>
+                <li><strong>Sound:</strong> PC Speaker and ADlib Soundcard</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="software-grid">
+
+  <div class="software-card">
+    <img src="https://raw.githubusercontent.com/PRoX2011/x16-PRos/main/docs/screenshots/writer.png" alt="WRITER">
+    <h4>WRITER.BIN</h4>
+    <p>Simple editor for text files</p>
+  </div>
+
+  <div class="software-card">
+    <img src="https://raw.githubusercontent.com/PRoX2011/x16-PRos/main/docs/screenshots/bchart.png" alt="BCHART">
+    <h4>BCHART.BIN</h4>
+    <p>Barchart software for creating simple diagrams</p>
+  </div>
+
+  <div class="software-card">
+    <img src="https://raw.githubusercontent.com/PRoX2011/x16-PRos/main/docs/screenshots/brainf.png" alt="BRAINF">
+    <h4>BRAINF.BIN</h4>
+    <p>Brainfuck interpreter</p>
+  </div>
+
+  <div class="software-card">
+    <img src="https://raw.githubusercontent.com/PRoX2011/x16-PRos/main/docs/screenshots/mine.png" alt="MINE">
+    <h4>MINE.BIN</h4>
+    <p>Minesweeper game</p>
+  </div>
+
+  <div class="software-card">
+    <img src="https://raw.githubusercontent.com/PRoX2011/x16-PRos/main/docs/screenshots/piano.png" alt="PIANO">
+    <h4>PIANO.BIN</h4>
+    <p>Simple piano using PC Speaker</p>
+  </div>
+
+  <div class="software-card">
+    <img src="https://raw.githubusercontent.com/PRoX2011/x16-PRos/main/docs/screenshots/procentc.png" alt="PROCENTC">
+    <h4>PROCENTC.BIN</h4>
+    <p>Percentages calculator</p>
+  </div>
+
+  <div class="software-card">
+    <img src="https://raw.githubusercontent.com/PRoX2011/x16-PRos/main/docs/screenshots/space.png" alt="SPACE">
+    <h4>SPACE.BIN</h4>
+    <p>Space arcade game</p>
+  </div>
+
+  <div class="software-card">
+    <img src="https://raw.githubusercontent.com/PRoX2011/x16-PRos/main/docs/screenshots/calc.png" alt="CALC">
+    <h4>CALC.BIN</h4>
+    <p>Simple calculator</p>
+  </div>
+
+  <div class="software-card">
+    <img src="https://raw.githubusercontent.com/PRoX2011/x16-PRos/main/docs/screenshots/memory.png" alt="MEMORY">
+    <h4>MEMORY.BIN</h4>
+    <p>Memory viewer</p>
+  </div>
+
+  <div class="software-card">
+    <img src="https://raw.githubusercontent.com/PRoX2011/x16-PRos/main/docs/screenshots/paint.png" alt="PAINT">
+    <h4>PAINT.BIN</h4>
+    <p>Paint program</p>
+  </div>
+
+  <div class="software-card">
+    <img src="https://raw.githubusercontent.com/PRoX2011/x16-PRos/main/docs/screenshots/pong.png" alt="PONG">
+    <h4>PONG.BIN</h4>
+    <p>Pong game</p>
+  </div>
+
+  <div class="software-card">
+    <img src="https://raw.githubusercontent.com/PRoX2011/x16-PRos/main/docs/screenshots/fetch.png" alt="FETCH">
+    <h4>FETCH.BIN</h4>
+    <p>Print system fetch (I use PRos btw)</p>
+  </div>
+
+  <div class="software-card">
+    <img src="https://raw.githubusercontent.com/PRoX2011/x16-PRos/main/docs/screenshots/imfplay.png" alt="IMFPLAY">
+    <h4>IMFPLAY.BIN</h4>
+    <p>IMF music player</p>
+  </div>
+
+  <div class="software-card">
+    <img src="https://raw.githubusercontent.com/PRoX2011/x16-PRos/main/docs/screenshots/clock.png" alt="CLOCK">
+    <h4>CLOCK.BIN</h4>
+    <p>Clock application</p>
+  </div>
+
+  <div class="software-card">
+    <img src="https://raw.githubusercontent.com/PRoX2011/x16-PRos/main/docs/screenshots/hexedit.png" alt="HEXEDIT">
+    <h4>HEXEDIT.BIN</h4>
+    <p>Hex editor</p>
+  </div>
+
+  <div class="software-card more">
+    <h4>And more…</h4>
+    <p>
+      SNAKE.BIN<br>
+      CREDITS.BIN<br>
+      AUTOEXEC.BIN
+    </p>
+  </div>
+
+</div>
+
+<br>
+<br>
+
+      <section class="hero running-section">
+        <div class="panel reveal">
+          <h2 class="headline">Running</h2>
+          <p class="lead">You can run PRos on emulators or real hardware. Choose your preferred method:</p>
+          <div class="run-options">
+            <a class="btn run-btn real" href="#" onclick="goToDocsSection('realHardwareSection');return false;" aria-label="Run on Real Hardware">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-computer-icon lucide-computer">
+                <rect width="14" height="8" x="5" y="2" rx="2"/>
+                <rect width="20" height="8" x="2" y="14" rx="2"/>
+                <path d="M6 18h2"/>
+                <path d="M12 18h6"/>
+              </svg> Real Hardware
+            </a>
+            <a class="btn run-btn emu" href="#" onclick="goToDocsSection('EmulatorSection');return false;" aria-label="Run on Emulator">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkle-icon lucide-sparkle">
+                <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/>
+              </svg> Emulator
+            </a>
+          </div>
+        </div>
+
+        <aside class="term reveal delay" aria-label="Terminal emulation">
+          <div class="bar">
+            <div class="dot"></div>
+            <div class="dot yellow"></div>
+            <div class="dot green"></div>
+            <div style="flex:1"></div>
+            <div class="small">bash</div>
+          </div>
+          <div class="cmd" id="terminal">
+            <div><span class="prompt">user@linux:~/x16-PRos$</span> <span id="emuTyped">QEMU</span><span class="cursor" aria-hidden="true"></span></div>
+          </div>
+        </aside>
+      </section>
+      <section class="hero2 dev-section">
+  <div class="panel reveal">
+    <h2 class="headline">Development Team, contributors and sponsors</h2>
+    <p class="lead">People behind the x16-PRos project — software creators, sponsors and helpers.</p>
+
+    <div class="developers">
+      <div class="developer lead-dev">
+        <img src="images/devs/prox.jpg" alt="" class="avatar">
+        <div class="dev-info">
+          <h3 class="dev-name">PRoX-dev</h3>
+          <p class="dev-desc">
+            Lead developer. The creator of the kernel and the operating system itself, the terminal, drivers, API functions, multimedia, disk and graphics management, and almost the entire software package. 
+          </p>
+        </div>
+      </div>
+
+      <div class="developer">
+        <img src="images/devs/qwez-dev.jpg" alt="" class="avatar">
+        <div class="dev-info">
+          <h3 class="dev-name">Qwez-dev</h3>
+          <p class="dev-desc">
+            The creator of the game "Space Arcade" and build scripts for Windows.
+          </p>
+        </div>
+      </div>
+
+      <div class="developer">
+        <img src="images/devs/Han-Acbe.jpg" alt="" class="avatar">
+        <div class="dev-info">
+          <h3 class="dev-name">Han Akbe <span class="sponsor-tag">sponsor</span></h3>
+          <p class="dev-desc">
+            Corrected numerous typos in the project documentation, edited and improved the kernel code, provided valuable advice, , the developer of the standard C library (libc) for PRos, an active member of the community and also supported the project financially.
+          </p>
+        </div>
+      </div>
+
+      <div class="developer">
+        <img src="images/devs/ilnar.jpg" alt="" class="avatar">
+        <div class="dev-info">
+          <h3 class="dev-name">Ilnar Karazbaev <span class="sponsor-tag">sponsor</span></h3>
+          <p class="dev-desc">
+            The creator of the MEMORY program, the developer of the standard C library (libc) for PRos, an active member of the community
+        </div>
+      </div>
+
+      <div class="developer">
+        <img src="images/devs/saeta.jpg" alt="" class="avatar">
+        <div class="dev-info">
+          <h3 class="dev-name">Saeta</h3>
+          <p class="dev-desc">
+            Pomg helped fix a serious file system API bug, and also created the first version of the OS calculator. Before creating the API, he developed a library with basic functions.
+          </p>
+        </div>
+      </div>
+
+      <div class="developer">
+        <img src="images/devs/loxete.jpg" alt="" class="avatar">
+        <div class="dev-info">
+          <h3 class="dev-name">Loxsete</h3>
+          <p class="dev-desc">
+            Barchart program creator. At the beginning of development, I helped with the kernel code.
+          </p>
+        </div>
+      </div>
+
+      <div class="developer">
+        <img src="images/devs/gabriel.jpg" alt="" class="avatar">
+        <div class="dev-info">
+          <h3 class="dev-name">Gabriel</h3>
+          <p class="dev-desc">
+            Precentages program creator.
+          </p>
+        </div>
+      </div>
+
+      <div class="developer">
+        <img src="images/devs/andrey.jpg" alt="" class="avatar">
+        <div class="dev-info">
+          <h3 class="dev-name">Andrey</h3>
+          <p class="dev-desc">
+            Hex-edit program creator.
+          </p>
+        </div>
+      </div>
+
+      <div class="developer">
+        <img src="images/devs/litvincode.jpg" alt="" class="avatar">
+        <div class="dev-info">
+          <h3 class="dev-name">litvincode</h3>
+          <p class="dev-desc">
+            v0.2 calculator creator
+          </p>
+        </div>
+      </div>
+      <div class="sponsor-card">Green_Bushy - 1 024 RUB</div>
+      <div class="sponsor-card">tanushqn - 400 RUB</div>
+      <div class="sponsor-card">tomoko - 248 RUB</div>
+      <div class="sponsor-card">Vokich - 100 RUB</div>
+
+    </div>
+  </div>
+
+    <!-- Dicumentation section  -->
+</section>
+    </main>
+
+    <section id="docsPage" class="docs-container">
+      <aside class="docs-toc reveal">
+        <h4>Table of Contents</h4>
+        <ul>
+          <li><a href="#realHardwareSection">Running on Real Hardware</a></li>
+          <li><a href="#EmulatorSection">Running on Emulators</a></li>
+          <li><a href="#terminalSection">PRos Terminal</a></li>
+          <li><a href="#apiSection">API Documentation</a></li>
+          <li><a href="#examplesSection">Program Examples</a></li>
+        </ul>
+      </aside>
+
+      <div>
+        <div class="docs-section reveal" id="realHardwareSection">
+          <h3>Running x16-PRos on Real Hardware</h3>
+          <p>PRos is designed for 1.44 MB floppy disks but can also run from a USB flash drive. Follow these steps to set up PRos on real hardware. Use the <strong>.IMG</strong> image for persistent storage or the <strong>.ISO</strong> image for a live CD experience without saving changes.</p>
+          
+          <details>
+            <summary>Select the Device</summary>
+            <p>Choose a USB flash drive or floppy disk to write the PRos system image. For USB drives, ensure the drive is formatted as FAT12. The .IMG image supports persistent changes, while the .ISO image is for temporary, live sessions.</p>
+          </details>
+          <details>
+            <summary>Write the Image</summary>
+            <p>Download the PRos system image (.IMG or .ISO) and use a tool like <a href="https://rufus.ie/" target="_blank" rel="noopener">Rufus</a> to burn it to your USB drive. Select your USB drive and the image in Rufus, then click <strong>START</strong>. Wait for the process to complete before safely ejecting the drive.</p>
+          </details>
+          <details>
+            <summary>Configure BIOS for UEFI Systems</summary>
+            <p>PRos relies on BIOS system calls and does not support UEFI directly. If your computer uses UEFI, enable Compatibility Support Module (CSM) in the BIOS settings. Enter the BIOS setup by pressing keys like <strong>F2</strong> or <strong>DELETE</strong> during boot (check your motherboard manual for the exact key). Locate and enable CSM support.</p>
+            <figure>
+              <img src="images/docs/CSM-Bios.png" alt="BIOS CSM Settings">
+              <figcaption>Change DISABLED to ENABLED for CSM support.</figcaption>
+            </figure>
+          </details>
+          <details>
+            <summary>Access the Boot Menu</summary>
+            <p>Restart your computer and enter the boot menu (typically using <strong>F8</strong>, <strong>F11</strong>, <strong>F12</strong>, or <strong>ESC</strong>). Select the USB drive option labeled "USB" (not "UEFI") to boot PRos.</p>
+            <figure>
+              <img src="images/docs/BOOT-menu.jpg" alt="Boot Menu Selection">
+              <figcaption>Select your USB flash drive from the boot menu.</figcaption>
+            </figure>
+          </details>
+          <details>
+            <summary>Boot PRos</summary>
+            <p>Press <strong>ENTER</strong> to start the boot process, which takes approximately 2–5 seconds. Upon first launch, you’ll see the PRos installation screen.</p>
+            <figure>
+              <img src="images/screenshots/setup.png" alt="PRos Installation Screen">
+              <figcaption>The initial installation screen for x16-PRos.</figcaption>
+            </figure>
+          </details>
+        </div>
+
+        <div class="docs-section reveal" id="EmulatorSection">
+          <h3>Running x16-PRos on Emulators</h3>
+          <p>Emulators are ideal for developers and testers. PRos supports several emulators, with QEMU being the most straightforward option. Follow these steps to run PRos on QEMU.</p>
+          
+          <details>
+            <summary>Install QEMU</summary>
+            <p>Install <strong>qemu-system-x86_64</strong> or <strong>qemu-system-i386</strong> using your package manager. For example, on Debian-based systems:</p>
+            <pre><code class="language-bash">
+sudo apt install qemu-system-x86
+# Or
+sudo apt install qemu-system-i386
+            </code></pre>
+            <p>For Arch Linux with audio support, install the PulseAudio package:</p>
+            <pre><code class="language-bash">
+sudo pacman -S qemu-audio-pa
+            </code></pre>
+          </details>
+          <details>
+            <summary>Run PRos in QEMU</summary>
+            <p>Launch PRos using the following command, ensuring you have the <strong>x16-PRos.img</strong> image file:</p>
+            <pre><code class="language-bash">
+qemu-system-x86_64 -audiodev pa,id=snd0 -machine pcspk-audiodev=snd0 -fda x16-PRos.img
+            </code></pre>
+            <p>This command configures QEMU with audio support and boots the PRos image from a virtual floppy disk.</p>
+          </details>
+        </div>
+
+        <div class="docs-section reveal" id="terminalSection">
+          <h3>PRos Terminal Commands</h3>
+          <p>The PRos Terminal is a powerful command-line interface for interacting with the OS, supporting commands for disk operations, program execution, and multimedia tasks.</p>
+          
+          <h4>Basic Commands</h4>
+          <table class="command-table">
+            <thead>
+              <tr>
+                <th>Command</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>help</code></td>
+                <td>Display categorized command reference with navigation</td>
+              </tr>
+              <tr>
+                <td><code>info</code></td>
+                <td>Show system information and OS details</td>
+              </tr>
+              <tr>
+                <td><code>cls</code></td>
+                <td>Clear terminal screen</td>
+              </tr>
+              <tr>
+                <td><code>ver</code></td>
+                <td>Display PRos terminal version</td>
+              </tr>
+              <tr>
+                <td><code>exit</code></td>
+                <td>Exit to bootloader</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4>System Information</h4>
+          <table class="command-table">
+            <thead>
+              <tr>
+                <th>Command</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>cpu</code></td>
+                <td>Display detailed CPU information (family, model, cores, cache)</td>
+              </tr>
+              <tr>
+                <td><code>date</code></td>
+                <td>Show current date (DD/MM/YY format)</td>
+              </tr>
+              <tr>
+                <td><code>time</code></td>
+                <td>Show current time (HH:MM:SS format, UTC)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4>File Operations</h4>
+          <table class="command-table">
+            <thead>
+              <tr>
+                <th>Command</th>
+                <th>Syntax</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>dir</code></td>
+                <td><code>dir</code></td>
+                <td>List files in current directory with size info</td>
+              </tr>
+              <tr>
+                <td><code>cat</code></td>
+                <td><code>cat &lt;filename&gt;</code></td>
+                <td>Display file contents</td>
+              </tr>
+              <tr>
+                <td><code>size</code></td>
+                <td><code>size &lt;filename&gt;</code></td>
+                <td>Show file size in bytes</td>
+              </tr>
+              <tr>
+                <td><code>del</code></td>
+                <td><code>del &lt;filename&gt;</code></td>
+                <td>Delete a file (kernel.bin protected)</td>
+              </tr>
+              <tr>
+                <td><code>copy</code></td>
+                <td><code>copy &lt;source&gt; &lt;dest&gt;</code></td>
+                <td>Copy file (root directory only)</td>
+              </tr>
+              <tr>
+                <td><code>ren</code></td>
+                <td><code>ren &lt;old&gt; &lt;new&gt;</code></td>
+                <td>Rename file (root directory only)</td>
+              </tr>
+              <tr>
+                <td><code>touch</code></td>
+                <td><code>touch &lt;filename&gt;</code></td>
+                <td>Create empty file</td>
+              </tr>
+              <tr>
+                <td><code>write</code></td>
+                <td><code>write &lt;file&gt; &lt;text&gt;</code></td>
+                <td>Write text to file</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4>Text Processing</h4>
+          <table class="command-table">
+            <thead>
+              <tr>
+                <th>Command</th>
+                <th>Syntax</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>grep</code></td>
+                <td><code>grep &lt;file&gt; &lt;text&gt;</code></td>
+                <td>Search for text in file with line/column highlighting</td>
+              </tr>
+              <tr>
+                <td><code>head</code></td>
+                <td><code>head &lt;filename&gt;</code></td>
+                <td>Display first 10 lines of file</td>
+              </tr>
+              <tr>
+                <td><code>tail</code></td>
+                <td><code>tail &lt;filename&gt;</code></td>
+                <td>Display last 10 lines of file</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4>Directory Operations</h4>
+          <table class="command-table">
+            <thead>
+              <tr>
+                <th>Command</th>
+                <th>Syntax</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>cd</code></td>
+                <td><code>cd &lt;dirname&gt;</code></td>
+                <td>Change directory (use <code>..</code> for parent, <code>/</code> for root)</td>
+              </tr>
+              <tr>
+                <td><code>mkdir</code></td>
+                <td><code>mkdir &lt;dirname&gt;</code></td>
+                <td>Create new directory</td>
+              </tr>
+              <tr>
+                <td><code>deldir</code></td>
+                <td><code>deldir &lt;dirname&gt;</code></td>
+                <td>Delete empty directory</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4>Media & Display</h4>
+          <table class="command-table">
+            <thead>
+              <tr>
+                <th>Command</th>
+                <th>Syntax</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>view</code></td>
+                <td><code>view &lt;file&gt; [-upscale]</code></td>
+                <td>Display BMP image with optional 2x scaling</td>
+              </tr>
+              <tr>
+                <td><code>chars</code></td>
+                <td><code>chars</code></td>
+                <td>Display ASCII character table</td>
+              </tr>
+              <tr>
+                <td><code>theme</code></td>
+                <td><code>theme &lt;name&gt;</code></td>
+                <td>Change color theme (DEFAULT/GROOVYBOX/UBUNTU)</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h4>Power Management</h4>
+          <table class="command-table">
+            <thead>
+              <tr>
+                <th>Command</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><code>shut</code></td>
+                <td>Shutdown system via APM</td>
+              </tr>
+              <tr>
+                <td><code>reboot</code></td>
+                <td>Restart system</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="docs-section reveal" id="apiSection">
+  <h3>API Documentation</h3>
+  <p>
+    x16-PRos provides a set of interrupt-driven APIs for developers, organized into three categories, each accessible via a specific interrupt:
+  </p>
+  <ul class="req-list">
+    <li><strong>INT 0x21</strong>: Output API - screen output, colors, cursor, and video mode control.</li>
+    <li><strong>INT 0x22</strong>: File System API - FAT12 file management (list, load, write, delete, etc.).</li>
+    <li><strong>INT 0x23</strong>: String Operations API - strings, input, time/date, cursor, conversions.</li>
+  </ul>
+  <p>
+    Each function is selected via the <code>AH</code> register. Input/output parameters use other registers (e.g., <code>SI</code>, <code>AX</code>, <code>BX</code>, etc.).  
+    Unless specified, functions preserve all unused registers and set the carry flag (<code>CF</code>) on error.
+  </p>
+
+  <!-- INT 0x21: Output API -->
+  <details>
+    <summary>Output API (<code>INT 0x21</code>)</summary>
+    <p>Handles screen output in VGA 640×480 16-color mode. All text functions support newline (<code>0x0A</code>) → <code>CR+LF</code>.</p>
+
+    <h4>Functions</h4>
+    <table class="command-table">
+      <thead>
+        <tr>
+          <th>Code (<code>AH</code>)</th>
+          <th>Description</th>
+          <th>Input</th>
+          <th>Output / Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>0x00</code></td>
+          <td>Initialize Output System</td>
+          <td>—</td>
+          <td>Sets VGA mode <code>0x12</code> (640×480, 16 colors). No error reporting.</td>
+        </tr>
+        <tr>
+          <td><code>0x01</code></td>
+          <td>Print String (White)</td>
+          <td><code>SI</code> = string pointer</td>
+          <td>Advances <code>SI</code>. Color: <code>0x0F</code>.</td>
+        </tr>
+        <tr>
+          <td><code>0x02</code></td>
+          <td>Print String (Green)</td>
+          <td><code>SI</code> = string pointer</td>
+          <td>Color: <code>0x0A</code>.</td>
+        </tr>
+        <tr>
+          <td><code>0x03</code></td>
+          <td>Print String (Cyan)</td>
+          <td><code>SI</code> = string pointer</td>
+          <td>Color: <code>0x0B</code>.</td>
+        </tr>
+        <tr>
+          <td><code>0x04</code></td>
+          <td>Print String (Red)</td>
+          <td><code>SI</code> = string pointer</td>
+          <td>Color: <code>0x0C</code>.</td>
+        </tr>
+        <tr>
+          <td><code>0x05</code></td>
+          <td>Print Newline</td>
+          <td>—</td>
+          <td>Outputs <code>0x0D</code>, <code>0x0A</code>.</td>
+        </tr>
+        <tr>
+          <td><code>0x06</code></td>
+          <td>Clear Screen</td>
+          <td>—</td>
+          <td>Resets video mode (same as <code>0x00</code>).</td>
+        </tr>
+        <tr>
+          <td><code>0x07</code></td>
+          <td>Set Text Color</td>
+          <td><code>BL</code> = color code (0x00–0x0F)</td>
+          <td>Sets global color for <code>0x08</code>.</td>
+        </tr>
+        <tr>
+          <td><code>0x08</code></td>
+          <td>Print String (Custom Color)</td>
+          <td><code>SI</code> = string pointer</td>
+          <td>Uses color from <code>0x07</code>. Advances <code>SI</code>.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h4>VGA 16-Color Palette</h4>
+    <table class="command-table">
+      <thead>
+        <tr>
+          <th>Code</th>
+          <th>Name</th>
+          <th>Hex</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td><code>0x00</code></td><td>Black</td><td><code>#000000</code></td></tr>
+        <tr><td><code>0x01</code></td><td>Dark Blue</td><td><code>#0000AA</code></td></tr>
+        <tr><td><code>0x02</code></td><td>Dark Green</td><td><code>#00AA00</code></td></tr>
+        <tr><td><code>0x03</code></td><td>Dark Cyan</td><td><code>#00AAAA</code></td></tr>
+        <tr><td><code>0x04</code></td><td>Dark Red</td><td><code>#AA0000</code></td></tr>
+        <tr><td><code>0x05</code></td><td>Dark Magenta</td><td><code>#AA00AA</code></td></tr>
+        <tr><td><code>0x06</code></td><td>Brown</td><td><code>#AA5500</code></td></tr>
+        <tr><td><code>0x07</code></td><td>Light Gray</td><td><code>#AAAAAA</code></td></tr>
+        <tr><td><code>0x08</code></td><td>Dark Gray</td><td><code>#555555</code></td></tr>
+        <tr><td><code>0x09</code></td><td>Blue</td><td><code>#5555FF</code></td></tr>
+        <tr><td><code>0x0A</code></td><td>Green</td><td><code>#55FF55</code></td></tr>
+        <tr><td><code>0x0B</code></td><td>Cyan</td><td><code>#55FFFF</code></td></tr>
+        <tr><td><code>0x0C</code></td><td>Red</td><td><code>#FF5555</code></td></tr>
+        <tr><td><code>0x0D</code></td><td>Magenta</td><td><code>#FF55FF</code></td></tr>
+        <tr><td><code>0x0E</code></td><td>Yellow</td><td><code>#FFFF55</code></td></tr>
+        <tr><td><code>0x0F</code></td><td>White</td><td><code>#FFFFFF</code></td></tr>
+      </tbody>
+    </table>
+  </details>
+
+  <!-- INT 0x22: File System API -->
+  <details>
+    <summary>File System API (<code>INT 0x22</code>)</summary>
+    <p>Manages files on a FAT12 disk (e.g. 1.44 MB floppy). Filenames must be in <code>8.3</code> format (e.g. <code>FILE.TXT</code>); case-insensitive (auto-converted to uppercase).</p>
+
+    <h4>Functions</h4>
+    <table class="command-table">
+      <thead>
+        <tr>
+          <th>Code (<code>AH</code>)</th>
+          <th>Description</th>
+          <th>Input</th>
+          <th>Output / Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>0x00</code></td>
+          <td>Initialize File System</td>
+          <td>—</td>
+          <td>Resets floppy controller. <code>CF</code> = error.</td>
+        </tr>
+        <tr>
+          <td><code>0x01</code></td>
+          <td>Get File List</td>
+          <td><code>AX</code> = buffer pointer</td>
+          <td>
+            <code>BX:CX</code> = total size (32-bit)<br>
+            <code>DX</code> = file count<br>
+            Buffer: comma-separated, null-terminated list (e.g. <code>FILE1.TXT,FILE2.BIN</code>)
+          </td>
+        </tr>
+        <tr>
+          <td><code>0x02</code></td>
+          <td>Load File</td>
+          <td>
+            <code>AX</code> = filename<br>
+            <code>CX</code> = load address
+          </td>
+          <td><code>BX</code> = file size. <code>CF</code> = error (not found/disk).</td>
+        </tr>
+        <tr>
+          <td><code>0x03</code></td>
+          <td>Write File</td>
+          <td>
+            <code>AX</code> = filename<br>
+            <code>BX</code> = data buffer<br>
+            <code>CX</code> = size (bytes)
+          </td>
+          <td>Creates or overwrites file. <code>CF</code> = error.</td>
+        </tr>
+        <tr>
+          <td><code>0x04</code></td>
+          <td>Check if File Exists</td>
+          <td><code>AX</code> = filename</td>
+          <td><code>CF</code> clear = exists, set = not found/invalid.</td>
+        </tr>
+        <tr>
+          <td><code>0x05</code></td>
+          <td>Create Empty File</td>
+          <td><code>AX</code> = filename</td>
+          <td>Fails if exists or root dir full. <code>CF</code> = error.</td>
+        </tr>
+        <tr>
+          <td><code>0x06</code></td>
+          <td>Remove File</td>
+          <td><code>AX</code> = filename</td>
+          <td>Deletes entry, frees clusters. <code>CF</code> = error.</td>
+        </tr>
+        <tr>
+          <td><code>0x07</code></td>
+          <td>Rename File</td>
+          <td>
+            <code>AX</code> = old name<br>
+            <code>BX</code> = new name
+          </td>
+          <td>Both 8.3, case-insensitive. <code>CF</code> = error.</td>
+        </tr>
+        <tr>
+          <td><code>0x08</code></td>
+          <td>Get File Size</td>
+          <td><code>AX</code> = filename</td>
+          <td><code>BX</code> = size. <code>CF</code> = not found.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>Limitations:</strong>  
+      Root directory: max 224 entries.  
+      File size: up to 32 MiB (FAT12), though some APIs use 16-bit size fields (≤64 KiB).</p>
+  </details>
+
+  <!-- INT 0x23: String Operations API -->
+  <details>
+    <summary>String Operations API (<code>INT 0x23</code>)</summary>
+    <p>Utilities for strings, input, and system info. Null-terminated strings assumed.</p>
+
+    <h4>Functions</h4>
+    <table class="command-table">
+      <thead>
+        <tr>
+          <th>Code (<code>AH</code>)</th>
+          <th>Description</th>
+          <th>Input</th>
+          <th>Output / Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>0x00</code></td>
+          <td>Initialize API</td>
+          <td>—</td>
+          <td>No-op (reserved).</td>
+        </tr>
+        <tr>
+          <td><code>0x01</code></td>
+          <td>Get String Length</td>
+          <td><code>AX</code> = string pointer</td>
+          <td><code>AX</code> = length (excl. null).</td>
+        </tr>
+        <tr>
+          <td><code>0x02</code></td>
+          <td>Convert to Uppercase</td>
+          <td><code>AX</code> = string pointer</td>
+          <td>In-place conversion (<code>'a'–'z'</code> → <code>'A'–'Z'</code>).</td>
+        </tr>
+        <tr>
+          <td><code>0x03</code></td>
+          <td>Copy String</td>
+          <td>
+            <code>SI</code> = source<br>
+            <code>DI</code> = destination
+          </td>
+          <td>Copies including null terminator.</td>
+        </tr>
+        <tr>
+          <td><code>0x04</code></td>
+          <td>Trim Spaces</td>
+          <td><code>AX</code> = string pointer</td>
+          <td>Removes leading/trailing spaces in-place.</td>
+        </tr>
+        <tr>
+          <td><code>0x05</code></td>
+          <td>Compare Strings</td>
+          <td>
+            <code>SI</code> = str1<br>
+            <code>DI</code> = str2
+          </td>
+          <td><code>CF</code> set = equal, clear = not equal.</td>
+        </tr>
+        <tr>
+          <td><code>0x06</code></td>
+          <td>Compare (Limited)</td>
+          <td>
+            <code>SI</code>, <code>DI</code> = strings<br>
+            <code>CL</code> = max length
+          </td>
+          <td><code>CF</code> = equality within limit.</td>
+        </tr>
+        <tr>
+          <td><code>0x07</code></td>
+          <td>Tokenize String</td>
+          <td>
+            <code>SI</code> = string<br>
+            <code>AL</code> = delimiter
+          </td>
+          <td>
+            <code>DI</code> = token pointer (0 = none)<br>
+            <code>SI</code> advances past delimiter.<br>
+            Modifies string (inserts <code>0</code> at delimiters).
+          </td>
+        </tr>
+        <tr>
+          <td><code>0x08</code></td>
+          <td>Input String</td>
+          <td><code>AX</code> = buffer pointer</td>
+          <td>Max 255 chars. Supports backspace. Ends on <code>Enter</code> (<code>0x0D</code>).</td>
+        </tr>
+        <tr>
+          <td><code>0x09</code></td>
+          <td>Clear Screen</td>
+          <td>—</td>
+          <td>Same as <code>INT 0x21, AH=0x06</code>.</td>
+        </tr>
+        <tr>
+          <td><code>0x0A</code></td>
+          <td>Get Time String</td>
+          <td><code>BX</code> = buffer pointer</td>
+          <td>Writes <code>HH:MM:SS</code> (null-terminated).</td>
+        </tr>
+        <tr>
+          <td><code>0x0B</code></td>
+          <td>Get Date String</td>
+          <td><code>BX</code> = buffer pointer</td>
+          <td>Writes <code>MM/DD/YY</code>, <code>DD/MM/YY</code>, or <code>YY/MM/DD</code> depending on global <code>fmt_date</code>.</td>
+        </tr>
+        <tr>
+          <td><code>0x0C</code></td>
+          <td>Convert BCD → Int</td>
+          <td><code>AL</code> = BCD (e.g. <code>0x23</code>)</td>
+          <td><code>AL</code> = decimal (e.g. <code>23</code>).</td>
+        </tr>
+        <tr>
+          <td><code>0x0D</code></td>
+          <td>Convert Int → String</td>
+          <td><code>AX</code> = integer</td>
+          <td><code>AX</code> = pointer to static buffer (up to 7 digits).</td>
+        </tr>
+        <tr>
+          <td><code>0x0E</code></td>
+          <td>Get Cursor Position</td>
+          <td>—</td>
+          <td><code>DL</code> = col, <code>DH</code> = row.</td>
+        </tr>
+        <tr>
+          <td><code>0x0F</code></td>
+          <td>Move Cursor</td>
+          <td><code>DL</code> = col, <code>DH</code> = row</td>
+          <td>Moves cursor (0-based).</td>
+        </tr>
+        <tr>
+          <td><code>0x10</code></td>
+          <td>Parse (Space-Separated)</td>
+          <td><code>SI</code> = string</td>
+          <td>
+            <code>AX</code>, <code>BX</code>, <code>CX</code>, <code>DX</code> = token pointers (0 = none).<br>
+            Modifies string (spaces → <code>0</code>).
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </details>
+</div>
+
+        <div class="docs-section reveal" id="examplesSection">
+          <h3>Program Examples</h3>
+          <p>Below are example programs demonstrating the use of PRos APIs, written in NASM for the 16-bit x86 architecture.</p>
+          
+          <details>
+            <summary>Hello, World</summary>
+            <p><strong>Description:</strong> A simple program to output a text string to the terminal.</p>
+            <pre><code class="language-nasm">
+[BITS 16]
+[ORG 0x8000]
+
+start:
+    mov ah, 0x01        ; API output print white string function
+    mov si, hello_msg   ; String to output
+    int 0x21            ; Call the API function
+    ret                 ; Return to the terminal
+
+hello_msg db 'Hello, PRos!', 10, 13, 0
+            </code></pre>
+          </details>
+          <details>
+            <summary>Print Colored Strings</summary>
+            <p><strong>Description:</strong> A program to output the same string in multiple colors using different API functions.</p>
+            <pre><code class="language-nasm">
+[BITS 16]
+[ORG 0x8000]
+
+start:
+    mov ah, 0x01        ; API output print white string function
+    mov si, hello_msg   ; String to output
+    int 0x21            ; Call the API function
+
+    mov ah, 0x02        ; API output print green string function
+    mov si, hello_msg   ; String to output
+    int 0x21            ; Call the API function
+
+    mov ah, 0x03        ; API output print cyan string function
+    mov si, hello_msg   ; String to output
+    int 0x21            ; Call the API function
+
+    mov ah, 0x04        ; API output print red string function
+    mov si, hello_msg   ; String to output
+    int 0x21            ; Call the API function
+    
+    ret                 ; Return to the terminal
+
+hello_msg db 'Hello, PRos!', 10, 13, 0
+            </code></pre>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div style="font-size:13px;color:var(--muted)">© x16-PRos • <a class="link" href="https://github.com/PRoX2011/x16-PRos/blob/main/LICENSE.TXT">MIT License</a></div>
+    </footer>
+  </div>
+<div id="downloadModal" class="modal-overlay">
+  <div class="modal">
+    <button class="modal-close" aria-label="Close">&times;</button>
+    <h3>Select Image Type</h3>
+    <div class="image-cards">
+      <a href="x16-PRos.img" class="image-card" download>
+        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 1025 1024" fill="#448fb1"><path d="M960.06 1024h-64V576q0-26-19-45t-45-19h-640q-27 0-45.5 19t-18.5 45v448h-64q-26 0-45-19t-19-45V64q0-26 19-45t45-19h832l128 128v832q0 26-19 45t-45 19zm-192-960h-640v256q0 27 18.5 45.5t45.5 18.5h512q26 0 45-18.5t19-45.5V64zm-256 64h128v192h-128V128zm-288 448h576q13 0 22.5 9.5t9.5 22.5t-9.5 22.5t-22.5 9.5h-576q-13 0-22.5-9.5t-9.5-22.5t9.5-22.5t22.5-9.5zm0 192h576q13 0 22.5 9.5t9.5 22.5t-9.5 22.5t-22.5 9.5h-576q-13 0-22.5-9.5t-9.5-22.5t9.5-22.5t22.5-9.5zm0 192h576q13 0 22.5 9.5t9.5 22.5t-9.5 22.5t-22.5 9.5h-576q-13 0-22.5-9.5t-9.5-22.5t9.5-22.5t22.5-9.5z"/></svg>
+        <h4>IMG Image</h4>
+        <p>Bootable Floppy/USB image for real hardware and emulators.</p>
+        <p class="size">Size: 1.44 MB</p>
+      </a>
+      <a href="x16-PRos.iso" class="image-card" download>
+        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24"><g fill="none" stroke="#448fb1" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" color="currentColor"><path d="M22 12c0 5.523-4.477 10-10 10S2 17.523 2 12S6.477 2 12 2s10 4.477 10 10"/><path d="M6.5 15.99a6.9 6.9 0 0 0 1.43 1.51m8.096-11c.569.44 1.067.972 1.474 1.573M14.5 12a2.5 2.5 0 1 0-5 0a2.5 2.5 0 0 0 5 0"/></g></svg>
+        <h4>ISO Image</h4>
+        <p>Bootable CD/DVD image for optical media.</p>
+        <p class="size">Size: 3.2 MB</p>
+      </a>
+      
+    </div>
+  </div>
+</div>
+
+<script>
+  const modal = document.getElementById('downloadModal');
+  const closeBtn = modal.querySelector('.modal-close');
+  const downloadBtn = document.querySelector('.btn.primary[href="#download"]');
+
+  downloadBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    modal.classList.add('show');
+  });
+
+  closeBtn.addEventListener('click', () => {
+    modal.classList.remove('show');
+  });
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) modal.classList.remove('show');
+  });
+</script>
+
+  <script>
+    (function(){
+      const txts = ['free','fast','customizable','lightweight','easy to use','multifunctional','not demanding'];
+      let i=0; let j=0; const el = document.getElementById('typed');
+      function step(){
+        const s = txts[i];
+        el.textContent = s.slice(0,j);
+        j++;
+        if(j> s.length){
+          setTimeout(()=>{j=0;i=(i+1)%txts.length;step();},1000);
+        } else setTimeout(step,120);
+      }
+      step();
+    })();
+
+    (function(){
+      const emulators = ['QEMU','Bosh','VMware','VirtualBox'];
+      const el = document.getElementById('emuTyped');
+      let i = 0; 
+      let j = 0;
+      let deleting = false;
+
+      function step() {
+        const current = emulators[i];
+        el.textContent = current.slice(0, j);
+
+        if (!deleting) {
+          j++;
+          if (j > current.length) {
+            setTimeout(() => { deleting = true; step(); }, 1200);
+            return;
+          }
+        } else {
+          j--;
+          if (j === 0) {
+            deleting = false;
+            i = (i + 1) % emulators.length;
+          }
+        }
+
+        setTimeout(step, deleting ? 40 : 100);
+      }
+
+      step();
+    })();
+  </script>
+  <script>
+  const scrollBtn = document.getElementById("scrollTopBtn");
+
+  // Следим за прокруткой страницы
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      scrollBtn.classList.add("show");
+    } else {
+      scrollBtn.classList.remove("show");
+    }
+  });
+
+  // Плавная прокрутка вверх
+  scrollBtn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+
+  /* ================================
+      GALLERY MAIN LOGIC
+   ================================ */
+
+const galleryData = [
+  {
+    src: 'images/screenshots/terminal.png',
+    title: 'PRos Terminal',
+    desc: 'The main command-line interface of x16 PRos operating system.'
+  },
+  {
+    src: 'images/screenshots/setup.png',
+    title: 'Setup Screen',
+    desc: 'Initial setup and installation screen for x16 PRos.'
+  },
+  {
+    src: 'images/screenshots/help_menu.png',
+    title: 'Help Menu',
+    desc: 'List of available commands and help information.'
+  },
+  {
+    src: 'images/screenshots/dir.png',
+    title: 'Directory Listing',
+    desc: 'View of files and directories using the dir command.'
+  },
+  {
+    src: 'images/screenshots/cpu_comand.png',
+    title: 'CPU Command',
+    desc: 'Detailed CPU information display.'
+  },
+  {
+    src: 'images/screenshots/view_comand.png',
+    title: 'View Command',
+    desc: 'Command for viewing images or files.'
+  },
+  {
+    src: 'images/screenshots/file_managment.png',
+    title: 'File Management',
+    desc: 'Operations for managing files and directories.'
+  },
+  {
+    src: 'images/screenshots/fetch.png',
+    title: 'Fetch Command',
+    desc: 'System information fetch display.'
+  },
+  {
+    src: 'images/screenshots/password_screen.png',
+    title: 'Password Screen',
+    desc: 'Security password prompt interface.'
+  }
+];
+
+const galleryImage = document.getElementById('galleryImage');
+const galleryTitle = document.getElementById('galleryTitle');
+const galleryDesc  = document.getElementById('galleryDesc');
+
+const thumbnails = document.querySelectorAll('.gallery-thumbnails .thumbnail');
+const prevBtn = document.querySelector('.gallery-nav.prev');
+const nextBtn = document.querySelector('.gallery-nav.next');
+
+let currentIndex = 0;
+
+
+function updateGallery(index) {
+  const item = galleryData[index];
+
+  galleryImage.style.opacity = 0;
+  setTimeout(() => {
+    galleryImage.src = item.src;
+    galleryImage.onload = () => (galleryImage.style.opacity = 1);
+  }, 150);
+
+  galleryTitle.textContent = item.title;
+  galleryDesc.textContent = item.desc;
+
+  // Highlight thumbnail
+  thumbnails.forEach(t => t.classList.remove('active'));
+  thumbnails[index].classList.add('active');
+
+  currentIndex = index;
+}
+
+/* ================================
+      NAVIGATION
+   ================================ */
+
+function nextImage() {
+  let index = currentIndex + 1;
+  if (index >= galleryData.length) index = 0;
+  updateGallery(index);
+}
+
+function prevImage() {
+  let index = currentIndex - 1;
+  if (index < 0) index = galleryData.length - 1;
+  updateGallery(index);
+}
+
+nextBtn.addEventListener('click', nextImage);
+prevBtn.addEventListener('click', prevImage);
+
+thumbnails.forEach((thumb, index) => {
+  thumb.addEventListener('click', () => updateGallery(index));
+});
+
+updateGallery(0);
+
+
+
+const fsOverlay = document.getElementById("fullscreenGallery");
+const fsImg     = document.querySelector(".fs-image");
+const fsClose   = document.querySelector(".fs-close");
+const fsPrev    = document.querySelector(".fs-prev");
+const fsNext    = document.querySelector(".fs-next");
+
+function openFullscreenGallery() {
+  fsOverlay.style.display = "flex";
+  fsImg.src = galleryData[currentIndex].src;
+}
+
+function openFullscreen() {
+  openFullscreenGallery();
+}
+
+function closeFullscreenGallery() {
+  fsOverlay.style.display = "none";
+}
+
+function fsNextImage() {
+  nextImage();
+  fsImg.src = galleryData[currentIndex].src;
+}
+
+function fsPrevImage() {
+  prevImage();
+  fsImg.src = galleryData[currentIndex].src;
+}
+
+fsClose.addEventListener("click", closeFullscreenGallery);
+fsNext.addEventListener("click", fsNextImage);
+fsPrev.addEventListener("click", fsPrevImage);
+
+fsOverlay.addEventListener("click", (e) => {
+  if (e.target === fsOverlay) closeFullscreenGallery();
+});
+
+document.addEventListener("keydown", (e) => {
+  if (fsOverlay.style.display !== "flex") return;
+
+  if (e.key === "ArrowRight") fsNextImage();
+  if (e.key === "ArrowLeft") fsPrevImage();
+  if (e.key === "Escape") closeFullscreenGallery();
+});
+
+</script>
+<div id="fullscreenGallery" class="fs-overlay">
+  <button class="fs-close">✕</button>
+  <button class="fs-prev">‹</button>
+  <img class="fs-image">
+  <button class="fs-next">›</button>
+</div>
+
+</body>
+</html>
