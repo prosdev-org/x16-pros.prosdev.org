@@ -282,6 +282,7 @@
     <p>
       SNAKE.BIN<br>
       CREDITS.BIN<br>
+      MANDEL.BIN<br>
       AUTOEXEC.BIN
     </p>
   </div>
@@ -403,7 +404,7 @@
       <div class="developer">
         <img src="images/devs/andrey.jpg" alt="" class="avatar">
         <div class="dev-info">
-          <h3 class="dev-name">Andrey</h3>
+          <h3 class="dev-name">Cuzhima</h3>
           <p class="dev-desc">
             Hex-edit program creator.
           </p>
@@ -962,13 +963,13 @@ qemu-system-x86_64 -audiodev pa,id=snd0 -machine pcspk-audiodev=snd0 -fda x16-PR
         <tr>
           <td><code>0x01</code></td>
           <td>Get String Length</td>
-          <td><code>AX</code> = string pointer</td>
-          <td><code>AX</code> = length (excl. null).</td>
+          <td><code>SI</code> = string pointer</td>
+          <td><code>SI</code> = length (excl. null).</td>
         </tr>
         <tr>
           <td><code>0x02</code></td>
           <td>Convert to Uppercase</td>
-          <td><code>AX</code> = string pointer</td>
+          <td><code>SI</code> = string pointer</td>
           <td>In-place conversion (<code>'a'–'z'</code> → <code>'A'–'Z'</code>).</td>
         </tr>
         <tr>
@@ -983,7 +984,7 @@ qemu-system-x86_64 -audiodev pa,id=snd0 -machine pcspk-audiodev=snd0 -fda x16-PR
         <tr>
           <td><code>0x04</code></td>
           <td>Trim Spaces</td>
-          <td><code>AX</code> = string pointer</td>
+          <td><code>SI</code> = string pointer</td>
           <td>Removes leading/trailing spaces in-place.</td>
         </tr>
         <tr>
@@ -1050,8 +1051,8 @@ qemu-system-x86_64 -audiodev pa,id=snd0 -machine pcspk-audiodev=snd0 -fda x16-PR
         <tr>
           <td><code>0x0D</code></td>
           <td>Convert Int → String</td>
-          <td><code>AX</code> = integer</td>
-          <td><code>AX</code> = pointer to static buffer (up to 7 digits).</td>
+          <td><code>SI</code> = integer</td>
+          <td><code>SI</code> = pointer to static buffer (up to 7 digits).</td>
         </tr>
         <tr>
           <td><code>0x0E</code></td>
@@ -1070,7 +1071,7 @@ qemu-system-x86_64 -audiodev pa,id=snd0 -machine pcspk-audiodev=snd0 -fda x16-PR
           <td>Parse (Space-Separated)</td>
           <td><code>SI</code> = string</td>
           <td>
-            <code>AX</code>, <code>BX</code>, <code>CX</code>, <code>DX</code> = token pointers (0 = none).<br>
+            <code>SI</code>, <code>BX</code>, <code>CX</code>, <code>DX</code> = token pointers (0 = none).<br>
             Modifies string (spaces → <code>0</code>).
           </td>
         </tr>
@@ -1128,12 +1129,54 @@ start:
 hello_msg db 'Hello, PRos!', 10, 13, 0
             </code></pre>
           </details>
+          <details>
+            <summary>Input name and pring greeting</summary>
+            <p><strong>Description:</strong> A program that asks for a name and then displays a greeting using API output and API string.</p>
+            <pre><code class="language-nasm">
+[BITS 16]
+[ORG 0x8000]
+
+start:
+    mov ah, 0x01
+    mov si, prompt
+    int 0x21
+
+    ; Get username input
+    mov ah, 0x08          ; API string input string function
+    mov si, user_name     ; Buffer
+    int 0x23              ; Call the API function
+
+    ; Print newline
+    mov ah, 0x05
+    int 0x21
+
+    ; ------ Print "Hello + NAME" ------
+    mov ah, 0x01
+    mov si, hello_msg
+    int 0x21
+
+    mov ah, 0x01
+    mov si, user_name
+    int 0x21
+    ; ----------------------------------
+
+    ; Print newline
+    mov ah, 0x05
+    int 0x21
+
+    ret                   ; Return to the terminal
+
+prompt    db 'Enter your name: ', 0
+hello_msg db 'Hello, ', 0
+user_name times 32 db 0
+            </code></pre>
+          </details>
         </div>
       </div>
     </section>
 
     <footer>
-      <div>Licensed under <a href="https://opensource.org/license/BSD-3-clause">3-Clause BSD</a>. Copyright (c) 2025, PRosDev.org</div>
+      <div>Licensed under <a href="https://opensource.org/license/BSD-3-clause">3-Clause BSD</a>. Copyright © 2025, PRosDev.org</div>
     </footer>
   </div>
 <div id="downloadModal" class="modal-overlay">
@@ -1219,7 +1262,6 @@ hello_msg db 'Hello, PRos!', 10, 13, 0
   <script>
   const scrollBtn = document.getElementById("scrollTopBtn");
 
-  // Следим за прокруткой страницы
   window.addEventListener("scroll", () => {
     if (window.scrollY > 300) {
       scrollBtn.classList.add("show");
@@ -1228,7 +1270,6 @@ hello_msg db 'Hello, PRos!', 10, 13, 0
     }
   });
 
-  // Плавная прокрутка вверх
   scrollBtn.addEventListener("click", () => {
     window.scrollTo({
       top: 0,
