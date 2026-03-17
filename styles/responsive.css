@@ -1,0 +1,85 @@
+/* ===== Responsive Breakpoints ===== */
+
+@media (max-width: 960px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .docs-container {
+    grid-template-columns: 1fr;
+  }
+
+  .docs-toc {
+    position: static;
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 760px) {
+  .program-modal {
+    width: 100%;
+    padding: 18px;
+  }
+
+  .program-modal-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .program-source-btn {
+    align-self: flex-start;
+    min-width: 0;
+  }
+
+  .program-detail-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .command-table {
+    font-size: 13px;
+  }
+
+  .command-table thead th,
+  .command-table tbody td {
+    padding: 10px 12px;
+  }
+}
+
+@media (max-width: 680px) {
+  .software-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .developer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 18px;
+  }
+
+  .developer .avatar {
+    margin-bottom: 14px;
+  }
+}
+
+@media (max-width: 520px) {
+  body {
+    padding: 18px;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .dev-features-grid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,245 @@
+/* ===== Documentation Page ===== */
+
+#docsPage {
+  display: none;
+}
+
+.docs-container {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 24px;
+  margin-bottom: 44px;
+}
+
+.docs-toc {
+  position: sticky;
+  top: 32px;
+  background: linear-gradient(180deg, var(--glass), transparent);
+  border: 1px solid var(--glass-2);
+  border-radius: 14px;
+  padding: 18px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.docs-toc h4 {
+  font-size: 16px;
+  color: #e6eef3;
+  margin: 0 0 12px;
+  font-weight: 600;
+}
+
+.docs-toc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.docs-toc li {
+  margin: 8px 0;
+}
+
+.docs-toc a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.docs-toc a:hover {
+  color: var(--accent);
+}
+
+.docs-section {
+  background: linear-gradient(180deg, var(--glass), transparent);
+  border: 1px solid var(--glass-2);
+  border-radius: 14px;
+  padding: 28px;
+  margin-bottom: 24px;
+}
+
+.docs-section h3 {
+  font-size: 22px;
+  margin: 0 0 16px;
+  color: #e6eef3;
+  letter-spacing: 0.4px;
+}
+
+.docs-section h4 {
+  font-size: 18px;
+  margin: 16px 0 12px;
+  color: #f1f5f9;
+  font-weight: 600;
+}
+
+.docs-section p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 12px;
+}
+
+/* Docs images */
+#docsPage img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 18px 0;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#docsPage img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 12px 32px rgba(124, 108, 255, 0.25);
+}
+
+#docsPage figure {
+  margin: 24px 0;
+}
+
+#docsPage figcaption {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 6px;
+  line-height: 1.4;
+}
+
+/* Details/Summary */
+details {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.01)
+  );
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin-top: 14px;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+details:hover {
+  border-color: rgba(124, 108, 255, 0.25);
+  box-shadow: 0 8px 22px rgba(124, 108, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+details[open] {
+  background: linear-gradient(
+    180deg,
+    rgba(124, 108, 255, 0.08),
+    rgba(255, 255, 255, 0.02)
+  );
+  border-color: rgba(124, 108, 255, 0.3);
+}
+
+summary {
+  font-weight: 600;
+  color: var(--accent);
+  cursor: pointer;
+  list-style: none;
+  position: relative;
+  padding-left: 20px;
+  transition: color 0.25s ease;
+}
+
+summary::before {
+  content: "\203A";
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+  font-size: 16px;
+  color: var(--accent-2);
+}
+
+details[open] summary::before {
+  transform: rotate(90deg);
+}
+
+summary:hover {
+  color: var(--accent-2);
+}
+
+details pre {
+  margin-top: 10px;
+  background: #0a0e14;
+  border-radius: 10px;
+  padding: 14px;
+  overflow-x: auto;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 13px;
+}
+
+details p {
+  color: var(--muted);
+  margin: 10px 0;
+  font-size: 14px;
+}
+
+/* Command tables */
+.command-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 18px 0;
+  font-size: 14px;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+.command-table thead {
+  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+}
+
+.command-table thead th {
+  padding: 12px 16px;
+  text-align: left;
+  font-weight: 600;
+  color: #021;
+  letter-spacing: 0.3px;
+}
+
+.command-table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.2s ease;
+}
+
+.command-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.command-table tbody tr:hover {
+  background: rgba(124, 108, 255, 0.08);
+}
+
+.command-table tbody td {
+  padding: 12px 16px;
+  color: var(--muted);
+}
+
+.command-table tbody td:first-child {
+  color: #f1f5f9;
+  font-weight: 600;
+}
+
+.command-table code {
+  background: rgba(110, 231, 183, 0.1);
+  color: var(--accent);
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-family: ui-monospace, monospace;
+  font-size: 13px;
+}
