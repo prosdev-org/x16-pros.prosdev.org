@@ -41,13 +41,13 @@
 }
 
 @media (max-width: 768px) {
-  .command-table {
-    font-size: 13px;
+  .docs-table {
+    font-size: 12px;
   }
 
-  .command-table thead th,
-  .command-table tbody td {
-    padding: 10px 12px;
+  .docs-table thead th,
+  .docs-table tbody td {
+    padding: 8px 10px;
   }
 }
 

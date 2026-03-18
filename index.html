@@ -454,208 +454,303 @@ qemu-system-x86_64 -audiodev pa,id=snd0 -machine pcspk-audiodev=snd0 -fda x16-PR
         <h3>PRos Terminal Commands</h3>
         <p>The PRos Terminal is a powerful command-line interface for interacting with the OS, supporting commands for disk operations, program execution, and multimedia tasks.</p>
 
-        <h4>Basic Commands</h4>
-        <table class="command-table">
-          <thead>
-            <tr><th>Command</th><th>Description</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><code>help</code></td><td>Display categorized command reference with navigation</td></tr>
-            <tr><td><code>info</code></td><td>Show system information and OS details</td></tr>
-            <tr><td><code>cls</code></td><td>Clear terminal screen</td></tr>
-            <tr><td><code>ver</code></td><td>Display PRos terminal version</td></tr>
-            <tr><td><code>exit</code></td><td>Exit to bootloader</td></tr>
-          </tbody>
-        </table>
+        <div class="docs-category">
+          <h5>Basic Commands</h5>
+          <table class="docs-table">
+            <thead>
+              <tr><th>Command</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>help</code></td><td>Display categorized command reference with navigation</td></tr>
+              <tr><td><code>info</code></td><td>Show system information and OS details</td></tr>
+              <tr><td><code>cls</code></td><td>Clear terminal screen</td></tr>
+              <tr><td><code>ver</code></td><td>Display PRos terminal version</td></tr>
+              <tr><td><code>exit</code></td><td>Exit to bootloader</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-        <h4>System Information</h4>
-        <table class="command-table">
-          <thead>
-            <tr><th>Command</th><th>Description</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><code>cpu</code></td><td>Display detailed CPU information (family, model, cores, cache)</td></tr>
-            <tr><td><code>date</code></td><td>Show the current date (DD/MM/YY format)</td></tr>
-            <tr><td><code>time</code></td><td>Show current time (HH:MM:SS format, with timezone)</td></tr>
-          </tbody>
-        </table>
+        <div class="docs-category">
+          <h5>System Information</h5>
+          <table class="docs-table">
+            <thead>
+              <tr><th>Command</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>cpu</code></td><td>Display detailed CPU information (family, model, cores, cache)</td></tr>
+              <tr><td><code>date</code></td><td>Show the current date (DD/MM/YY format)</td></tr>
+              <tr><td><code>time</code></td><td>Show current time (HH:MM:SS format, with timezone)</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-        <h4>File Operations</h4>
-        <table class="command-table">
-          <thead>
-            <tr><th>Command</th><th>Syntax</th><th>Description</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><code>dir</code></td><td><code>dir</code></td><td>List files in the current directory with size info</td></tr>
-            <tr><td><code>cat</code></td><td><code>cat &lt;filename&gt;</code></td><td>Display file contents</td></tr>
-            <tr><td><code>size</code></td><td><code>size &lt;filename&gt;</code></td><td>Show file size in bytes</td></tr>
-            <tr><td><code>del</code></td><td><code>del &lt;filename&gt;</code></td><td>Delete a file (kernel.bin protected)</td></tr>
-            <tr><td><code>copy</code></td><td><code>copy &lt;source&gt; &lt;dest&gt;</code></td><td>Copy file (root directory only)</td></tr>
-            <tr><td><code>ren</code></td><td><code>ren &lt;old&gt; &lt;new&gt;</code></td><td>Rename file (root directory only)</td></tr>
-            <tr><td><code>touch</code></td><td><code>touch &lt;filename&gt;</code></td><td>Create an empty file</td></tr>
-            <tr><td><code>write</code></td><td><code>write &lt;file&gt; &lt;text&gt;</code></td><td>Write text to a file</td></tr>
-          </tbody>
-        </table>
+        <div class="docs-category">
+          <h5>File Operations</h5>
+          <table class="docs-table">
+            <thead>
+              <tr><th>Command</th><th>Syntax</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>dir</code></td><td><code>dir</code></td><td>List files in the current directory with size info</td></tr>
+              <tr><td><code>cat</code></td><td><code>cat &lt;filename&gt;</code></td><td>Display file contents</td></tr>
+              <tr><td><code>size</code></td><td><code>size &lt;filename&gt;</code></td><td>Show file size in bytes</td></tr>
+              <tr><td><code>del</code></td><td><code>del &lt;filename&gt;</code></td><td>Delete a file (kernel.bin protected)</td></tr>
+              <tr><td><code>copy</code></td><td><code>copy &lt;source&gt; &lt;dest&gt;</code></td><td>Copy file (root directory only)</td></tr>
+              <tr><td><code>ren</code></td><td><code>ren &lt;old&gt; &lt;new&gt;</code></td><td>Rename file (root directory only)</td></tr>
+              <tr><td><code>touch</code></td><td><code>touch &lt;filename&gt;</code></td><td>Create an empty file</td></tr>
+              <tr><td><code>write</code></td><td><code>write &lt;file&gt; &lt;text&gt;</code></td><td>Write text to a file</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-        <h4>Text Processing</h4>
-        <table class="command-table">
-          <thead>
-            <tr><th>Command</th><th>Syntax</th><th>Description</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><code>grep</code></td><td><code>grep &lt;file&gt; &lt;text&gt;</code></td><td>Search for text in a file with line/column highlighting</td></tr>
-            <tr><td><code>head</code></td><td><code>head &lt;filename&gt;</code></td><td>Display the first 10 lines of a file</td></tr>
-            <tr><td><code>tail</code></td><td><code>tail &lt;filename&gt;</code></td><td>Display the last 10 lines of a file</td></tr>
-          </tbody>
-        </table>
+        <div class="docs-category">
+          <h5>Text Processing</h5>
+          <table class="docs-table">
+            <thead>
+              <tr><th>Command</th><th>Syntax</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>grep</code></td><td><code>grep &lt;file&gt; &lt;text&gt;</code></td><td>Search for text in a file with line/column highlighting</td></tr>
+              <tr><td><code>head</code></td><td><code>head &lt;filename&gt;</code></td><td>Display the first 10 lines of a file</td></tr>
+              <tr><td><code>tail</code></td><td><code>tail &lt;filename&gt;</code></td><td>Display the last 10 lines of a file</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-        <h4>Directory Operations</h4>
-        <table class="command-table">
-          <thead>
-            <tr><th>Command</th><th>Syntax</th><th>Description</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><code>cd</code></td><td><code>cd &lt;dirname&gt;</code></td><td>Change directory (use <code>..</code> for parent, <code>/</code> for root)</td></tr>
-            <tr><td><code>mkdir</code></td><td><code>mkdir &lt;dirname&gt;</code></td><td>Create a new directory</td></tr>
-            <tr><td><code>deldir</code></td><td><code>deldir &lt;dirname&gt;</code></td><td>Delete an empty directory</td></tr>
-            <tr><td><code>tree</code></td><td><code>tree</code></td><td>Display directory structure as a tree</td></tr>
-          </tbody>
-        </table>
+        <div class="docs-category">
+          <h5>Directory Operations</h5>
+          <table class="docs-table">
+            <thead>
+              <tr><th>Command</th><th>Syntax</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>cd</code></td><td><code>cd &lt;dirname&gt;</code></td><td>Change directory (use <code>..</code> for parent, <code>/</code> for root)</td></tr>
+              <tr><td><code>mkdir</code></td><td><code>mkdir &lt;dirname&gt;</code></td><td>Create a new directory</td></tr>
+              <tr><td><code>deldir</code></td><td><code>deldir &lt;dirname&gt;</code></td><td>Delete an empty directory</td></tr>
+              <tr><td><code>tree</code></td><td><code>tree</code></td><td>Display directory structure as a tree</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-        <h4>Disk Management</h4>
-        <table class="command-table">
-          <thead>
-            <tr><th>Command</th><th>Syntax</th><th>Description</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><code>dlist</code></td><td><code>dlist</code></td><td>List available drives with size and usage</td></tr>
-            <tr><td><code>drive</code></td><td><code>drive &lt;letter&gt;</code></td><td>Switch to another disk drive</td></tr>
-          </tbody>
-        </table>
+        <div class="docs-category">
+          <h5>Disk Management</h5>
+          <table class="docs-table">
+            <thead>
+              <tr><th>Command</th><th>Syntax</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>dlist</code></td><td><code>dlist</code></td><td>List available drives with size and usage</td></tr>
+              <tr><td><code>drive</code></td><td><code>drive &lt;letter&gt;</code></td><td>Switch to another disk drive</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-        <h4>Media & Display</h4>
-        <table class="command-table">
-          <thead>
-            <tr><th>Command</th><th>Syntax</th><th>Description</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><code>view</code></td><td><code>view &lt;file&gt; [-upscale]</code></td><td>Display BMP image with optional 2x scaling</td></tr>
-            <tr><td><code>chars</code></td><td><code>chars</code></td><td>Display ASCII character table</td></tr>
-            <tr><td><code>theme</code></td><td><code>theme &lt;name&gt;</code></td><td>Change color theme (DEFAULT/GROOVYBOX/UBUNTU)</td></tr>
-            <tr><td><code>font</code></td><td><code>font &lt;name&gt;</code></td><td>Switch font (DEFAULT/BOLD/THIN/ITALIC)</td></tr>
-          </tbody>
-        </table>
+        <div class="docs-category">
+          <h5>Media &amp; Display</h5>
+          <table class="docs-table">
+            <thead>
+              <tr><th>Command</th><th>Syntax</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>view</code></td><td><code>view &lt;file&gt; [-upscale]</code></td><td>Display BMP image with optional 2x scaling</td></tr>
+              <tr><td><code>chars</code></td><td><code>chars</code></td><td>Display ASCII character table</td></tr>
+              <tr><td><code>theme</code></td><td><code>theme &lt;name&gt;</code></td><td>Change color theme (DEFAULT/GROOVYBOX/UBUNTU)</td></tr>
+              <tr><td><code>font</code></td><td><code>font &lt;name&gt;</code></td><td>Switch font (DEFAULT/BOLD/THIN/ITALIC)</td></tr>
+            </tbody>
+          </table>
+        </div>
 
-        <h4>Power Management</h4>
-        <table class="command-table">
-          <thead>
-            <tr><th>Command</th><th>Description</th></tr>
-          </thead>
-          <tbody>
-            <tr><td><code>shut</code></td><td>Shutdown system via APM</td></tr>
-            <tr><td><code>reboot</code></td><td>Restart system</td></tr>
-          </tbody>
-        </table>
+        <div class="docs-category">
+          <h5>Power Management</h5>
+          <table class="docs-table">
+            <thead>
+              <tr><th>Command</th><th>Description</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>shut</code></td><td>Shutdown system via APM</td></tr>
+              <tr><td><code>reboot</code></td><td>Restart system</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
 
       <!-- API Documentation -->
       <div class="docs-section reveal" id="apiSection">
         <h3>API Documentation</h3>
-        <p>
-          x16-PRos provides a set of interrupt-driven APIs for developers, organized into categories accessible via specific interrupts:
-        </p>
-        <ul class="req-list">
-          <li><strong>INT 0x21</strong>: Output API - screen output, colors, cursor, video mode, date/time.</li>
-          <li><strong>INT 0x22</strong>: File System API - FAT12 file management (list, load, write, delete, etc.).</li>
-        </ul>
-        <p>
-          Each function is selected via the <code>AH</code> register. Input/output parameters use other registers (e.g., <code>SI</code>, <code>AX</code>, <code>BX</code>, etc.).
-          Unless specified, functions preserve all unused registers and set the carry flag (<code>CF</code>) on error.
-        </p>
+        <div class="docs-intro">
+          <p>
+            x16-PRos provides interrupt-driven APIs for developers. Each function is selected via the <code>AH</code> register.
+            All functions preserve registers via <code>pusha</code>/<code>popa</code> unless output registers are specified.
+            On error, the carry flag (<code>CF</code>) is set.
+          </p>
+          <div class="docs-badge-grid">
+            <div class="docs-badge-item">
+              <span class="docs-badge-num">INT 0x21</span>
+              <span class="docs-badge-desc">Output API</span>
+            </div>
+            <div class="docs-badge-item">
+              <span class="docs-badge-num">INT 0x22</span>
+              <span class="docs-badge-desc">File System API</span>
+            </div>
+          </div>
+        </div>
 
         <!-- INT 0x21: Output API -->
-        <details>
-          <summary>Output API (<code>INT 0x21</code>)</summary>
-          <p>Handles screen output in VGA 640x480 16-color mode. All text functions support newline (<code>0x0A</code>) to CR+LF.</p>
+        <div class="docs-block">
+          <div class="docs-block-header">
+            <h4>INT 0x21 &mdash; Output API</h4>
+          </div>
+          <p>Handles screen output in VGA 640&times;480 16-color mode. All text functions support newline (<code>0x0A</code>) conversion to CR+LF.</p>
 
-          <h4>Functions</h4>
-          <table class="command-table">
-            <thead>
-              <tr><th>Code (<code>AH</code>)</th><th>Description</th><th>Input</th><th>Output / Notes</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>0x00</code></td><td>Initialize Output System</td><td>-</td><td>Sets VGA mode <code>0x12</code> (640x480, 16 colors).</td></tr>
-              <tr><td><code>0x01</code></td><td>Print String (White)</td><td><code>SI</code> = string pointer</td><td>Advances <code>SI</code>. Color: <code>0x0F</code>.</td></tr>
-              <tr><td><code>0x02</code></td><td>Print String (Green)</td><td><code>SI</code> = string pointer</td><td>Color: <code>0x0A</code>.</td></tr>
-              <tr><td><code>0x03</code></td><td>Print String (Cyan)</td><td><code>SI</code> = string pointer</td><td>Color: <code>0x0B</code>.</td></tr>
-              <tr><td><code>0x04</code></td><td>Print String (Red)</td><td><code>SI</code> = string pointer</td><td>Color: <code>0x0C</code>.</td></tr>
-              <tr><td><code>0x05</code></td><td>Print Newline</td><td>-</td><td>Outputs <code>0x0D</code>, <code>0x0A</code>.</td></tr>
-              <tr><td><code>0x06</code></td><td>Clear Screen</td><td>-</td><td>Resets video mode (same as <code>0x00</code>).</td></tr>
-              <tr><td><code>0x07</code></td><td>Set Text Color</td><td><code>BL</code> = color code (0x00-0x0F)</td><td>Sets global color for <code>0x08</code>.</td></tr>
-              <tr><td><code>0x08</code></td><td>Print String (Custom Color)</td><td><code>SI</code> = string pointer</td><td>Uses color from <code>0x07</code>.</td></tr>
-              <tr><td><code>0x0A</code></td><td>Get System Time</td><td>-</td><td><code>CX</code> = hours:minutes, <code>DH</code> = seconds.</td></tr>
-              <tr><td><code>0x0B</code></td><td>Get System Date</td><td>-</td><td><code>CX</code> = century:year, <code>DH</code> = month, <code>DL</code> = day.</td></tr>
-            </tbody>
-          </table>
+          <div class="docs-category">
+            <h5>Display Functions</h5>
+            <table class="docs-table">
+              <thead>
+                <tr><th>AH</th><th>Function</th><th>Input</th><th>Output / Notes</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>0x00</code></td><td>Initialize Output</td><td>&mdash;</td><td>Sets VGA mode <code>0x12</code> (640&times;480, 16 colors)</td></tr>
+                <tr><td><code>0x01</code></td><td>Print String (White)</td><td><code>SI</code> = string ptr</td><td>Color <code>0x0F</code></td></tr>
+                <tr><td><code>0x02</code></td><td>Print String (Green)</td><td><code>SI</code> = string ptr</td><td>Color <code>0x0A</code></td></tr>
+                <tr><td><code>0x03</code></td><td>Print String (Cyan)</td><td><code>SI</code> = string ptr</td><td>Color <code>0x0B</code></td></tr>
+                <tr><td><code>0x04</code></td><td>Print String (Red)</td><td><code>SI</code> = string ptr</td><td>Color <code>0x0C</code></td></tr>
+                <tr><td><code>0x05</code></td><td>Print Newline</td><td>&mdash;</td><td>Outputs CR+LF</td></tr>
+                <tr><td><code>0x06</code></td><td>Clear Screen</td><td>&mdash;</td><td>Resets video mode (same as <code>0x00</code>)</td></tr>
+                <tr><td><code>0x07</code></td><td>Set Text Color</td><td><code>BL</code> = color (0x00&ndash;0x0F)</td><td>Sets global color for function <code>0x08</code></td></tr>
+                <tr><td><code>0x08</code></td><td>Print String (Custom)</td><td><code>SI</code> = string ptr</td><td>Uses color set by <code>0x07</code></td></tr>
+              </tbody>
+            </table>
+          </div>
 
-          <h4>VGA 16-Color Palette</h4>
-          <table class="command-table">
-            <thead>
-              <tr><th>Code</th><th>Name</th><th>Hex</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>0x00</code></td><td>Black</td><td><code>#000000</code></td></tr>
-              <tr><td><code>0x01</code></td><td>Dark Blue</td><td><code>#0000AA</code></td></tr>
-              <tr><td><code>0x02</code></td><td>Dark Green</td><td><code>#00AA00</code></td></tr>
-              <tr><td><code>0x03</code></td><td>Dark Cyan</td><td><code>#00AAAA</code></td></tr>
-              <tr><td><code>0x04</code></td><td>Dark Red</td><td><code>#AA0000</code></td></tr>
-              <tr><td><code>0x05</code></td><td>Dark Magenta</td><td><code>#AA00AA</code></td></tr>
-              <tr><td><code>0x06</code></td><td>Brown</td><td><code>#AA5500</code></td></tr>
-              <tr><td><code>0x07</code></td><td>Light Gray</td><td><code>#AAAAAA</code></td></tr>
-              <tr><td><code>0x08</code></td><td>Dark Gray</td><td><code>#555555</code></td></tr>
-              <tr><td><code>0x09</code></td><td>Blue</td><td><code>#5555FF</code></td></tr>
-              <tr><td><code>0x0A</code></td><td>Green</td><td><code>#55FF55</code></td></tr>
-              <tr><td><code>0x0B</code></td><td>Cyan</td><td><code>#55FFFF</code></td></tr>
-              <tr><td><code>0x0C</code></td><td>Red</td><td><code>#FF5555</code></td></tr>
-              <tr><td><code>0x0D</code></td><td>Magenta</td><td><code>#FF55FF</code></td></tr>
-              <tr><td><code>0x0E</code></td><td>Yellow</td><td><code>#FFFF55</code></td></tr>
-              <tr><td><code>0x0F</code></td><td>White</td><td><code>#FFFFFF</code></td></tr>
-            </tbody>
-          </table>
-        </details>
+          <div class="docs-category">
+            <h5>Font Control</h5>
+            <table class="docs-table">
+              <thead>
+                <tr><th>AH</th><th>AL</th><th>Function</th><th>Input</th><th>Notes</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>0x09</code></td><td><code>0x00</code></td><td>Restore Default Font</td><td>&mdash;</td><td>Restores BIOS ROM font</td></tr>
+                <tr><td><code>0x09</code></td><td><code>0x01</code></td><td>Load Default Custom Font</td><td>&mdash;</td><td>Loads built-in CP866 font</td></tr>
+                <tr><td><code>0x09</code></td><td><code>0x02</code></td><td>Load Font from File</td><td><code>SI</code> = filename ptr</td><td>Loads custom .FNT file from disk</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="docs-category">
+            <h5>Date &amp; Time</h5>
+            <table class="docs-table">
+              <thead>
+                <tr><th>AH</th><th>Function</th><th>Output</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>0x0A</code></td><td>Get System Time</td><td><code>CH</code> = hours, <code>CL</code> = minutes, <code>DH</code> = seconds</td></tr>
+                <tr><td><code>0x0B</code></td><td>Get System Date</td><td><code>CH</code> = century, <code>CL</code> = year, <code>DH</code> = month, <code>DL</code> = day</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <details class="docs-extra">
+            <summary>VGA 16-Color Palette Reference</summary>
+            <div class="color-palette-grid">
+              <div class="color-swatch" style="--swatch:#000000"><code>0x00</code> Black</div>
+              <div class="color-swatch" style="--swatch:#0000AA"><code>0x01</code> Dark Blue</div>
+              <div class="color-swatch" style="--swatch:#00AA00"><code>0x02</code> Dark Green</div>
+              <div class="color-swatch" style="--swatch:#00AAAA"><code>0x03</code> Dark Cyan</div>
+              <div class="color-swatch" style="--swatch:#AA0000"><code>0x04</code> Dark Red</div>
+              <div class="color-swatch" style="--swatch:#AA00AA"><code>0x05</code> Dark Magenta</div>
+              <div class="color-swatch" style="--swatch:#AA5500"><code>0x06</code> Brown</div>
+              <div class="color-swatch" style="--swatch:#AAAAAA"><code>0x07</code> Light Gray</div>
+              <div class="color-swatch" style="--swatch:#555555"><code>0x08</code> Dark Gray</div>
+              <div class="color-swatch" style="--swatch:#5555FF"><code>0x09</code> Blue</div>
+              <div class="color-swatch" style="--swatch:#55FF55"><code>0x0A</code> Green</div>
+              <div class="color-swatch" style="--swatch:#55FFFF"><code>0x0B</code> Cyan</div>
+              <div class="color-swatch" style="--swatch:#FF5555"><code>0x0C</code> Red</div>
+              <div class="color-swatch" style="--swatch:#FF55FF"><code>0x0D</code> Magenta</div>
+              <div class="color-swatch" style="--swatch:#FFFF55"><code>0x0E</code> Yellow</div>
+              <div class="color-swatch" style="--swatch:#FFFFFF"><code>0x0F</code> White</div>
+            </div>
+          </details>
+        </div>
 
         <!-- INT 0x22: File System API -->
-        <details>
-          <summary>File System API (<code>INT 0x22</code>)</summary>
-          <p>Manages files on a FAT12 disk (e.g. 1.44 MB floppy). Filenames must be in <code>8.3</code> format (e.g. <code>FILE.TXT</code>); case-insensitive (auto-converted to uppercase).</p>
+        <div class="docs-block">
+          <div class="docs-block-header">
+            <h4>INT 0x22 &mdash; File System API</h4>
+          </div>
+          <p>Manages files on FAT12 disks. Filenames must be in <code>8.3</code> format (e.g. <code>FILE.TXT</code>), case-insensitive (auto-uppercased).</p>
 
-          <h4>Functions</h4>
-          <table class="command-table">
-            <thead>
-              <tr><th>Code (<code>AH</code>)</th><th>Description</th><th>Input</th><th>Output / Notes</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>0x00</code></td><td>Initialize File System</td><td>-</td><td>Resets floppy controller. <code>CF</code> = error.</td></tr>
-              <tr>
-                <td><code>0x01</code></td>
-                <td>Get File List</td>
-                <td><code>AX</code> = buffer pointer</td>
-                <td><code>BX:CX</code> = total size (32-bit)<br><code>DX</code> = file count<br>Buffer: comma-separated, null-terminated list</td>
-              </tr>
-              <tr><td><code>0x02</code></td><td>Load File</td><td><code>AX</code> = filename<br><code>CX</code> = load address</td><td><code>BX</code> = file size. <code>CF</code> = error.</td></tr>
-              <tr><td><code>0x03</code></td><td>Write File</td><td><code>AX</code> = filename<br><code>BX</code> = data buffer<br><code>CX</code> = size (bytes)</td><td>Creates or overwrites a file. <code>CF</code> = error.</td></tr>
-              <tr><td><code>0x04</code></td><td>Check if File Exists</td><td><code>AX</code> = filename</td><td><code>CF</code> clear = exists, set = not found.</td></tr>
-              <tr><td><code>0x05</code></td><td>Create Empty File</td><td><code>AX</code> = filename</td><td>Fails if exists or root dir full. <code>CF</code> = error.</td></tr>
-              <tr><td><code>0x06</code></td><td>Remove File</td><td><code>AX</code> = filename</td><td>Deletes entry, frees clusters. <code>CF</code> = error.</td></tr>
-              <tr><td><code>0x07</code></td><td>Rename File</td><td><code>AX</code> = old name<br><code>BX</code> = new name</td><td>Both 8.3, case-insensitive. <code>CF</code> = error.</td></tr>
-              <tr><td><code>0x08</code></td><td>Get File Size</td><td><code>AX</code> = filename</td><td><code>BX</code> = size. <code>CF</code> = not found.</td></tr>
-            </tbody>
-          </table>
+          <div class="docs-category">
+            <h5>Initialization</h5>
+            <table class="docs-table">
+              <thead>
+                <tr><th>AH</th><th>Function</th><th>Input</th><th>Output / Notes</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>0x00</code></td><td>Re-Initialize File System</td><td>&mdash;</td><td>Resets floppy controller. <code>CF</code> on error.</td></tr>
+              </tbody>
+            </table>
+          </div>
 
-          <p><strong>Limitations:</strong>
-            Root directory: max 224 entries.
-            File size: up to 32 MiB (FAT12), though some APIs use 16-bit size fields (max 64 KiB).</p>
-        </details>
+          <div class="docs-category">
+            <h5>File Operations</h5>
+            <table class="docs-table">
+              <thead>
+                <tr><th>AH</th><th>Function</th><th>Input</th><th>Output / Notes</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>0x01</code></td>
+                  <td>Get File List</td>
+                  <td><code>SI</code> = buffer for 18-byte entries</td>
+                  <td><code>BX</code> = size low, <code>CX</code> = size high (32-bit total),<br><code>DX</code> = file count</td>
+                </tr>
+                <tr><td><code>0x02</code></td><td>Load File</td><td><code>SI</code> = filename, <code>CX</code> = load address</td><td><code>BX</code> = file size. <code>CF</code> on error.</td></tr>
+                <tr><td><code>0x03</code></td><td>Write File</td><td><code>SI</code> = filename, <code>BX</code> = buffer, <code>CX</code> = size</td><td>Creates or overwrites file. <code>CF</code> on error.</td></tr>
+                <tr><td><code>0x04</code></td><td>Check if File Exists</td><td><code>SI</code> = filename</td><td><code>CF</code> clear = exists, set = not found.</td></tr>
+                <tr><td><code>0x05</code></td><td>Create Empty File</td><td><code>SI</code> = filename</td><td><code>CF</code> on error (exists or dir full).</td></tr>
+                <tr><td><code>0x06</code></td><td>Remove File</td><td><code>SI</code> = filename</td><td>Frees clusters. <code>CF</code> on error.</td></tr>
+                <tr><td><code>0x07</code></td><td>Rename File</td><td><code>SI</code> = old name, <code>DI</code> = new name</td><td><code>CF</code> on error.</td></tr>
+                <tr><td><code>0x08</code></td><td>Get File Size</td><td><code>SI</code> = filename</td><td><code>BX</code> = size in bytes. <code>CF</code> if not found.</td></tr>
+                <tr><td><code>0x10</code></td><td>Load Huge File</td><td><code>SI</code> = filename, <code>CX</code> = load offset, <code>DX</code> = segment</td><td>Loads files &gt;64KB across segments. <code>CF</code> on error.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="docs-category">
+            <h5>Directory Operations</h5>
+            <table class="docs-table">
+              <thead>
+                <tr><th>AH</th><th>Function</th><th>Input</th><th>Output / Notes</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>0x09</code></td><td>Change Directory</td><td><code>SI</code> = dirname</td><td><code>CF</code> on error (not found).</td></tr>
+                <tr><td><code>0x0A</code></td><td>Go to Parent Directory</td><td>&mdash;</td><td><code>CF</code> if already at root.</td></tr>
+                <tr><td><code>0x0B</code></td><td>Create Directory</td><td><code>SI</code> = dirname</td><td><code>CF</code> on error.</td></tr>
+                <tr><td><code>0x0C</code></td><td>Remove Directory</td><td><code>SI</code> = dirname</td><td><code>CF</code> on error (not empty or not found).</td></tr>
+                <tr><td><code>0x0D</code></td><td>Check if Directory</td><td><code>SI</code> = name</td><td><code>CF</code> clear = is directory, set = not.</td></tr>
+                <tr><td><code>0x0E</code></td><td>Save Current Directory</td><td>&mdash;</td><td>Saves current dir state internally.</td></tr>
+                <tr><td><code>0x0F</code></td><td>Restore Current Directory</td><td>&mdash;</td><td>Restores previously saved dir state.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="docs-category">
+            <h5>Drive Management</h5>
+            <table class="docs-table">
+              <thead>
+                <tr><th>AH</th><th>Function</th><th>Input</th><th>Output / Notes</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>0x11</code></td><td>List Drives</td><td>&mdash;</td><td>Prints available drives with size info.</td></tr>
+                <tr><td><code>0x12</code></td><td>Change Drive</td><td><code>SI</code> = drive letter pointer</td><td>Switches to another disk. <code>CF</code> on error.</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="docs-note">
+            <strong>Limitations:</strong> Root directory max 224 entries. Standard load (0x02) limited to 64 KiB; use <code>0x10</code> (Load Huge File) for larger files across segments.
+          </div>
+        </div>
       </div>
 
       <!-- Program Examples -->

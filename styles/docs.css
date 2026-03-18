@@ -20,6 +20,7 @@
   padding: 18px;
   font-size: 14px;
   color: var(--muted);
+  align-self: start;
 }
 
 .docs-toc h4 {
@@ -184,62 +185,247 @@ details p {
   font-size: 14px;
 }
 
-/* Command tables */
-.command-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 18px 0;
+/* ===== Docs Data Blocks & Tables ===== */
+
+/* Intro block (API-specific) */
+.docs-intro {
+  margin-bottom: 24px;
+}
+
+.docs-intro p {
+  color: var(--muted);
   font-size: 14px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.02),
-    rgba(255, 255, 255, 0.01)
-  );
+  line-height: 1.7;
+  margin: 0 0 16px;
+}
+
+.docs-badge-grid {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.docs-badge-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, rgba(124, 108, 255, 0.12), rgba(110, 231, 183, 0.06));
+  border: 1px solid rgba(124, 108, 255, 0.25);
   border-radius: 10px;
-  overflow: hidden;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  padding: 10px 16px;
 }
 
-.command-table thead {
-  background: linear-gradient(90deg, var(--accent-2), var(--accent));
+.docs-badge-num {
+  font-family: ui-monospace, monospace;
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--accent);
 }
 
-.command-table thead th {
-  padding: 12px 16px;
-  text-align: left;
-  font-weight: 600;
-  color: #021;
+.docs-badge-desc {
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* Data block — card wrapper for grouped tables */
+.docs-block {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01));
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 14px;
+  padding: 24px 28px;
+  margin-top: 20px;
+}
+
+.docs-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.docs-block-header h4 {
+  font-size: 20px;
+  margin: 0;
+  color: #e6eef3;
+  font-weight: 700;
   letter-spacing: 0.3px;
 }
 
-.command-table tbody tr {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+.docs-block-badge {
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  color: #0a0e14;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.docs-block > p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+/* Category groups */
+.docs-category {
+  margin-top: 20px;
+}
+
+.docs-category h5 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #e6eef3;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 0 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid rgba(110, 231, 183, 0.15);
+}
+
+/* Data tables */
+.docs-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 8px;
+  font-size: 13px;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.docs-table thead {
+  background: rgba(124, 108, 255, 0.15);
+}
+
+.docs-table thead th {
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+  color: #c8d6e5;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.docs-table tbody tr {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
   transition: background 0.2s ease;
 }
 
-.command-table tbody tr:last-child {
+.docs-table tbody tr:last-child {
   border-bottom: none;
 }
 
-.command-table tbody tr:hover {
-  background: rgba(124, 108, 255, 0.08);
+.docs-table tbody tr:hover {
+  background: rgba(124, 108, 255, 0.06);
 }
 
-.command-table tbody td {
+.docs-table tbody td {
+  padding: 10px 14px;
+  color: var(--muted);
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.docs-table tbody td:first-child {
+  color: var(--accent);
+  font-family: ui-monospace, monospace;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.docs-table code {
+  background: rgba(110, 231, 183, 0.1);
+  color: var(--accent);
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-family: ui-monospace, monospace;
+  font-size: 12px;
+}
+
+/* Note block */
+.docs-note {
+  margin-top: 16px;
   padding: 12px 16px;
+  background: rgba(255, 193, 7, 0.06);
+  border: 1px solid rgba(255, 193, 7, 0.15);
+  border-left: 3px solid rgba(255, 193, 7, 0.5);
+  border-radius: 8px;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.docs-note strong {
+  color: #ffc107;
+}
+
+/* Extra details (palette, etc.) */
+.docs-extra {
+  margin-top: 16px;
+}
+
+/* Color palette grid */
+.color-palette-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.color-swatch {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 12px;
   color: var(--muted);
 }
 
-.command-table tbody td:first-child {
-  color: #f1f5f9;
-  font-weight: 600;
+.color-swatch::before {
+  content: "";
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  background: var(--swatch);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  flex-shrink: 0;
 }
 
-.command-table code {
+.color-swatch code {
   background: rgba(110, 231, 183, 0.1);
   color: var(--accent);
-  padding: 2px 6px;
-  border-radius: 4px;
+  padding: 1px 4px;
+  border-radius: 3px;
   font-family: ui-monospace, monospace;
-  font-size: 13px;
+  font-size: 11px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .color-palette-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .docs-block {
+    padding: 16px 18px;
+  }
+  .docs-block-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .docs-table {
+    font-size: 12px;
+  }
+  .docs-table thead th,
+  .docs-table tbody td {
+    padding: 8px 10px;
+  }
 }
