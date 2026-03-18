@@ -23,7 +23,7 @@
     rgba(11, 16, 26, 0.96)
   );
   border: 1px solid rgba(124, 108, 255, 0.15);
-  border-radius: 16px;
+  border-radius: 0 0 16px 16px;
   padding: 0;
   text-align: left;
   transition: transform 0.28s ease, box-shadow 0.28s ease,
@@ -167,18 +167,8 @@
 .program-modal-overlay {
   position: fixed;
   inset: 0;
-  background: radial-gradient(
-      900px 500px at 15% 5%,
-      rgba(124, 108, 255, 0.2),
-      transparent 60%
-    ),
-    radial-gradient(
-      700px 420px at 85% 95%,
-      rgba(110, 231, 183, 0.12),
-      transparent 62%
-    ),
-    rgba(3, 6, 12, 0.82);
-  backdrop-filter: blur(5px);
+  background: rgba(3, 6, 12, 0.85);
+  backdrop-filter: blur(8px);
   display: none;
   align-items: center;
   justify-content: center;
@@ -191,50 +181,72 @@
 }
 
 .program-modal {
-  width: min(980px, 100%);
+  width: min(720px, 100%);
   max-height: min(88vh, 760px);
   overflow: auto;
   background: linear-gradient(
     180deg,
-    rgba(17, 26, 38, 0.98),
-    rgba(9, 14, 24, 0.98)
+    rgba(17, 24, 36, 0.99),
+    rgba(9, 14, 22, 0.99)
   );
-  border: 1px solid rgba(124, 108, 255, 0.26);
-  border-radius: 20px;
-  box-shadow: 0 28px 68px rgba(0, 0, 0, 0.56),
-    inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  padding: 24px;
+  border: 1px solid rgba(124, 108, 255, 0.2);
+  border-radius: 18px;
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+  padding: 0;
   position: relative;
 }
 
 .program-modal-content {
-  display: grid;
-  gap: 14px;
-}
-
-.program-detail-layout {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
-  align-items: start;
-}
-
-.program-image-box {
-  border: 1px solid rgba(124, 108, 255, 0.25);
-  border-radius: 14px;
-  background: linear-gradient(
-    180deg,
-    rgba(9, 14, 22, 0.95),
-    rgba(4, 8, 14, 0.95)
-  );
-  aspect-ratio: 4 / 3;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+}
+
+/* Modal close button */
+.program-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+  color: #8896a4;
+  font-size: 20px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: background 0.2s, color 0.2s;
+  z-index: 2;
+}
+
+.program-modal-close:hover {
+  background: rgba(255, 80, 80, 0.15);
+  color: #ff6b6b;
+}
+
+/* Modal hero image — full width, square top, no padding */
+.program-modal-hero {
+  width: 100%;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  padding: 8px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.36),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  background: #060a10;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.program-modal-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Modal body content */
+.program-modal-body-inner {
+  padding: 22px 26px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .program-modal-head {
@@ -246,8 +258,45 @@
 
 .program-modal-head h3 {
   margin: 0;
-  font-size: 26px;
+  font-size: 22px;
+  font-weight: 700;
   color: #f3f7fb;
+  letter-spacing: 0.2px;
+}
+
+.program-modal-tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 3px 9px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.program-modal-tag.game {
+  background: rgba(255, 107, 107, 0.15);
+  color: #ff6b6b;
+  border: 1px solid rgba(255, 107, 107, 0.25);
+}
+
+.program-modal-tag.tool {
+  background: rgba(110, 231, 183, 0.12);
+  color: #6ee7b7;
+  border: 1px solid rgba(110, 231, 183, 0.25);
+}
+
+.program-modal-tag.media {
+  background: rgba(124, 108, 255, 0.15);
+  color: #a78bfa;
+  border: 1px solid rgba(124, 108, 255, 0.25);
+}
+
+.program-modal-tag.dev {
+  background: rgba(251, 191, 36, 0.12);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.25);
 }
 
 .program-modal-subtitle {
@@ -255,54 +304,33 @@
   font-size: 14px;
 }
 
-.program-modal-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 10px;
-}
-
 .program-modal-text {
   margin: 0;
-  color: #c7d4df;
-  line-height: 1.55;
-  font-size: 15px;
+  color: #b0bec9;
+  line-height: 1.65;
+  font-size: 14px;
   overflow-wrap: break-word;
 }
 
-.program-description-box {
-  height: 100%;
+.program-modal-actions {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 14px;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.045),
-    rgba(255, 255, 255, 0.015)
-  );
-  padding: 18px 20px;
-  gap: 14px;
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
-  min-width: 0;
+  gap: 10px;
+  padding-top: 4px;
 }
 
 .program-source-btn {
-  align-self: center;
-  min-width: 200px;
-  text-align: center;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  min-width: 180px;
+  text-align: center;
 }
 
 .program-source-btn svg {
-  width: 17px;
-  height: 17px;
+  width: 16px;
+  height: 16px;
   fill: currentColor;
-  margin-right: 0;
 }
 
 /* Mini program grid (in "more programs" modal) */
