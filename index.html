@@ -16,6 +16,7 @@
   <link href="styles/credits.css" rel="stylesheet" />
   <link href="styles/modal.css" rel="stylesheet" />
   <link href="styles/dev-features.css" rel="stylesheet" />
+  <link href="styles/news.css" rel="stylesheet" />
   <link href="styles/responsive.css" rel="stylesheet" />
   <link href="prism.css" rel="stylesheet" />
 
@@ -60,6 +61,7 @@
     <nav class="nav">
       <a class="btn active" href="#" onclick="showMain();return false;">About project</a>
       <a class="btn" href="#" onclick="showDocs();return false;">Docs</a>
+      <a class="btn" href="#" onclick="showNews();return false;">News</a>
       <a class="btn support" href="https://dalink.to/PRoXdev" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> Support project</a>
     </nav>
   </header>
@@ -850,6 +852,27 @@ user_name times 32 db 0
     </div>
   </section>
 
+  <!-- ===== News page ===== -->
+  <section id="newsPage">
+    <div class="news-header">
+      <h2>Project News</h2>
+      <p>Latest updates and announcements from the x16-PRos project and it`s community.</p>
+    </div>
+    <div class="news-grid" id="newsGrid"></div>
+  </section>
+
+  <!-- News article modal -->
+  <div id="newsModal" class="news-modal-overlay">
+    <div class="news-modal">
+      <button class="news-modal-close" aria-label="Close">&times;</button>
+      <div class="news-modal-header">
+        <h3 class="news-modal-title"></h3>
+        <div class="news-modal-meta"></div>
+      </div>
+      <div class="news-modal-content"></div>
+    </div>
+  </div>
+
   <!-- Footer -->
   <footer>
     <div>Licensed under <a href="https://opensource.org/license/BSD-3-clause">3-Clause BSD</a>. Copyright 2025-2026, PRosDev.org</div>
@@ -891,12 +914,14 @@ user_name times 32 db 0
 <script src="js/data/softwarePrograms.js" defer></script>
 <script src="js/data/morePrograms.js" defer></script>
 <script src="js/data/galleryData.js" defer></script>
+<script src="js/data/newsData.js" defer></script>
 <script src="js/components/softwareGrid.js" defer></script>
 <script src="js/ui/downloadModal.js" defer></script>
 <script src="js/ui/typingAnimations.js" defer></script>
 <script src="js/ui/scrollTop.js" defer></script>
 <script src="js/ui/gallery.js" defer></script>
 <script src="js/ui/softwareProgramModal.js" defer></script>
+<script src="js/ui/news.js" defer></script>
 <script src="js/app.js" defer></script>
 
 </body>

@@ -23,6 +23,10 @@ document.addEventListener("DOMContentLoaded", () => {
     window.initGallery(window.galleryData);
   }
 
+  if (typeof window.initNews === "function") {
+    window.initNews();
+  }
+
   if (typeof window.updateNavActive === "function") {
     window.updateNavActive("main");
   }

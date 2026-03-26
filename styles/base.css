@@ -33,6 +33,13 @@ body {
 .container {
   max-width: 1100px;
   margin: 0 auto;
+  min-height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+}
+
+.container > footer {
+  margin-top: auto;
 }
 
 a.link {
