@@ -12,7 +12,7 @@
 
 .modal-overlay.show {
   display: flex;
-  animation: modalFadeIn 0.25s ease;
+  animation: modalFadeIn 0.2s ease;
 }
 
 @keyframes modalFadeIn {
@@ -22,91 +22,68 @@
 
 .modal {
   background: var(--card);
-  border-radius: 20px;
-  padding: 32px;
-  max-width: 720px;
+  border-radius: 14px;
+  padding: 28px;
+  max-width: 680px;
   width: 90%;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   position: relative;
   text-align: center;
-  animation: scaleIn 0.3s ease;
-}
-
-@keyframes scaleIn {
-  from {
-    transform: scale(0.9);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
 }
 
 .modal h3 {
   margin-top: 0;
   color: #fff;
-  margin-bottom: 24px;
-  font-size: 22px;
+  margin-bottom: 20px;
+  font-size: 20px;
 }
 
 .modal-close {
   position: absolute;
-  right: 16px;
-  top: 16px;
+  right: 14px;
+  top: 14px;
   background: none;
   border: none;
   color: var(--muted);
-  font-size: 28px;
+  font-size: 24px;
   cursor: pointer;
   transition: color 0.2s;
 }
 
 .modal-close:hover {
-  color: var(--accent);
+  color: #fff;
 }
 
 .image-cards {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 16px;
   justify-content: center;
 }
 
 .image-card {
   display: block;
   text-decoration: none;
-  background: linear-gradient(
-    180deg,
-    rgba(255, 255, 255, 0.03),
-    rgba(255, 255, 255, 0.01)
-  );
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
-  padding: 24px;
-  width: 260px;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  padding: 20px;
+  width: 240px;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: border-color 0.2s ease;
   cursor: pointer;
   color: inherit;
 }
 
 .image-card:hover {
-  transform: translateY(-6px);
-  border-color: rgba(124, 108, 255, 0.3);
-  box-shadow: 0 10px 25px rgba(124, 108, 255, 0.15);
-  background: linear-gradient(
-    180deg,
-    rgba(124, 108, 255, 0.05),
-    rgba(255, 255, 255, 0.02)
-  );
+  border-color: rgba(255, 255, 255, 0.15);
 }
 
 .image-card svg {
-  width: 80px;
-  height: 80px;
+  width: 64px;
+  height: 64px;
   color: var(--accent) !important;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .image-card h4 {
@@ -123,6 +100,6 @@
 
 .image-card .size {
   font-weight: 600;
-  color: #786fb7;
-  margin-bottom: 12px;
+  color: var(--accent-2);
+  margin-bottom: 10px;
 }

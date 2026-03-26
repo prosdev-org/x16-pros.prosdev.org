@@ -22,4 +22,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (typeof window.initGallery === "function" && Array.isArray(window.galleryData)) {
     window.initGallery(window.galleryData);
   }
+
+  if (typeof window.updateNavActive === "function") {
+    window.updateNavActive("main");
+  }
 });

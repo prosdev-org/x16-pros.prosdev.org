@@ -16,21 +16,12 @@
 html,
 body {
   height: 100%;
+  overflow-x: hidden;
 }
 
 body {
   margin: 0;
-  background: radial-gradient(
-      1200px 600px at 10% 10%,
-      rgba(124, 108, 255, 0.06),
-      transparent 6%
-    ),
-    radial-gradient(
-      1000px 500px at 90% 90%,
-      rgba(110, 231, 183, 0.03),
-      transparent 6%
-    ),
-    var(--bg);
+  background: var(--bg);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #e6eef3;
