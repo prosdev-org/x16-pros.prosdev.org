@@ -1,5 +1,39 @@
 /* ===== Responsive Breakpoints ===== */
 
+/* TOC becomes inline when sidebar doesn't fit */
+@media (max-width: 1340px) {
+  .docs-toc {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px 18px;
+  }
+
+  .docs-toc h4 {
+    margin: 0;
+    padding: 0;
+    border: none;
+    white-space: nowrap;
+  }
+
+  .docs-toc ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .docs-toc a {
+    padding: 5px 10px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+}
+
 @media (max-width: 960px) {
   .hero {
     grid-template-columns: 1fr;
@@ -9,13 +43,9 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .docs-container {
-    grid-template-columns: 1fr;
-  }
-
   .docs-toc {
-    position: static;
-    margin-bottom: 20px;
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 

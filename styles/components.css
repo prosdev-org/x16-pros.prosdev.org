@@ -28,6 +28,24 @@
   border-color: rgba(110, 231, 183, 0.25);
 }
 
+.btn.support {
+  color: #ff6b8a;
+  border-color: rgba(255, 107, 138, 0.2);
+}
+
+.btn.support svg {
+  width: 14px;
+  height: 14px;
+  fill: #ff6b8a;
+  stroke: none;
+  margin-right: 6px;
+}
+
+.btn.support:hover {
+  color: #ff8fa8;
+  border-color: rgba(255, 107, 138, 0.35);
+}
+
 .btn.primary:hover {
   opacity: 0.9;
   color: #022;

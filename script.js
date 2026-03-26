@@ -7,7 +7,7 @@
 
     function showDocs() {
       document.getElementById('mainContent').style.display = 'none';
-      document.getElementById('docsPage').style.display = 'grid';
+      document.getElementById('docsPage').style.display = 'block';
       updateNavActive('docs');
       window.scrollTo({ top: 0 });
     }
