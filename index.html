@@ -814,17 +814,32 @@ hello_msg db 'Hello, PRos!', 10, 13, 0
 
 <!-- Download modal -->
 <div id="downloadModal" class="modal-overlay">
-  <div class="modal">
+  <div class="modal modal-download">
     <button class="modal-close" aria-label="Close">&times;</button>
-    <h3>Select Image Type</h3>
-    <div class="image-cards">
+    <h3>Download x16-PRos</h3>
+
+    <div class="download-latest">
       <a href="disk_images/x16-PRos v0.8.img" class="image-card" download>
         <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 1025 1024" fill="#448fb1"><path d="M960.06 1024h-64V576q0-26-19-45t-45-19h-640q-27 0-45.5 19t-18.5 45v448h-64q-26 0-45-19t-19-45V64q0-26 19-45t45-19h832l128 128v832q0 26-19 45t-45 19zm-192-960h-640v256q0 27 18.5 45.5t45.5 18.5h512q26 0 45-18.5t19-45.5V64zm-256 64h128v192h-128V128zm-288 448h576q13 0 22.5 9.5t9.5 22.5t-9.5 22.5t-22.5 9.5h-576q-13 0-22.5-9.5t-9.5-22.5t9.5-22.5t22.5-9.5zm0 192h576q13 0 22.5 9.5t9.5 22.5t-9.5 22.5t-22.5 9.5h-576q-13 0-22.5-9.5t-9.5-22.5t9.5-22.5t22.5-9.5zm0 192h576q13 0 22.5 9.5t9.5 22.5t-9.5 22.5t-22.5 9.5h-576q-13 0-22.5-9.5t-9.5-22.5t9.5-22.5t22.5-9.5z"/></svg>
-        <h4>IMG Image</h4>
+        <h4>v0.8 — Latest</h4>
         <p>Bootable Floppy/USB image for real hardware and emulators.</p>
-        <p class="size">Size: 1.44 MB</p>
+        <p class="size">1.44 MB &middot; IMG</p>
       </a>
     </div>
+
+    <details class="older-versions">
+      <summary>Older versions</summary>
+      <div class="older-versions-grid">
+        <a href="disk_images/x16-PRos v0.7.img" class="older-version-item" download>v0.7</a>
+        <a href="disk_images/x16-PRos v0.6.5.img" class="older-version-item" download>v0.6.5</a>
+        <a href="disk_images/x16-PRos v0.6.img" class="older-version-item" download>v0.6</a>
+        <a href="disk_images/x16-PRos v0.5.9.img" class="older-version-item" download>v0.5.9</a>
+        <a href="disk_images/x16-PRos v0.5.img" class="older-version-item" download>v0.5</a>
+        <a href="disk_images/x16-PRos v0.4.img" class="older-version-item" download>v0.4</a>
+        <a href="disk_images/x16-PRos v0.3.img" class="older-version-item" download>v0.3</a>
+        <a href="disk_images/x16-PRos v0.2.img" class="older-version-item" download>v0.2</a>
+      </div>
+    </details>
   </div>
 </div>
 
