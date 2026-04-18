@@ -1,5 +1,27 @@
 window.newsData = [
   {
+  "id": "x16-pros-v0.9-exe-support",
+  "date": "April 18, 2026",
+  "author": "PRoX-dev",
+  "title": "x16-PRos v0.9: *.EXE (MZ) support is coming",
+  "summary": "Starting with version 0.9, x16-PRos will support MS-DOS *.EXE (MZ) executable files. Programs and games up to 450 KiB can already be launched.",
+  "image": "images/news/18-04-2026.png",
+  "content": [
+    '<img src="images/news/18-04-2026.png" alt="">',
+    "<strong>Hello everyone!</strong>",
+    "<p>Well, I have some very interesting news.</p>",
+    "<p>Starting with version 0.9, x16-PRos will support *.EXE (MZ) executable files. These are the very same programs and games from MS-DOS.</p>",
+    "<p>At the moment, I have written several functions for the compatibility layer that allow launching programs and games up to 450 KiB. Now I'm thinking about how to expand these limits, and then DOOM won't be far away.</p>",
+    "<p>In the screenshots I am running some games, namely:</p>",
+    "<ul>",
+    "<li>Alley Cat</li>",
+    "<li>Bruce Lee</li>",
+    "<li>Road Fighter</li>",
+    "</ul>",
+    "<p>And of course Hello World, can't do without it.</p>",
+  ]
+  },
+  {
   "id": "x16-pros-v0.8-release",
   "date": "March 29, 2026",
   "author": "PRoX-dev",
