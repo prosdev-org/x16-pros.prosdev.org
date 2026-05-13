@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
   <!-- Styles (split by concern) -->
   <link href="styles/base.css" rel="stylesheet" />
   <link href="styles/layout.css" rel="stylesheet" />
@@ -72,8 +77,8 @@
     <!-- Hero -->
     <section class="hero">
       <div class="panel reveal">
-        <h2 class="headline">x16-PRos — Fast and lightweight</h2>
-        <p class="lead">PRos is a minimalistic 16-bit operating system written in NASM for x86 architecture. It features a command-line interface, FAT12 file system support, and a rich set of system calls.</p>
+        <h2 class="headline">x16-PRos: <span class="headline-accent">fast and lightweight</span></h2>
+        <p class="lead">x16-PRos is a hand-written operating system that fits on a single floppy. Designed for the x86 architecture and written entirely in NASM assembly it features a CLI and TUI interface, supports MS-DOS executables and includes a large standard software suite.</p>
 
         <div class="features">
           <div class="feature">
@@ -356,6 +361,7 @@
         <li><a href="#terminalSection">PRos Terminal</a></li>
         <li><a href="#apiSection">API Documentation</a></li>
         <li><a href="#examplesSection">Program Examples</a></li>
+        <li><a href="#pleSection">PLE format <span class="toc-tag">new</span></a></li>
       </ul>
     </aside>
 
@@ -593,9 +599,10 @@ qemu-system-x86_64 -audiodev pa,id=snd0 -machine pcspk-audiodev=snd0 -fda x16-PR
                 <tr><td><code>0x03</code></td><td>Print String (Cyan)</td><td><code>SI</code> = string ptr</td><td>Color <code>0x0B</code></td></tr>
                 <tr><td><code>0x04</code></td><td>Print String (Red)</td><td><code>SI</code> = string ptr</td><td>Color <code>0x0C</code></td></tr>
                 <tr><td><code>0x05</code></td><td>Print Newline</td><td>&mdash;</td><td>Outputs CR+LF</td></tr>
-                <tr><td><code>0x06</code></td><td>Clear Screen</td><td>&mdash;</td><td>Resets video mode (same as <code>0x00</code>)</td></tr>
+                <tr><td><code>0x06</code></td><td>Clear Screen</td><td>&mdash;</td><td>Resets video mode <strong>without</strong> reapplying the theme &mdash; raw VGA defaults</td></tr>
                 <tr><td><code>0x07</code></td><td>Set Text Color</td><td><code>BL</code> = color (0x00&ndash;0x0F)</td><td>Sets global color for function <code>0x08</code></td></tr>
                 <tr><td><code>0x08</code></td><td>Print String (Custom)</td><td><code>SI</code> = string ptr</td><td>Uses color set by <code>0x07</code></td></tr>
+                <tr><td><code>0x0C</code></td><td>Clear Screen with Theme</td><td>&mdash;</td><td>Clears screen and reapplies the current theme from <code>CONF.DIR/THEME.CFG</code></td></tr>
               </tbody>
             </table>
           </div>
@@ -621,10 +628,11 @@ qemu-system-x86_64 -audiodev pa,id=snd0 -machine pcspk-audiodev=snd0 -fda x16-PR
                 <tr><th>AH</th><th>Function</th><th>Output</th></tr>
               </thead>
               <tbody>
-                <tr><td><code>0x0A</code></td><td>Get System Time</td><td><code>CH</code> = hours, <code>CL</code> = minutes, <code>DH</code> = seconds</td></tr>
-                <tr><td><code>0x0B</code></td><td>Get System Date</td><td><code>CH</code> = century, <code>CL</code> = year, <code>DH</code> = month, <code>DL</code> = day</td></tr>
+                <tr><td><code>0x0A</code></td><td>Get System Time</td><td><code>CH</code> = hours (0&ndash;23), <code>CL</code> = minutes, <code>DH</code> = seconds</td></tr>
+                <tr><td><code>0x0B</code></td><td>Get System Date</td><td><code>CH</code> = century, <code>CL</code> = year (0&ndash;99), <code>DH</code> = month (1&ndash;12), <code>DL</code> = day (1&ndash;31)</td></tr>
               </tbody>
             </table>
+            <p class="docs-subnote">Both functions read the RTC via BIOS <code>INT 0x1A</code> and apply the timezone offset from <code>CONF.DIR/TIMEZONE.CFG</code>. Day boundaries are handled correctly (e.g.&nbsp;UTC+5 at 23:00 rolls the date forward). Values are returned in <strong>binary</strong>, not BCD.</p>
           </div>
 
           <details class="docs-extra">
@@ -687,9 +695,15 @@ qemu-system-x86_64 -audiodev pa,id=snd0 -machine pcspk-audiodev=snd0 -fda x16-PR
                 <tr><td><code>0x04</code></td><td>Check if File Exists</td><td><code>SI</code> = filename</td><td><code>CF</code> clear = exists, set = not found.</td></tr>
                 <tr><td><code>0x05</code></td><td>Create Empty File</td><td><code>SI</code> = filename</td><td><code>CF</code> on error (exists or dir full).</td></tr>
                 <tr><td><code>0x06</code></td><td>Remove File</td><td><code>SI</code> = filename</td><td>Frees clusters. <code>CF</code> on error.</td></tr>
-                <tr><td><code>0x07</code></td><td>Rename File</td><td><code>SI</code> = old name, <code>DI</code> = new name</td><td><code>CF</code> on error.</td></tr>
+                <tr><td><code>0x07</code></td><td>Rename File</td><td><code>SI</code> = old name, <code>BX</code> = new name</td><td><code>CF</code> on error.</td></tr>
                 <tr><td><code>0x08</code></td><td>Get File Size</td><td><code>SI</code> = filename</td><td><code>BX</code> = size in bytes. <code>CF</code> if not found.</td></tr>
-                <tr><td><code>0x10</code></td><td>Load Huge File</td><td><code>SI</code> = filename, <code>CX</code> = load offset, <code>DX</code> = segment</td><td>Loads files &gt;64KB across segments. <code>CF</code> on error.</td></tr>
+                <tr><td><code>0x10</code></td><td>Load Huge File</td><td><code>SI</code> = filename, <code>CX</code> = load offset, <code>DX</code> = load segment</td><td>Loads files &gt;32&nbsp;KB across segments. <code>CF</code> on error.</td></tr>
+                <tr>
+                  <td><code>0x13</code></td>
+                  <td>Write Huge File</td>
+                  <td><code>SI</code> = filename, <code>CX</code> = source offset, <code>DX</code> = source segment,<br><code>BX</code> = size low word, <code>DI</code> = size high word</td>
+                  <td>Writes files &gt;64&nbsp;KB from arbitrary <code>segment:offset</code>. Replaces existing file. <code>CF</code> on error. <span class="docs-since">v0.9</span></td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -721,12 +735,13 @@ qemu-system-x86_64 -audiodev pa,id=snd0 -machine pcspk-audiodev=snd0 -fda x16-PR
               <tbody>
                 <tr><td><code>0x11</code></td><td>List Drives</td><td>&mdash;</td><td>Prints available drives with size info.</td></tr>
                 <tr><td><code>0x12</code></td><td>Change Drive</td><td><code>SI</code> = drive letter pointer</td><td>Switches to another disk. <code>CF</code> on error.</td></tr>
+                <tr><td><code>0x14</code></td><td>Get Current Drive Letter</td><td>&mdash;</td><td><code>AL</code> = current drive letter.</td></tr>
               </tbody>
             </table>
           </div>
 
           <div class="docs-note">
-            <strong>Limitations:</strong> Root directory max 224 entries. Standard load (0x02) limited to 64 KiB; use <code>0x10</code> (Load Huge File) for larger files across segments.
+            <strong>Limitations:</strong> Root directory max 224 entries. Standard load (<code>0x02</code>) limited to 64&nbsp;KiB; use <code>0x10</code> (Load Huge File) for larger files across segments, and <code>0x13</code> (Write Huge File) to save files larger than 64&nbsp;KB.
           </div>
         </div>
       </div>
@@ -782,6 +797,81 @@ hello_msg db 'Hello, PRos!', 10, 13, 0
           </code></pre>
         </details>
       </div>
+
+      <!-- PLE format -->
+      <div class="docs-section reveal" id="pleSection">
+        <h3>PLE (PRos Large Executable)</h3>
+        <p><strong>PLE</strong> is the native executable format introduced in x16-PRos v0.9. It is a hybrid between a flat <code>.BIN</code> and MZ <code>EXE</code> file, designed for programs that outgrew the 64 KB segment limit.</p>
+
+        <div class="docs-category">
+          <h5>Key features</h5>
+          <ul>
+            <li><strong>Multi-segment.</strong> A PLE contains an instruction table that tells the loader how to lay out each segment in memory.</li>
+            <li><strong>Embedded metadata.</strong> Every PLE file carries a 32-byte description and a 16-byte author name in the header.</li>
+            <li><strong>Embedded logo.</strong> A 64x64 image (4096 bytes) is shipped inside the executable and shown on a splash screen before the program starts.</li>
+          </ul>
+        </div>
+
+        <div class="docs-category">
+          <h5>Header layout</h5>
+          <table class="docs-table">
+            <thead>
+              <tr><th>Offset</th><th>Size</th><th>Field</th></tr>
+            </thead>
+            <tbody>
+              <tr><td><code>0x00</code></td><td>4 B</td><td>Magic <code>"PLE\0"</code></td></tr>
+              <tr><td><code>0x04</code></td><td>2 B</td><td>Format version (currently <code>1</code>)</td></tr>
+              <tr><td><code>0x06</code></td><td>2 B</td><td>Entry segment (relative to base)</td></tr>
+              <tr><td><code>0x08</code></td><td>2 B</td><td>Entry IP</td></tr>
+              <tr><td><code>0x0A</code></td><td>2 B</td><td>Stack segment (relative)</td></tr>
+              <tr><td><code>0x0C</code></td><td>2 B</td><td>Stack SP</td></tr>
+              <tr><td><code>0x0E</code></td><td>2 B</td><td>Segment / instruction count</td></tr>
+              <tr><td><code>0x10</code></td><td>32 B</td><td>Description string (NUL-padded)</td></tr>
+              <tr><td><code>0x30</code></td><td>16 B</td><td>Author string (NUL-padded)</td></tr>
+              <tr><td><code>0x40</code></td><td>4096 B</td><td>Embedded 64&times;64 logo</td></tr>
+              <tr><td><code>0x1040</code></td><td>n &times; 8 B</td><td>Load instruction table (segment, file offset, length)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="docs-category">
+          <h5>Writing a PLE program</h5>
+          <p>The header layout is wrapped in <code>programs/PLE/ple.inc</code>, a small NASM macro library. A minimal program looks like this:</p>
+          <pre><code class="language-nasm">
+%include "ple.inc"
+
+PLE_HEADER start, "Just another hello world :)", "PRoX-dev"
+PLE_LOGO          "logo/hello.raw"
+
+start:
+    push cs
+    pop ds
+
+    mov ah, 0x01
+    mov si, hello_msg
+    int 0x21
+
+    retf
+
+hello_msg db 'Hello, PRos! Live long and prosper!', 10, 13, 0
+
+PLE_END
+          </code></pre>
+          <p><code>PLE_HEADER</code>, <code>PLE_LOGO</code>, <code>PLE_CODE</code>, <code>PLE_DATA</code>, <code>PLE_END</code> handle the header, logo embedding, segment table and final patches. Use <code>PLE_DATA</code> to declare a separate data segment when the code+data of a single segment exceed 64 KB.</p>
+        </div>
+
+        <div class="docs-category">
+          <h5>Building the logo</h5>
+          <p>The repository ships a converter script - <code>scripts/img2pleimg.py</code> that turns any PNG/JPG into required format.</p>
+          <pre><code class="language-bash">
+python3 scripts/img2pleimg.py my-logo.png logo/hello.raw
+          </code></pre>
+        </div>
+
+        <div class="docs-note">
+          <strong>When to pick PLE.</strong> Use <code>.BIN</code> for small cli utilities, MZ <code>EXE</code> when you need cross-tool compatibility, and <strong>PLE</strong> when your program is large, wants an embedded splash, or needs the multi-segment loader. PLE is the recommended format for large x16-PRos programs.
+        </div>
+      </div>
     </div>
   </section>
 
@@ -819,9 +909,9 @@ hello_msg db 'Hello, PRos!', 10, 13, 0
     <h3>Download x16-PRos</h3>
 
     <div class="download-latest">
-      <a href="disk_images/x16-PRos v0.8.img" class="image-card" download>
+      <a href="disk_images/x16-PRos v0.9.img" class="image-card" download>
         <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 1025 1024" fill="#448fb1"><path d="M960.06 1024h-64V576q0-26-19-45t-45-19h-640q-27 0-45.5 19t-18.5 45v448h-64q-26 0-45-19t-19-45V64q0-26 19-45t45-19h832l128 128v832q0 26-19 45t-45 19zm-192-960h-640v256q0 27 18.5 45.5t45.5 18.5h512q26 0 45-18.5t19-45.5V64zm-256 64h128v192h-128V128zm-288 448h576q13 0 22.5 9.5t9.5 22.5t-9.5 22.5t-22.5 9.5h-576q-13 0-22.5-9.5t-9.5-22.5t9.5-22.5t22.5-9.5zm0 192h576q13 0 22.5 9.5t9.5 22.5t-9.5 22.5t-22.5 9.5h-576q-13 0-22.5-9.5t-9.5-22.5t9.5-22.5t22.5-9.5zm0 192h576q13 0 22.5 9.5t9.5 22.5t-9.5 22.5t-22.5 9.5h-576q-13 0-22.5-9.5t-9.5-22.5t9.5-22.5t22.5-9.5z"/></svg>
-        <h4>v0.8 — Latest</h4>
+        <h4>v0.9 - Latest</h4>
         <p>Bootable Floppy/USB image for real hardware and emulators.</p>
         <p class="size">1.44 MB &middot; IMG</p>
       </a>
@@ -830,6 +920,7 @@ hello_msg db 'Hello, PRos!', 10, 13, 0
     <details class="older-versions">
       <summary>Older versions</summary>
       <div class="older-versions-grid">
+        <a href="disk_images/x16-PRos v0.8.img" class="older-version-item" download>v0.8</a>
         <a href="disk_images/x16-PRos v0.7.img" class="older-version-item" download>v0.7</a>
         <a href="disk_images/x16-PRos v0.6.5.img" class="older-version-item" download>v0.6.5</a>
         <a href="disk_images/x16-PRos v0.6.img" class="older-version-item" download>v0.6</a>

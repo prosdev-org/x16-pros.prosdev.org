@@ -80,13 +80,28 @@ header {
 }
 
 .headline {
-  font-size: 26px;
-  margin: 0 0 12px;
+  font-size: clamp(28px, 4.2vw, 44px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin: 0 0 16px;
+  color: #f1f6fa;
+}
+
+.headline-accent {
+  background: var(--accent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 700;
 }
 
 .lead {
   color: var(--muted);
-  margin: 0 0 16px;
+  margin: 0 0 20px;
+  font-size: 15.5px;
+  line-height: 1.6;
+  max-width: 62ch;
 }
 
 /* Features grid */

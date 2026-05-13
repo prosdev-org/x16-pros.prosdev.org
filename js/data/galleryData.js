@@ -7,7 +7,17 @@ window.galleryData = [
   {
     src: "images/screenshots/setup.png",
     title: "Setup Screen",
-    desc: "Initial setup and installation screen for x16-PRos.",
+    desc: "Initial setup and installation screen for x16-PRos. Since v0.9 it can install the OS onto any disk (floppy / HDD / SSD).",
+  },
+  {
+    src: "images/screenshots/settings.png",
+    title: "SETTINGS.BIN",
+    desc: "Centralized system settings: username, timezone and other system-wide options.",
+  },
+  {
+    src: "images/screenshots/paint.png",
+    title: "PAINT.BIN",
+    desc: "Images creator",
   },
   {
     src: "images/screenshots/help_menu.png",

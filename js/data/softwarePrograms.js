@@ -101,10 +101,22 @@ window.softwarePrograms = [
     image: "images/screenshots/paint.png",
     title: "PAINT.BIN",
     category: "media",
-    description: "Paint program",
-    fullDescription: "Simple paint application for drawing pixel art.",
+    description: "Pixel-art editor with BMP save",
+    fullDescription:
+      "Mouse-driven paint application for drawing pixel art.",
     sourceUrl:
       "https://github.com/PRoX2011/x16-PRos/blob/dev/programs/paint.asm",
+  },
+  {
+    id: "settings",
+    image: "images/screenshots/settings.png",
+    title: "SETTINGS.BIN",
+    category: "tool",
+    description: "System-wide settings",
+    fullDescription:
+      "Centralized system settings program: change the username, timezone and other system-wide options from a single TUI screen.",
+    sourceUrl:
+      "https://github.com/PRoX2011/x16-PRos/blob/dev/programs/settings.asm",
   },
   {
     id: "pong",

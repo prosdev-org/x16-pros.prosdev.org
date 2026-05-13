@@ -42,6 +42,66 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
+.toc-tag {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 9.5px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #0b0f14;
+  background: var(--accent);
+  border-radius: 4px;
+  vertical-align: middle;
+}
+
+.docs-new-tag {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 3px 9px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  background: rgba(110, 231, 183, 0.08);
+  border: 1px solid rgba(110, 231, 183, 0.28);
+  border-radius: 999px;
+  vertical-align: middle;
+}
+
+.docs-since {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  font-family: var(--font-mono, ui-monospace, monospace);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  background: rgba(110, 231, 183, 0.08);
+  border: 1px solid rgba(110, 231, 183, 0.24);
+  border-radius: 4px;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.docs-subnote {
+  margin: 10px 0 0;
+  padding: 10px 12px;
+  font-size: 13px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.02);
+  border-left: 2px solid rgba(110, 231, 183, 0.32);
+  border-radius: 0 6px 6px 0;
+}
+
+.docs-subnote code {
+  color: #e6eef3;
+}
+
 .docs-toc ul {
   list-style: none;
   padding: 0;
