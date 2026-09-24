@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link href="../styles/base.css" rel="stylesheet" />
+  <link href="../styles/layout.css" rel="stylesheet" />
+  <link href="../styles/components.css" rel="stylesheet" />
+  <link href="../styles/effects.css" rel="stylesheet" />
+  <link href="../styles/gallery.css" rel="stylesheet" />
+  <link href="../styles/software.css" rel="stylesheet" />
+  <link href="../styles/docs.css" rel="stylesheet" />
+  <link href="../styles/credits.css" rel="stylesheet" />
+  <link href="../styles/modal.css" rel="stylesheet" />
+  <link href="../styles/dev-features.css" rel="stylesheet" />
+  <link href="../styles/news.css" rel="stylesheet" />
+  <link href="../styles/pages.css" rel="stylesheet" />
+  <link href="../styles/responsive.css" rel="stylesheet" />
+
+  <title>x16-PRos: terminal commands</title>
+  <meta name="description" content="Every built-in command of the x16-PRos shell: files, directories, images, multitasking and power." />
+</head>
+<body>
+
+<button id="scrollTopBtn" aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 717 614">
+    <path fill="currentColor" d="M360 337L115 582L0 464l354-355l363 363l-112 112z"/>
+  </svg>
+</button>
+
+<div class="sky-container">
+  <span class="star"></span><span class="star"></span><span class="star"></span>
+  <span class="star"></span><span class="star"></span>
+</div>
+
+<div class="container">
+
+  <header>
+    <a class="brand" href="../index.html">
+      <div class="logo"><img src="../logo.png" alt="x16-PRos Logo"></div>
+      <div>
+        <h1>x16-PRos</h1>
+        <div style="font-size:12px;color:var(--muted)">Minimalistic 16-bit OS</div>
+      </div>
+    </a>
+    <nav class="nav">
+        <a class="btn" href="../index.html">About project</a>
+        <a class="btn" href="../software.html">Software</a>
+        <a class="btn active" href="../docs/index.html">Docs</a>
+        <a class="btn" href="../news.html">News</a>
+        <a class="btn support" href="https://dalink.to/PRoXdev" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> Support project</a>
+    </nav>
+  </header>
+
+  <div class="page-head">
+    <div class="crumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Docs</a><span>/</span>Terminal</div>
+    <h1>Terminal commands</h1>
+    <p>The PRos shell and everything it understands out of the box.</p>
+  </div>
+
+  <div class="article">
+    <aside class="article-toc">
+      <h4>On this page</h4>
+      <ul>
+        <li><a href="#intro">The shell</a></li>
+        <li><a href="#info">Information</a></li>
+        <li><a href="#files">Files</a></li>
+        <li><a href="#dirs">Directories</a></li>
+        <li><a href="#screen">Screen and images</a></li>
+        <li><a href="#tasks">Multitasking</a></li>
+        <li><a href="#power">System</a></li>
+        <li><a href="#programs">Not commands, but programs</a></li>
+      </ul>
+    </aside>
+    <div class="article-body">
+      <section id="intro">
+        <h2>The shell</h2>
+        <p>x16-PRos boots into its own shell. Typing the name of an executable runs it: the shell looks
+        in <code>BIN.DIR</code> for <code>.BIN</code> and <code>.COM</code> programs, in
+        <code>PLE.DIR</code> for <code>.PLE</code> programs, and finally in the current directory. The
+        extension is optional.</p>
+        <p>The commands below are built into the shell itself. Anything else you type is treated as a
+        program name.</p>
+      </section>
+
+      <section id="info">
+        <h2>Information</h2>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+            <tr><td><code>help</code></td><td>Help screen with all of these comands</td></tr>
+            <tr><td><code>info</code></td><td>System information</td></tr>
+            <tr><td><code>ver</code></td><td>Version of the PRos terminal</td></tr>
+            <tr><td><code>date</code></td><td>Current date, DD/MM/YY</td></tr>
+            <tr><td><code>time</code></td><td>Current time, HH:MM:SS</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="files">
+        <h2>Files</h2>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>Command</th><th>Syntax</th><th>Description</th></tr></thead>
+            <tbody>
+            <tr><td><code>dir</code></td><td><code>dir</code></td><td>List the current directory with sizes and a file count</td></tr>
+            <tr><td><code>cat</code></td><td><code>cat &lt;file&gt;</code></td><td>Print the contents of a text file</td></tr>
+            <tr><td><code>size</code></td><td><code>size &lt;file&gt;</code></td><td>File size in bytes</td></tr>
+            <tr><td><code>del</code></td><td><code>del &lt;file&gt;</code></td><td>Delete a file</td></tr>
+            <tr><td><code>copy</code></td><td><code>copy &lt;src&gt; &lt;dst&gt;</code></td><td>Copy a file within the current directory</td></tr>
+            <tr><td><code>ren</code></td><td><code>ren &lt;old&gt; &lt;new&gt;</code></td><td>Rename a file</td></tr>
+            <tr><td><code>touch</code></td><td><code>touch &lt;file&gt;</code></td><td>Create an empty file</td></tr>
+            <tr><td><code>write</code></td><td><code>write &lt;file&gt; &lt;text&gt;</code></td><td>Write text into a file, replacing what was there</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="dirs">
+        <h2>Directories</h2>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>Command</th><th>Syntax</th><th>Description</th></tr></thead>
+            <tbody>
+            <tr><td><code>cd</code></td><td><code>cd &lt;dir&gt;</code></td><td>Enter a directory. The .DIR extension may be left off</td></tr>
+            <tr><td><code>cd</code></td><td><code>cd ..</code></td><td>Go up one level</td></tr>
+            <tr><td><code>cd</code></td><td><code>cd /</code></td><td>Go back to the root</td></tr>
+            <tr><td><code>mkdir</code></td><td><code>mkdir &lt;name&gt;</code></td><td>Create a directory</td></tr>
+            <tr><td><code>deldir</code></td><td><code>deldir &lt;name&gt;</code></td><td>Delete a directory. It has to be empty</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="screen">
+        <h2>Screen and images</h2>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>Command</th><th>Syntax</th><th>Description</th></tr></thead>
+            <tbody>
+            <tr><td><code>cls</code></td><td><code>cls</code></td><td>Clear the screen and reapply the current theme</td></tr>
+            <tr><td><code>view</code></td><td><code>view &lt;file.bmp&gt;</code></td><td>Show a BMP image, up to 320&times;240 in 256 colours</td></tr>
+            <tr><td></td><td><code>view &lt;file&gt; -upscale</code></td><td>Scale the image to twice its size</td></tr>
+            <tr><td></td><td><code>view &lt;file&gt; -stretch</code></td><td>Stretch the image to fill the screen</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="tasks">
+        <h2>Multitasking</h2>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>Command</th><th>Syntax</th><th>Description</th></tr></thead>
+            <tbody>
+            <tr><td><code>bg</code></td><td><code>bg &lt;file.ple&gt;</code></td><td>Start a PLE program in the background and return to the prompt</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Use <code>PS.BIN</code> to list running tasks and <code>KILL.BIN</code> to stop one.</p>
+      </section>
+
+      <section id="power">
+        <h2>System</h2>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>Command</th><th>Description</th></tr></thead>
+            <tbody>
+            <tr><td><code>reboot</code></td><td>Restart the machine immediately</td></tr>
+            <tr><td><code>shut</code></td><td>Shut down through APM. Only works on APM-capable hardware</td></tr>
+            <tr><td><code>exit</code></td><td>Leave the shell and return to the bootloader</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="programs">
+        <h2>Not commands, but programs</h2>
+        <p>Several things that look like shell commands are separate executables in
+        <code>BIN.DIR</code>. They are started the same way and take arguments the same way:</p>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>Program</th><th>Does</th></tr></thead>
+            <tbody>
+            <tr><td><code>cpu</code></td><td>CPU and register information</td></tr>
+            <tr><td><code>dlist</code></td><td>Lists every detected drive with its size and usage</td></tr>
+            <tr><td><code>tree</code></td><td>Prints the directory tree</td></tr>
+            <tr><td><code>grep &lt;file&gt; &lt;text&gt;</code></td><td>Finds text in a file</td></tr>
+            <tr><td><code>head &lt;file&gt;</code> / <code>tail &lt;file&gt;</code></td><td>First or last ten lines of a file</td></tr>
+            <tr><td><code>ps</code> / <code>kill &lt;id&gt;</code></td><td>List and terminate background tasks</td></tr>
+            <tr><td><code>prasm &lt;src.asm&gt;</code></td><td>Assemble a program without leaving the system</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>The full list is on the <a href="../software.html">software page</a>.</p>
+      </section>
+    </div>
+  </div>
+
+  <div class="article-foot"><a href="emulator.html">&larr; Emulator</a><a href="api.html">API reference &rarr;</a></div>
+
+  <footer>
+    <div>Licensed under <a href="https://opensource.org/license/BSD-3-clause">3-Clause BSD</a>. Copyright 2025-2026, PRosDev.org</div>
+  </footer>
+</div>
+
+<script src="../js/ui/scrollTop.js" defer></script>
+<script src="../js/app.js" defer></script>
+
+</body>
+</html>

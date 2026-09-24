@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link href="../styles/base.css" rel="stylesheet" />
+  <link href="../styles/layout.css" rel="stylesheet" />
+  <link href="../styles/components.css" rel="stylesheet" />
+  <link href="../styles/effects.css" rel="stylesheet" />
+  <link href="../styles/gallery.css" rel="stylesheet" />
+  <link href="../styles/software.css" rel="stylesheet" />
+  <link href="../styles/docs.css" rel="stylesheet" />
+  <link href="../styles/credits.css" rel="stylesheet" />
+  <link href="../styles/modal.css" rel="stylesheet" />
+  <link href="../styles/dev-features.css" rel="stylesheet" />
+  <link href="../styles/news.css" rel="stylesheet" />
+  <link href="../styles/pages.css" rel="stylesheet" />
+  <link href="../styles/responsive.css" rel="stylesheet" />
+  <link href="../prism.css" rel="stylesheet" />
+
+  <title>x16-PRos: PLE format</title>
+  <meta name="description" content="PRos Large Executable: header layout, load table, multiple segments, stack sizing and the NASM macros." />
+</head>
+<body>
+
+<button id="scrollTopBtn" aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 717 614">
+    <path fill="currentColor" d="M360 337L115 582L0 464l354-355l363 363l-112 112z"/>
+  </svg>
+</button>
+
+<div class="sky-container">
+  <span class="star"></span><span class="star"></span><span class="star"></span>
+  <span class="star"></span><span class="star"></span>
+</div>
+
+<div class="container">
+
+  <header>
+    <a class="brand" href="../index.html">
+      <div class="logo"><img src="../logo.png" alt="x16-PRos Logo"></div>
+      <div>
+        <h1>x16-PRos</h1>
+        <div style="font-size:12px;color:var(--muted)">Minimalistic 16-bit OS</div>
+      </div>
+    </a>
+    <nav class="nav">
+        <a class="btn" href="../index.html">About project</a>
+        <a class="btn" href="../software.html">Software</a>
+        <a class="btn active" href="../docs/index.html">Docs</a>
+        <a class="btn" href="../news.html">News</a>
+        <a class="btn support" href="https://dalink.to/PRoXdev" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> Support project</a>
+    </nav>
+  </header>
+
+  <div class="page-head">
+    <div class="crumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Docs</a><span>/</span>PLE format</div>
+    <h1>The PLE format</h1>
+    <p>The native executable format of x16-PRos, and how to build one.</p>
+  </div>
+
+  <div class="article">
+    <aside class="article-toc">
+      <h4>On this page</h4>
+      <ul>
+        <li><a href="#what">What PLE is</a></li>
+        <li><a href="#layout">File layout</a></li>
+        <li><a href="#write">Writing one</a></li>
+        <li><a href="#segments">More than one segment</a></li>
+        <li><a href="#stack">Stack and memory</a></li>
+        <li><a href="#logo">The logo</a></li>
+      </ul>
+    </aside>
+    <div class="article-body">
+      <section id="what">
+        <h2>What PLE is</h2>
+        <p><strong>PLE</strong> (PRos Large Executable) is the native executable format of x16-PRos.</p>
+        <p>Use PLE when the program is large, needs more than one segment, wants a
+        splash screen or should be able to run in a GUI window.</p>
+      </section>
+
+      <section id="layout">
+        <h2>File layout</h2>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>Offset</th><th>Size</th><th>Contents</th></tr></thead>
+            <tbody>
+            <tr><td><code>0x0000</code></td><td>64 B</td><td>Header</td></tr>
+            <tr><td><code>0x0040</code></td><td>4096 B</td><td>Logo, 64&times;64, one byte per pixel, EGA palette</td></tr>
+            <tr><td><code>0x1040</code></td><td>n &times; 8 B</td><td>Load table</td></tr>
+            <tr><td>&hellip;</td><td>&hellip;</td><td>Segment data, each aligned to a paragraph</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Header</h3>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>Offset</th><th>Size</th><th>Field</th></tr></thead>
+            <tbody>
+            <tr><td><code>0x00</code></td><td>3 B</td><td>Magic <code>'PLE'</code></td></tr>
+            <tr><td><code>0x03</code></td><td>1 B</td><td>Flags</td></tr>
+            <tr><td><code>0x04</code></td><td>2 B</td><td>Format version, currently <code>1</code></td></tr>
+            <tr><td><code>0x06</code></td><td>2 B</td><td>Entry segment id</td></tr>
+            <tr><td><code>0x08</code></td><td>2 B</td><td>Entry IP</td></tr>
+            <tr><td><code>0x0A</code></td><td>2 B</td><td>Stack segment id</td></tr>
+            <tr><td><code>0x0C</code></td><td>2 B</td><td>Stack SP. The loader sizes the arena from this</td></tr>
+            <tr><td><code>0x0E</code></td><td>2 B</td><td>Number of load-table entries</td></tr>
+            <tr><td><code>0x10</code></td><td>32 B</td><td>Description</td></tr>
+            <tr><td><code>0x30</code></td><td>16 B</td><td>Author</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <h3>Flags</h3>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>Bit</th><th>Name</th><th>Effect</th></tr></thead>
+            <tbody>
+            <tr><td>0</td><td><code>PLE_FLAG_NO_SPLASH</code></td><td>Skip the splash screen entirely</td></tr>
+            <tr><td>1</td><td><code>PLE_FLAG_NO_WAIT</code></td><td>Show the splash but do not wait for a key</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>Background launches always skip the splash, whatever the flags say.</p>
+      </section>
+
+      <section id="write">
+        <h2>Writing one</h2>
+        <p>The whole format is wrapped in <code>programs/PLE/ple.inc</code>, a set of NASM macros. 
+        Here is a simple program:</p>
+        <pre><code class="language-nasm">%include "ple.inc"
+
+PLE_HEADER start, "Hello world program", "Author"
+PLE_LOGO          "logo/hello.raw"
+
+start:
+    push cs
+    pop ds
+
+    mov ah, 0x01
+    mov si, hello_msg
+    int 0x21
+
+    retf
+
+hello_msg db 'Hello, PRos! Live long and prosper!', 10, 13, 0
+
+PLE_END</code></pre>
+        <p>Assemble it with:</p>
+        <pre><code class="language-bash">nasm -f bin -I programs/PLE/ src/hello.asm -o HELLO.PLE</code></pre>
+        <h3>Registers on entry</h3>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>Register</th><th>Holds</th></tr></thead>
+            <tbody>
+            <tr><td>CS, DS</td><td>The program's own segment 0</td></tr>
+            <tr><td>SS:SP</td><td>The program's stack</td></tr>
+            <tr><td>ES</td><td>Kernel data segment</td></tr>
+            <tr><td>SI</td><td>Pointer to the command line, inside ES</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>A program ends by returning far from its entry point with <code>retf</code>.</p>
+      </section>
+
+      <section id="segments">
+        <h2>More than one segment</h2>
+        <p>Segment 0 opens by itself and holds the code. Further segments are opened with
+        <code>PLE_SEGMENT</code>, each up to 64 KB, so the program as a whole is not tied to 64 KB.</p>
+        <pre><code class="language-nasm">PLE_SEGMENT tables
+big_table   times 40000 db 0</code></pre>
+        <p>Segments sit one after another in the file and are paragraph-aligned, which means the
+        distance from segment 0 to any other is known while assembling. <code>PLE_SEG</code> works it
+        out, so there is nothing to look up at run time:</p>
+        <pre><code class="language-nasm">    mov ax, cs
+    add ax, PLE_SEG(tables)
+    mov es, ax
+
+    ; or, in one line, clobbering AX
+    PLE_LOAD_SEG es, tables</code></pre>
+        <div class="callout">Code above 64 KB has to live in its own segment and be reached with a far
+        call.</div>
+      </section>
+
+      <section id="stack">
+        <h2>Stack and memory</h2>
+        <p>The stack gets a segment of its own on the paragraphs just past the image, through a load
+        table entry that carries no file bytes. The loader reads the stack pointer out of the header
+        <em>before</em> it allocates anything, and asks the allocator for exactly the image plus that
+        stack.</p>
+        <p><code>PLE_HEADER</code> works the stack pointer out for you. The default is 8 KB; pass a
+        fifth argument to ask for more:</p>
+        <pre><code class="language-nasm">PLE_HEADER start, "My program", "Author", 0, 16384</code></pre>
+        <p>A program that carves up its own segment with fixed offsets should ask for
+        <code>PLE_FULL_SEGMENT</code> instead, which puts the stack at the very top of segment 0 and
+        reserves the whole 64 KB.</p>
+        <div class="callout warn">Do not ask for more stack than you use. The arena comes out of a
+        448 KB heap shared by every running program, so an oversized request costs somebody else a
+        window.</div>
+      </section>
+
+      <section id="logo">
+        <h2>The logo</h2>
+        <p>Every PLE carries a 64&times;64 image in its header. The GUI reads it straight out of the
+        file to draw the desktop icon, so there is no separate icon registry. Convert any picture with
+        the script in the repository:</p>
+        <pre><code class="language-bash">python3 scripts/img2pleimg.py my-logo.png logo/hello.raw</code></pre>
+      </section>
+    </div>
+  </div>
+
+  <div class="article-foot"><a href="api.html">&larr; API reference</a><a href="examples.html">Program examples &rarr;</a></div>
+
+  <footer>
+    <div>Licensed under <a href="https://opensource.org/license/BSD-3-clause">3-Clause BSD</a>. Copyright 2025-2026, PRosDev.org</div>
+  </footer>
+</div>
+
+<script src="../prism.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-nasm.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
+<script src="../js/ui/scrollTop.js" defer></script>
+<script src="../js/app.js" defer></script>
+
+</body>
+</html>

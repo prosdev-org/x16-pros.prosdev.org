@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link href="../styles/base.css" rel="stylesheet" />
+  <link href="../styles/layout.css" rel="stylesheet" />
+  <link href="../styles/components.css" rel="stylesheet" />
+  <link href="../styles/effects.css" rel="stylesheet" />
+  <link href="../styles/gallery.css" rel="stylesheet" />
+  <link href="../styles/software.css" rel="stylesheet" />
+  <link href="../styles/docs.css" rel="stylesheet" />
+  <link href="../styles/credits.css" rel="stylesheet" />
+  <link href="../styles/modal.css" rel="stylesheet" />
+  <link href="../styles/dev-features.css" rel="stylesheet" />
+  <link href="../styles/news.css" rel="stylesheet" />
+  <link href="../styles/pages.css" rel="stylesheet" />
+  <link href="../styles/responsive.css" rel="stylesheet" />
+  <link href="../prism.css" rel="stylesheet" />
+
+  <title>x16-PRos: running on real hardware</title>
+  <meta name="description" content="How to write x16-PRos to a USB stick or floppy, configure the firmware and install it to a hard disk." />
+</head>
+<body>
+
+<button id="scrollTopBtn" aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 717 614">
+    <path fill="currentColor" d="M360 337L115 582L0 464l354-355l363 363l-112 112z"/>
+  </svg>
+</button>
+
+<div class="sky-container">
+  <span class="star"></span><span class="star"></span><span class="star"></span>
+  <span class="star"></span><span class="star"></span>
+</div>
+
+<div class="container">
+
+  <header>
+    <a class="brand" href="../index.html">
+      <div class="logo"><img src="../logo.png" alt="x16-PRos Logo"></div>
+      <div>
+        <h1>x16-PRos</h1>
+        <div style="font-size:12px;color:var(--muted)">Minimalistic 16-bit OS</div>
+      </div>
+    </a>
+    <nav class="nav">
+        <a class="btn" href="../index.html">About project</a>
+        <a class="btn" href="../software.html">Software</a>
+        <a class="btn active" href="../docs/index.html">Docs</a>
+        <a class="btn" href="../news.html">News</a>
+        <a class="btn support" href="https://dalink.to/PRoXdev" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> Support project</a>
+    </nav>
+  </header>
+
+  <div class="page-head">
+    <div class="crumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Docs</a><span>/</span>Real hardware</div>
+    <h1>Running on real hardware</h1>
+    <p>x16-PRos is a real operating system for real machines. This is how to get it onto one.</p>
+  </div>
+
+  <div class="article">
+    <aside class="article-toc">
+      <h4>On this page</h4>
+      <ul>
+        <li><a href="#before">Before you start</a></li>
+        <li><a href="#write">Writing the image</a></li>
+        <li><a href="#firmware">Setting up the firmware</a></li>
+        <li><a href="#boot">Booting</a></li>
+        <li><a href="#install">Installing to a hard disk</a></li>
+      </ul>
+    </aside>
+    <div class="article-body">
+      <section id="before">
+        <h2>Before you start</h2>
+        <p>x16-PRos boots through the BIOS. It does not support UEFI. Any PC from the 386 era onwards will run it, and so will most
+        modern machines as long as legacy boot is still available.</p>
+        <div class="callout">You will need the <code>.IMG</code> file from the download button on the
+        front page, a USB stick or a floppy, and a way to write raw images to it.</div>
+      </section>
+
+      <section id="write">
+        <h2>Writing the image</h2>
+        <ol class="steps">
+          <li>
+            <h3>Pick the device</h3>
+            <p>A USB flash drive or a 1.44 MB floppy. Writing the image overwrites the whole device,
+            so make sure there is nothing on it you want to keep.</p>
+          </li>
+          <li>
+            <h3>Write it</h3>
+            <p>On Windows use <a href="https://rufus.ie/" target="_blank" rel="noopener">Rufus</a>
+            and pick <strong>DD Image</strong> mode. On Linux and macOS use <code>dd</code>:</p>
+            <pre><code class="language-bash">sudo dd if=x16-PRos.img of=/dev/sdX bs=1M status=progress conv=fsync</code></pre>
+            <p>Replace <code>/dev/sdX</code> with your device, not a partition on it.
+          </li>
+        </ol>
+      </section>
+
+      <section id="firmware">
+        <h2>Setting up the firmware</h2>
+        <p>On a UEFI machine you need the compatibility support module, usually called <strong>CSM</strong>
+        or <strong>Legacy Boot</strong>. Enter the firmware setup with <kbd>F2</kbd> or <kbd>Delete</kbd>
+        during power-on and enable it.</p>
+        <figure>
+          <img src="../images/docs/CSM-Bios.png" alt="Enabling CSM in the firmware setup" loading="lazy">
+          <figcaption>Switch CSM from DISABLED to ENABLED.</figcaption>
+        </figure>
+        <div class="callout warn">Some recent motherboards have dropped CSM entirely. On those, x16-PRos can
+        only be run in an emulator.</div>
+      </section>
+
+      <section id="boot">
+        <h2>Booting</h2>
+        <p>Restart and open the boot menu, usually <kbd>F8</kbd>, <kbd>F11</kbd>, <kbd>F12</kbd> or
+        <kbd>Esc</kbd>. Choose the entry for your drive that is <em>not</em> prefixed with UEFI.</p>
+        <figure>
+          <img src="../images/docs/BOOT-menu.jpg" alt="Boot menu" loading="lazy">
+          <figcaption>Pick the plain USB entry, not the UEFI one.</figcaption>
+        </figure>
+        <p>Booting takes a couple of seconds. On the first launch the setup wizard appears and offers to
+        install the system onto a hard disk.</p>
+        <figure>
+          <img src="../images/screenshots/programs/SETUP.png" alt="First-boot setup" loading="lazy">
+          <figcaption>The installer detects every disk and copies the whole system onto the one you pick.</figcaption>
+        </figure>
+      </section>
+
+      <section id="install">
+        <h2>Installing to a hard disk</h2>
+        <p>The setup wizard formats the target as FAT12 and copies the system tree onto it. FAT12 addresses at
+        most 4084 clusters, so a volume cannot exceed 32 MB; a larger disk is formatted to 32 MB and the
+        remaining space is left alone. After that the machine boots from the disk without the USB stick.</p>
+        <p>Setup can be run again at any time from the terminal with <code>setup</code>.</p>
+      </section>
+    </div>
+  </div>
+
+  <div class="article-foot"><span></span><a href="emulator.html">Running in an emulator &rarr;</a></div>
+
+  <footer>
+    <div>Licensed under <a href="https://opensource.org/license/BSD-3-clause">3-Clause BSD</a>. Copyright 2025-2026, PRosDev.org</div>
+  </footer>
+</div>
+
+<script src="../prism.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-nasm.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
+<script src="../js/ui/scrollTop.js" defer></script>
+<script src="../js/app.js" defer></script>
+
+</body>
+</html>

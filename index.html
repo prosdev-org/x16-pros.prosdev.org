@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
-  <!-- Styles (split by concern) -->
   <link href="styles/base.css" rel="stylesheet" />
   <link href="styles/layout.css" rel="stylesheet" />
   <link href="styles/components.css" rel="stylesheet" />
@@ -22,41 +20,29 @@
   <link href="styles/modal.css" rel="stylesheet" />
   <link href="styles/dev-features.css" rel="stylesheet" />
   <link href="styles/news.css" rel="stylesheet" />
+  <link href="styles/pages.css" rel="stylesheet" />
   <link href="styles/responsive.css" rel="stylesheet" />
-  <link href="prism.css" rel="stylesheet" />
 
-  <!-- Core scripts -->
-  <script src="script.js" defer></script>
-  <script src="prism.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-nasm.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
-
-  <title>x16-PRos</title>
-  <meta name="description" content="x16-PRos — a minimalist 16-bit OS written in pure x86 assembly. Runs on real hardware. Image, documentation, source code." />
+  <title>x16-PRos: a 16-bit operating system written in NASM</title>
+  <meta name="description" content="x16-PRos is a minimalist 16-bit OS written in pure x86 assembly. It has a terminal, GUI, cooperative multitasking, its own assembler and a MS-DOS compatibility layer that runs real MS-DOS software.." />
 </head>
 <body>
 
-<!-- Scroll-to-top button -->
 <button id="scrollTopBtn" aria-label="Scroll to top">
   <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 717 614">
     <path fill="currentColor" d="M360 337L115 582L0 464l354-355l363 363l-112 112z"/>
   </svg>
 </button>
 
-<!-- Shooting stars background -->
 <div class="sky-container">
-  <span class="star"></span>
-  <span class="star"></span>
-  <span class="star"></span>
-  <span class="star"></span>
-  <span class="star"></span>
+  <span class="star"></span><span class="star"></span><span class="star"></span>
+  <span class="star"></span><span class="star"></span>
 </div>
 
 <div class="container">
 
-  <!-- ===== Header ===== -->
   <header>
-    <a class="brand" href="#" onclick="showMain();return false;">
+    <a class="brand" href="index.html">
       <div class="logo"><img src="logo.png" alt="x16-PRos Logo"></div>
       <div>
         <h1>x16-PRos</h1>
@@ -64,34 +50,35 @@
       </div>
     </a>
     <nav class="nav">
-      <a class="btn active" href="#" onclick="showMain();return false;">About project</a>
-      <a class="btn" href="#" onclick="showDocs();return false;">Docs</a>
-      <a class="btn" href="#" onclick="showNews();return false;">News</a>
-      <a class="btn support" href="https://dalink.to/PRoXdev" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> Support project</a>
+        <a class="btn active" href="index.html">About project</a>
+        <a class="btn" href="software.html">Software</a>
+        <a class="btn" href="docs/index.html">Docs</a>
+        <a class="btn" href="news.html">News</a>
+        <a class="btn support" href="https://dalink.to/PRoXdev" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> Support project</a>
     </nav>
   </header>
 
-  <!-- ===== Main content ===== -->
   <main id="mainContent">
 
     <!-- Hero -->
     <section class="hero">
       <div class="panel reveal">
         <h2 class="headline">x16-PRos: <span class="headline-accent">fast and lightweight</span></h2>
-        <p class="lead">x16-PRos is a hand-written operating system that fits on a single floppy. Designed for the x86 architecture and written entirely in NASM assembly it features a CLI and TUI interface, supports MS-DOS executables and includes a large standard software suite.</p>
+        <p class="lead">A hand-written operating system that fits on a single floppy. It has a terminal, GUI, cooperative multitasking, its own
+        assembler and a MS-DOS compatibility layer that runs real MS-DOS software.</p>
 
         <div class="features">
           <div class="feature">
-            <h3>System Lightweight</h3>
-            <p>Occupies &lt; 200 KB on disk and optimized for 1.44 MB floppy disks.</p>
+            <h3>Small</h3>
+            <p>The kernel is < 64kib. The whole system with 40+ programs fits on a 1.44 MB floppy.</p>
           </div>
           <div class="feature">
-            <h3>Rich API</h3>
-            <p>Provides interrupt-driven APIs for output, file operations, and string manipulation.</p>
+            <h3>Three interfaces</h3>
+            <p>Command line, TUI programs and a windowed GUI with draggable, resizable windows.</p>
           </div>
           <div class="feature">
-            <h3>Educational</h3>
-            <p>Ideal for learning OS development and low-level programming.</p>
+            <h3>Runs MS-DOS software</h3>
+            <p>Windows 1.01, Windows 2.03, DOOM and Turbo C run natively through the compatibility layer.</p>
           </div>
         </div>
 
@@ -106,7 +93,7 @@
               <path fill="currentColor" d="M213.5 0q88.5 0 151 62.5T427 213q0 70-41 125.5T281 416q-14 2-14-11v-58q0-27-15-40q44-5 70.5-27t26.5-77q0-34-22-58q11-26-2-57q-18-5-58 22q-26-7-54-7t-53 7q-18-12-32.5-17.5T107 88h-6q-12 31-2 57q-22 24-22 58q0 55 27 77t70 27q-11 10-13 29q-42 18-62-18q-12-20-33-22q-2 0-4.5.5t-5 3.5t8.5 9q14 7 23 31q1 2 2 4.5t6.5 9.5t13 10.5T130 371t30-2v36q0 13-14 11q-64-22-105-77.5T0 213q0-88 62.5-150.5T213.5 0z"/>
             </svg> Source on GitHub
           </a>
-          <a class="btn" href="#" onclick="showDocs();return false;" aria-label="Read Documentation">
+          <a class="btn" href="docs/index.html" aria-label="Read Documentation">
             <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 24 24">
               <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
                 <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/>
@@ -119,9 +106,7 @@
 
       <aside class="term reveal delay" aria-label="Terminal emulation">
         <div class="bar">
-          <div class="dot"></div>
-          <div class="dot yellow"></div>
-          <div class="dot green"></div>
+          <div class="dot"></div><div class="dot yellow"></div><div class="dot green"></div>
           <div style="flex:1"></div>
           <div class="small">PRos Terminal</div>
         </div>
@@ -131,98 +116,129 @@
       </aside>
     </section>
 
-    <!-- Dev version features showcase -->
-    <section class="hero2 dev-features-section">
-      <div class="panel reveal dev-features-card">
-        <div class="dev-badge">DEV BRANCH</div>
-        <h2 class="dev-version-title">What is the dev branch?</h2>
-        <p class="lead">New features and patches will be published <a class="link" href="https://github.com/PRoX2011/x16-PRos/tree/dev" target="_blank" rel="noopener">here</a> before they get to main. This version of the system is not the most stable, but new features get there the fastest. Send all pull requests there.</p>
-      </div>
-    </section>
-
     <!-- Gallery -->
     <section class="hero2 gallery-section">
       <div class="panel reveal">
         <div class="gallery-container">
-          <button class="gallery-nav prev" aria-label="Previous image">&lsaquo;</button>
+          <button class="gallery-nav prev" aria-label="Previous screenshot">&lsaquo;</button>
           <div class="gallery-image-wrapper">
-            <img id="galleryImage" src="images/screenshots/terminal.png" alt="PRos Screenshot">
+            <img id="galleryImage" src="images/screenshots/terminal.png" alt="PRos Terminal">
           </div>
-          <button class="gallery-nav next" aria-label="Next image">&rsaquo;</button>
+          <button class="gallery-nav next" aria-label="Next screenshot">&rsaquo;</button>
         </div>
-        <div class="gallery-info">
-          <h3 id="galleryTitle">PRos Terminal</h3>
-          <p id="galleryDesc">The main command-line interface of the x16-PRos operating system.</p>
+        <div class="gallery-dots" id="galleryDots" role="tablist" aria-label="Screenshots"></div>
+      </div>
+    </section>
+
+    <!-- MS-DOS compatibility -->
+    <section class="hero2" id="msdos">
+      <div class="panel reveal">
+        <div class="section-head">
+          <h2>MS-DOS сompatibility</h2>
+          <p>x16-PRos emulates the MS-DOS system call on top of it`s kernel, enabling the native execution of .COM and .EXE (MZ) programs. Compatibility is not yet complete, but it is being actively improved. At the moment, a large number of programs are already running.</p>
+          <p></p>
         </div>
-        <div class="gallery-thumbnails" id="galleryThumbnails"></div>
+
+        <div class="compat-grid">
+          <figure class="compat-item">
+            <img src="images/compat/WIN101.png" alt="Windows 1.01 running on x16-PRos" loading="lazy">
+            <figcaption class="body">
+              <h4>Windows 1.01</h4>
+            </figcaption>
+          </figure>
+          <figure class="compat-item">
+            <img src="images/compat/WIN203.png" alt="Windows 2.03 running on x16-PRos" loading="lazy">
+            <figcaption class="body">
+              <h4>Windows 2.03</h4>
+            </figcaption>
+          </figure>
+          <figure class="compat-item">
+            <img src="images/compat/DOOM.png" alt="DOOM running on x16-PRos" loading="lazy">
+            <figcaption class="body">
+              <h4>DOOM</h4>
+            </figcaption>
+          </figure>
+          <figure class="compat-item">
+            <img src="images/compat/TURBOC.png" alt="Turbo C 2.0 running on x16-PRos" loading="lazy">
+            <figcaption class="body">
+              <h4>Turbo C 2.0</h4>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Software -->
+    <section class="hero2">
+      <div class="panel reveal">
+        <div class="entry-card">
+          <div>
+            <div class="section-head">
+              <span class="eyebrow"></span>
+              <h2>40+ built-it programs</h2>
+              <p>Standard software package includes editors, file utilities, a native assembler, hex editor, media players, games and windowed GUI applications.</p>
+            </div>
+            <a class="btn primary" href="software.html">Browse the software package</a>
+          </div>
+          <div class="shots">
+            <img src="images/screenshots/programs/GUI/EYES.png" alt="PRASM" loading="lazy">
+            <img src="images/screenshots/programs/FETCH.png" alt="ED" loading="lazy">
+            <img src="images/screenshots/programs/LAUNCH.png" alt="PAINT" loading="lazy">
+            <img src="images/screenshots/programs/TREE.png" alt="CALC.PLE" loading="lazy">
+          </div>
+        </div>
       </div>
     </section>
 
     <!-- System Requirements -->
     <section id="about" class="hero2">
       <div class="panel reveal">
-        <h3>System Requirements</h3>
+        <div class="section-head center">
+          <h2>System requirements</h2>
+        </div>
         <div class="requirements-table">
           <div class="req-column">
-            <h4 class="req-title minimal">Minimal</h4>
+            <h4 class="req-title minimal">Required</h4>
             <ul class="req-list">
-              <li><strong>CPU:</strong> Intel 80186</li>
-              <li><strong>RAM:</strong> 64 KB</li>
-              <li><strong>Storage:</strong> 1.44 MB floppy (FAT12)</li>
-              <li><strong>GPU:</strong> CGA compatible</li>
-              <li><strong>Input:</strong> Keyboard (PS/2 or USB)</li>
+              <li><strong>CPU:</strong> Intel 80386</li>
+              <li><strong>RAM:</strong> 640 KB conventional</li>
+              <li><strong>Video:</strong> VGA</li>
+              <li><strong>Storage:</strong> 1.44 MB floppy</li>
+              <li><strong>Input:</strong> PS/2 or USB keyboard</li>
+              <li><strong>Firmware:</strong> BIOS, or UEFI with CSM</li>
             </ul>
           </div>
           <div class="req-column">
             <h4 class="req-title recommended">Recommended</h4>
             <ul class="req-list">
-              <li><strong>CPU:</strong> Intel 80286</li>
-              <li><strong>RAM:</strong> 256 KB</li>
-              <li><strong>Storage:</strong> 1.44 MB floppy (FAT12)</li>
-              <li><strong>GPU:</strong> VGA compatible</li>
-              <li><strong>Input:</strong> Keyboard and mouse (PS/2 or USB)</li>
-              <li><strong>Sound:</strong> PC Speaker</li>
-            </ul>
-          </div>
-          <div class="req-column">
-            <h4 class="req-title maximum">Maximum</h4>
-            <ul class="req-list">
-              <li><strong>CPU:</strong> Intel 80486 / Pentium</li>
-              <li><strong>RAM:</strong> 512 KB</li>
-              <li><strong>Storage:</strong> 1.44 MB floppy (FAT12)</li>
-              <li><strong>GPU:</strong> VGA or better</li>
-              <li><strong>Input:</strong> Keyboard and mouse (PS/2 or USB)</li>
-              <li><strong>Sound:</strong> PC Speaker and AdLib Soundcard</li>
+              <li><strong>CPU:</strong> Intel 80486 or better</li>
+              <li><strong>RAM:</strong> 640 KB conventional</li>
+              <li><strong>Video:</strong> VGA</li>
+              <li><strong>Storage:</strong> hard disk (5 MB or more)</li>
+              <li><strong>Input:</strong> keyboard and PS/2 mouse</li>
+              <li><strong>Firmware:</strong> BIOS, or UEFI with CSM</li>
+              <li><strong>Sound:</strong> PC speaker</li>
             </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Software -->
-    <section class="hero2 software-section">
-      <div class="panel reveal">
-        <h2 class="headline">Standard Software Package</h2>
-        <p class="lead">Built-in applications included in x16-PRos.</p>
-        <div class="software-grid" id="softwareGrid"></div>
-      </div>
-    </section>
-
     <!-- Running -->
     <section class="hero running-section">
       <div class="panel reveal">
-        <h2 class="headline">Running</h2>
-        <p class="lead">You can run x16-PRos on emulators or on real hardware. Choose your preferred method:</p>
+        <div class="section-head">
+          <h2>Running x16-PRos</h2>
+          <p>Write the image to a USB stick and boot a real machine, or start it in an emulator.</p>
+        </div>
         <div class="run-options">
-          <a class="btn run-btn real" href="#" onclick="goToDocsSection('realHardwareSection');return false;" aria-label="Run on Real Hardware">
+          <a class="btn run-btn real" href="docs/real-hardware.html">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect width="14" height="8" x="5" y="2" rx="2"/>
-              <rect width="20" height="8" x="2" y="14" rx="2"/>
-              <path d="M6 18h2"/>
-              <path d="M12 18h6"/>
-            </svg> Real Hardware
+              <rect width="14" height="8" x="5" y="2" rx="2"/><rect width="20" height="8" x="2" y="14" rx="2"/>
+              <path d="M6 18h2"/><path d="M12 18h6"/>
+            </svg> Real hardware
           </a>
-          <a class="btn run-btn emu" href="#" onclick="goToDocsSection('EmulatorSection');return false;" aria-label="Run on Emulator">
+          <a class="btn run-btn emu" href="docs/emulator.html">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z"/>
             </svg> Emulator
@@ -232,9 +248,7 @@
 
       <aside class="term reveal delay" aria-label="Terminal emulation">
         <div class="bar">
-          <div class="dot"></div>
-          <div class="dot yellow"></div>
-          <div class="dot green"></div>
+          <div class="dot"></div><div class="dot yellow"></div><div class="dot green"></div>
           <div style="flex:1"></div>
           <div class="small">bash</div>
         </div>
@@ -247,694 +261,158 @@
     <!-- Credits -->
     <section class="hero2 dev-section">
       <div class="panel reveal">
-        <h2 class="headline">Credits</h2>
-        <p class="lead">People behind the x16-PRos project — software creators, sponsors, and helpers.</p>
-
+        <div class="section-head">
+          <h2>Credits</h2>
+          <p>Everyone who wrote code, reported bugs or supported the project.</p>
+        </div>
         <div class="developers">
           <div class="developer lead-dev">
             <img src="images/devs/prox.jpg" alt="" class="avatar">
             <div class="dev-info">
               <h3 class="dev-name">PRoX-dev</h3>
-              <p class="dev-desc">
-                Lead developer. The creator of the kernel, the operating system, the terminal, drivers, API functions, multimedia, disk and graphics management, and almost the entire software package.
-              </p>
+              <p class="dev-desc">Lead developer. Kernel, terminal, drivers, API, GUI, MS-DOS compatibility layer, PRASM and most of the software package creator.</p>
             </div>
           </div>
-
+          <div class="developer">
+            <img src="images/devs/desvor.jpg" alt="" class="avatar">
+            <div class="dev-info">
+              <h3 class="dev-name">Desvor</h3>
+              <p class="dev-desc">Creator of the "ED" editor and its manual. Added command-line history to PRos Terminal</p>
+            </div>
+          </div>
           <div class="developer">
             <img src="images/devs/qwez-dev.jpg" alt="" class="avatar">
             <div class="dev-info">
               <h3 class="dev-name">Qwez-dev</h3>
-              <p class="dev-desc">
-                The creator of the game "Space Arcade" and build scripts for Windows.
-              </p>
+              <p class="dev-desc">Creator of the Space Arcade game and the Windows build scripts.</p>
             </div>
           </div>
-
           <div class="developer">
             <img src="images/devs/hanakbe.jpg" alt="" class="avatar">
             <div class="dev-info">
               <h3 class="dev-name">Han Akbe <span class="sponsor-tag">sponsor</span></h3>
-              <p class="dev-desc">
-                Has corrected grammar in project documentation. Edited and improved kernel code. Provided valuable advice. Developed libc for x16-PRos. An active member of the community. Also supported the project financially.
-              </p>
+              <p class="dev-desc">Corrected grammar across the documentation, edited and improved kernel code, developed libc for x16-PRos. Also supported the project financially.</p>
             </div>
           </div>
-
           <div class="developer">
             <img src="images/devs/ilnar.jpg" alt="" class="avatar">
             <div class="dev-info">
               <h3 class="dev-name">Ilnar Karazbaev <span class="sponsor-tag">sponsor</span></h3>
-              <p class="dev-desc">
-                The creator of the MEMORY program, the developer of libc for x16-PRos, an active member of the community.
-              </p>
+              <p class="dev-desc">Creator of the MEMORY program and a developer of libc for x16-PRos.</p>
             </div>
           </div>
-
           <div class="developer">
             <img src="images/devs/saeta.jpg" alt="" class="avatar">
             <div class="dev-info">
               <h3 class="dev-name">Saeta</h3>
-              <p class="dev-desc">
-                Helped fix a serious file system API bug and created the first version of calc. Before creating the API, she developed a library with basic functions.
-              </p>
+              <p class="dev-desc">Fixed a serious file system API bug, wrote the first version of CALC and added command-line arguments for PLE programs.</p>
             </div>
           </div>
-
           <div class="developer">
             <img src="images/devs/loxete.jpg" alt="" class="avatar">
             <div class="dev-info">
               <h3 class="dev-name">Loxsete</h3>
-              <p class="dev-desc">
-                Barchart program creator. At the beginning of development, helped with the kernel code.
-              </p>
+              <p class="dev-desc">Creator of BCHART and the GUI wallpapers. Helped with kernel code early on.</p>
             </div>
           </div>
-
           <div class="developer">
             <img src="images/devs/gabriel.jpg" alt="" class="avatar">
             <div class="dev-info">
               <h3 class="dev-name">Gabriel</h3>
-              <p class="dev-desc">
-                Percentages program creator.
-              </p>
+              <p class="dev-desc">Creator of the PROCENTC percentages calculator.</p>
             </div>
           </div>
-
           <div class="developer">
             <img src="images/devs/andrey.jpg" alt="" class="avatar">
             <div class="dev-info">
               <h3 class="dev-name">Cuzhima</h3>
-              <p class="dev-desc">
-                Hex-edit program creator.
-              </p>
+              <p class="dev-desc">Creator of the HEXEDIT hex editor.</p>
             </div>
           </div>
-
+          <div class="developer">
+            <img src="images/devs/dexoron.jpg" alt="" class="avatar">
+            <div class="dev-info">
+              <h3 class="dev-name">Dexoron</h3>
+              <p class="dev-desc">Co-author of TETRIS.</p>
+            </div>
+          </div>
           <div class="developer">
             <img src="images/devs/litvincode.jpg" alt="" class="avatar">
             <div class="dev-info">
               <h3 class="dev-name">litvincode</h3>
-              <p class="dev-desc">
-                v0.2 calculator creator.
-              </p>
+              <p class="dev-desc">Creator of the v0.2 calculator.</p>
             </div>
           </div>
+        </div>
 
-          <div class="sponsor-card">Green_Bushy - 1 024 RUB</div>
-          <div class="sponsor-card">tanushqn - 400 RUB</div>
-          <div class="sponsor-card">tomoko - 248 RUB</div>
-          <div class="sponsor-card">Vokich - 100 RUB</div>
+        <div class="sponsors">
+          <h3>Sponsors</h3>
+          <p>People who backed the project with money. Thank you sooo much!</p>
+          <ul class="sponsor-list">
+          <li><span class="who">anarh1st47</span><span class="amt">10 000 RUB</span></li>
+          <li><span class="who">Vokich</span><span class="amt">1 100 RUB</span></li>
+          <li><span class="who">Green_Bushy</span><span class="amt">1 024 RUB</span></li>
+          <li><span class="who">PetruCHIOrus</span><span class="amt">750 RUB</span></li>
+          <li><span class="who">Eduard</span><span class="amt">700 RUB (10 USD)</span></li>
+          <li><span class="who">tanushqn</span><span class="amt">400 RUB</span></li>
+          <li><span class="who">QQQ</span><span class="amt">300 RUB</span></li>
+          <li><span class="who">tomoko</span><span class="amt">248 RUB</span></li>
+          <li><span class="who">Dexoron</span><span class="amt">163.95 RUB (861 KZT)</span></li>
+          <li><span class="who">relya</span><span class="amt">150 RUB</span></li>
+          <li><span class="who">Tabako</span><span class="amt">150 RUB</span></li>
+          <li><span class="who">sdkam</span><span class="amt">100 RUB</span></li>
+          <li><span class="who">Nortyashka</span><span class="amt">70 RUB</span></li>
+          <li><span class="who">Бочка</span><span class="amt">60 RUB</span></li>
+          <li><span class="who">KlasterK</span><span class="amt">50 RUB</span></li>
+          <li><span class="who">ayano4ka1338</span><span class="amt">50 RUB</span></li>
+          </ul>
         </div>
       </div>
     </section>
 
   </main>
 
-  <!-- ===== Documentation page ===== -->
-  <section id="docsPage" class="docs-container">
-    <aside class="docs-toc reveal">
-      <h4>Table of Contents</h4>
-      <ul>
-        <li><a href="#realHardwareSection">Running on Real Hardware</a></li>
-        <li><a href="#EmulatorSection">Running on Emulators</a></li>
-        <li><a href="#terminalSection">PRos Terminal</a></li>
-        <li><a href="#apiSection">API Documentation</a></li>
-        <li><a href="#examplesSection">Program Examples</a></li>
-        <li><a href="#pleSection">PLE format <span class="toc-tag">new</span></a></li>
-      </ul>
-    </aside>
-
-    <div class="docs-content">
-      <!-- Running on Real Hardware -->
-      <div class="docs-section reveal" id="realHardwareSection">
-        <h3>Running x16-PRos on Real Hardware</h3>
-        <p>x16-PRos is designed for 1.44 MB floppy disks but can also run from a USB flash drive. Follow these steps to set up x16-PRos on real hardware. Use the <strong>.IMG</strong> image for persistent storage or the <strong>.ISO</strong> image for a live CD experience without saving changes.</p>
-
-        <details>
-          <summary>Select the Device</summary>
-          <p>Choose a USB flash drive or floppy disk to write the x16-PRos system image. For USB drives, ensure the drive is formatted as FAT12. The .IMG image supports persistent changes, while the .ISO image is for temporary, live sessions.</p>
-        </details>
-        <details>
-          <summary>Write the Image</summary>
-          <p>Download the x16-PRos system image (.IMG or .ISO) and use a tool like <a href="https://rufus.ie/" target="_blank" rel="noopener">Rufus</a> to burn it to your USB drive. Select your USB drive and the image in Rufus, then click <strong>START</strong>. Wait for the process to complete before safely ejecting the drive.</p>
-        </details>
-        <details>
-          <summary>Configure BIOS for UEFI Systems</summary>
-          <p>x16-PRos relies on BIOS system calls and does not support UEFI directly. If your computer uses UEFI, enable CSM in the UEFI settings. Enter the UEFI setup by pressing keys like <strong>F2</strong> or <strong>DELETE</strong> during boot (check your motherboard manual for the exact key). Locate and enable CSM support.</p>
-          <figure>
-            <img src="images/docs/CSM-Bios.png" alt="UEFI CSM Settings">
-            <figcaption>Change DISABLED to ENABLED for CSM support.</figcaption>
-          </figure>
-        </details>
-        <details>
-          <summary>Access the Boot Menu</summary>
-          <p>Restart your computer and enter the boot menu (typically using <strong>F8</strong>, <strong>F11</strong>, <strong>F12</strong>, or <strong>ESC</strong>). Select the USB drive option labeled "USB" (not "UEFI") to boot PRos.</p>
-          <figure>
-            <img src="images/docs/BOOT-menu.jpg" alt="Boot Menu Selection">
-            <figcaption>Select your USB flash drive from the boot menu.</figcaption>
-          </figure>
-        </details>
-        <details>
-          <summary>Boot x16-PRos</summary>
-          <p>Press <strong>ENTER</strong> to start the boot process, which takes approximately 2-5 seconds. Upon first launch, you'll see the PRos installation screen.</p>
-          <figure>
-            <img src="images/screenshots/setup.png" alt="PRos Installation Screen">
-            <figcaption>The initial installation screen for x16-PRos.</figcaption>
-          </figure>
-        </details>
-      </div>
-
-      <!-- Running on Emulators -->
-      <div class="docs-section reveal" id="EmulatorSection">
-        <h3>Running x16-PRos on Emulators</h3>
-        <p>Emulators are ideal for developers and testers. PRos supports several emulators, with QEMU being the most straightforward option. Follow these steps to run PRos on QEMU.</p>
-
-        <details>
-          <summary>Install QEMU</summary>
-          <p>Install <strong>qemu-system-x86_64</strong> or <strong>qemu-system-i386</strong> using your package manager. For example, on Debian-based systems:</p>
-          <pre><code class="language-bash">
-sudo apt install qemu-system-x86
-# Or
-sudo apt install qemu-system-i386
-          </code></pre>
-          <p>For Arch Linux with audio support, install the PulseAudio package:</p>
-          <pre><code class="language-bash">
-sudo pacman -S qemu-audio-pa
-          </code></pre>
-        </details>
-        <details>
-          <summary>Run x16-PRos in QEMU</summary>
-          <p>Launch x16-PRos using the following command, ensuring you have the <strong>x16-PRos.img</strong> image file:</p>
-          <pre><code class="language-bash">
-qemu-system-x86_64 -audiodev pa,id=snd0 -machine pcspk-audiodev=snd0 -fda x16-PRos.img
-          </code></pre>
-          <p>This command configures QEMU with audio support and boots the PRos image from a virtual floppy disk.</p>
-        </details>
-      </div>
-
-      <!-- Terminal Commands -->
-      <div class="docs-section reveal" id="terminalSection">
-        <h3>PRos Terminal Commands</h3>
-        <p>The PRos Terminal is a powerful command-line interface for interacting with the OS, supporting commands for disk operations, program execution, and multimedia tasks.</p>
-
-        <div class="docs-category">
-          <h5>Basic Commands</h5>
-          <table class="docs-table">
-            <thead>
-              <tr><th>Command</th><th>Description</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>help</code></td><td>Display categorized command reference with navigation</td></tr>
-              <tr><td><code>info</code></td><td>Show system information and OS details</td></tr>
-              <tr><td><code>cls</code></td><td>Clear terminal screen</td></tr>
-              <tr><td><code>ver</code></td><td>Display PRos terminal version</td></tr>
-              <tr><td><code>exit</code></td><td>Exit to bootloader</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="docs-category">
-          <h5>System Information</h5>
-          <table class="docs-table">
-            <thead>
-              <tr><th>Command</th><th>Description</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>cpu</code></td><td>Display detailed CPU information (family, model, cores, cache)</td></tr>
-              <tr><td><code>date</code></td><td>Show the current date (DD/MM/YY format)</td></tr>
-              <tr><td><code>time</code></td><td>Show current time (HH:MM:SS format, with timezone)</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="docs-category">
-          <h5>File Operations</h5>
-          <table class="docs-table">
-            <thead>
-              <tr><th>Command</th><th>Syntax</th><th>Description</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>dir</code></td><td><code>dir</code></td><td>List files in the current directory with size info</td></tr>
-              <tr><td><code>cat</code></td><td><code>cat &lt;filename&gt;</code></td><td>Display file contents</td></tr>
-              <tr><td><code>size</code></td><td><code>size &lt;filename&gt;</code></td><td>Show file size in bytes</td></tr>
-              <tr><td><code>del</code></td><td><code>del &lt;filename&gt;</code></td><td>Delete a file (kernel.bin protected)</td></tr>
-              <tr><td><code>copy</code></td><td><code>copy &lt;source&gt; &lt;dest&gt;</code></td><td>Copy file (root directory only)</td></tr>
-              <tr><td><code>ren</code></td><td><code>ren &lt;old&gt; &lt;new&gt;</code></td><td>Rename file (root directory only)</td></tr>
-              <tr><td><code>touch</code></td><td><code>touch &lt;filename&gt;</code></td><td>Create an empty file</td></tr>
-              <tr><td><code>write</code></td><td><code>write &lt;file&gt; &lt;text&gt;</code></td><td>Write text to a file</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="docs-category">
-          <h5>Text Processing</h5>
-          <table class="docs-table">
-            <thead>
-              <tr><th>Command</th><th>Syntax</th><th>Description</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>grep</code></td><td><code>grep &lt;file&gt; &lt;text&gt;</code></td><td>Search for text in a file with line/column highlighting</td></tr>
-              <tr><td><code>head</code></td><td><code>head &lt;filename&gt;</code></td><td>Display the first 10 lines of a file</td></tr>
-              <tr><td><code>tail</code></td><td><code>tail &lt;filename&gt;</code></td><td>Display the last 10 lines of a file</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="docs-category">
-          <h5>Directory Operations</h5>
-          <table class="docs-table">
-            <thead>
-              <tr><th>Command</th><th>Syntax</th><th>Description</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>cd</code></td><td><code>cd &lt;dirname&gt;</code></td><td>Change directory (use <code>..</code> for parent, <code>/</code> for root)</td></tr>
-              <tr><td><code>mkdir</code></td><td><code>mkdir &lt;dirname&gt;</code></td><td>Create a new directory</td></tr>
-              <tr><td><code>deldir</code></td><td><code>deldir &lt;dirname&gt;</code></td><td>Delete an empty directory</td></tr>
-              <tr><td><code>tree</code></td><td><code>tree</code></td><td>Display directory structure as a tree</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="docs-category">
-          <h5>Disk Management</h5>
-          <table class="docs-table">
-            <thead>
-              <tr><th>Command</th><th>Syntax</th><th>Description</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>dlist</code></td><td><code>dlist</code></td><td>List available drives with size and usage</td></tr>
-              <tr><td><code>drive</code></td><td><code>drive &lt;letter&gt;</code></td><td>Switch to another disk drive</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="docs-category">
-          <h5>Media &amp; Display</h5>
-          <table class="docs-table">
-            <thead>
-              <tr><th>Command</th><th>Syntax</th><th>Description</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>view</code></td><td><code>view &lt;file&gt; [-upscale]</code></td><td>Display BMP image with optional 2x scaling</td></tr>
-              <tr><td><code>chars</code></td><td><code>chars</code></td><td>Display ASCII character table</td></tr>
-              <tr><td><code>theme</code></td><td><code>theme &lt;name&gt;</code></td><td>Change color theme (DEFAULT/GROOVYBOX/UBUNTU)</td></tr>
-              <tr><td><code>font</code></td><td><code>font &lt;name&gt;</code></td><td>Switch font (DEFAULT/BOLD/THIN/ITALIC)</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="docs-category">
-          <h5>Power Management</h5>
-          <table class="docs-table">
-            <thead>
-              <tr><th>Command</th><th>Description</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>shut</code></td><td>Shutdown system via APM</td></tr>
-              <tr><td><code>reboot</code></td><td>Restart system</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <!-- API Documentation -->
-      <div class="docs-section reveal" id="apiSection">
-        <h3>API Documentation</h3>
-        <div class="docs-intro">
-          <p>
-            x16-PRos provides interrupt-driven APIs for developers. Each function is selected via the <code>AH</code> register.
-            All functions preserve registers via <code>pusha</code>/<code>popa</code> unless output registers are specified.
-            On error, the carry flag (<code>CF</code>) is set.
-          </p>
-          <div class="docs-badge-grid">
-            <div class="docs-badge-item">
-              <span class="docs-badge-num">INT 0x21</span>
-              <span class="docs-badge-desc">Output API</span>
-            </div>
-            <div class="docs-badge-item">
-              <span class="docs-badge-num">INT 0x22</span>
-              <span class="docs-badge-desc">File System API</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- INT 0x21: Output API -->
-        <div class="docs-block">
-          <div class="docs-block-header">
-            <h4>INT 0x21 &mdash; Output API</h4>
-          </div>
-          <p>Handles screen output in VGA 640&times;480 16-color mode. All text functions support newline (<code>0x0A</code>) conversion to CR+LF.</p>
-
-          <div class="docs-category">
-            <h5>Display Functions</h5>
-            <table class="docs-table">
-              <thead>
-                <tr><th>AH</th><th>Function</th><th>Input</th><th>Output / Notes</th></tr>
-              </thead>
-              <tbody>
-                <tr><td><code>0x00</code></td><td>Initialize Output</td><td>&mdash;</td><td>Sets VGA mode <code>0x12</code> (640&times;480, 16 colors)</td></tr>
-                <tr><td><code>0x01</code></td><td>Print String (White)</td><td><code>SI</code> = string ptr</td><td>Color <code>0x0F</code></td></tr>
-                <tr><td><code>0x02</code></td><td>Print String (Green)</td><td><code>SI</code> = string ptr</td><td>Color <code>0x0A</code></td></tr>
-                <tr><td><code>0x03</code></td><td>Print String (Cyan)</td><td><code>SI</code> = string ptr</td><td>Color <code>0x0B</code></td></tr>
-                <tr><td><code>0x04</code></td><td>Print String (Red)</td><td><code>SI</code> = string ptr</td><td>Color <code>0x0C</code></td></tr>
-                <tr><td><code>0x05</code></td><td>Print Newline</td><td>&mdash;</td><td>Outputs CR+LF</td></tr>
-                <tr><td><code>0x06</code></td><td>Clear Screen</td><td>&mdash;</td><td>Resets video mode <strong>without</strong> reapplying the theme &mdash; raw VGA defaults</td></tr>
-                <tr><td><code>0x07</code></td><td>Set Text Color</td><td><code>BL</code> = color (0x00&ndash;0x0F)</td><td>Sets global color for function <code>0x08</code></td></tr>
-                <tr><td><code>0x08</code></td><td>Print String (Custom)</td><td><code>SI</code> = string ptr</td><td>Uses color set by <code>0x07</code></td></tr>
-                <tr><td><code>0x0C</code></td><td>Clear Screen with Theme</td><td>&mdash;</td><td>Clears screen and reapplies the current theme from <code>CONF.DIR/THEME.CFG</code></td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="docs-category">
-            <h5>Font Control</h5>
-            <table class="docs-table">
-              <thead>
-                <tr><th>AH</th><th>AL</th><th>Function</th><th>Input</th><th>Notes</th></tr>
-              </thead>
-              <tbody>
-                <tr><td><code>0x09</code></td><td><code>0x00</code></td><td>Restore Default Font</td><td>&mdash;</td><td>Restores BIOS ROM font</td></tr>
-                <tr><td><code>0x09</code></td><td><code>0x01</code></td><td>Load Default Custom Font</td><td>&mdash;</td><td>Loads built-in CP866 font</td></tr>
-                <tr><td><code>0x09</code></td><td><code>0x02</code></td><td>Load Font from File</td><td><code>SI</code> = filename ptr</td><td>Loads custom .FNT file from disk</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="docs-category">
-            <h5>Date &amp; Time</h5>
-            <table class="docs-table">
-              <thead>
-                <tr><th>AH</th><th>Function</th><th>Output</th></tr>
-              </thead>
-              <tbody>
-                <tr><td><code>0x0A</code></td><td>Get System Time</td><td><code>CH</code> = hours (0&ndash;23), <code>CL</code> = minutes, <code>DH</code> = seconds</td></tr>
-                <tr><td><code>0x0B</code></td><td>Get System Date</td><td><code>CH</code> = century, <code>CL</code> = year (0&ndash;99), <code>DH</code> = month (1&ndash;12), <code>DL</code> = day (1&ndash;31)</td></tr>
-              </tbody>
-            </table>
-            <p class="docs-subnote">Both functions read the RTC via BIOS <code>INT 0x1A</code> and apply the timezone offset from <code>CONF.DIR/TIMEZONE.CFG</code>. Day boundaries are handled correctly (e.g.&nbsp;UTC+5 at 23:00 rolls the date forward). Values are returned in <strong>binary</strong>, not BCD.</p>
-          </div>
-
-          <details class="docs-extra">
-            <summary>VGA 16-Color Palette Reference</summary>
-            <div class="color-palette-grid">
-              <div class="color-swatch" style="--swatch:#000000"><code>0x00</code> Black</div>
-              <div class="color-swatch" style="--swatch:#0000AA"><code>0x01</code> Dark Blue</div>
-              <div class="color-swatch" style="--swatch:#00AA00"><code>0x02</code> Dark Green</div>
-              <div class="color-swatch" style="--swatch:#00AAAA"><code>0x03</code> Dark Cyan</div>
-              <div class="color-swatch" style="--swatch:#AA0000"><code>0x04</code> Dark Red</div>
-              <div class="color-swatch" style="--swatch:#AA00AA"><code>0x05</code> Dark Magenta</div>
-              <div class="color-swatch" style="--swatch:#AA5500"><code>0x06</code> Brown</div>
-              <div class="color-swatch" style="--swatch:#AAAAAA"><code>0x07</code> Light Gray</div>
-              <div class="color-swatch" style="--swatch:#555555"><code>0x08</code> Dark Gray</div>
-              <div class="color-swatch" style="--swatch:#5555FF"><code>0x09</code> Blue</div>
-              <div class="color-swatch" style="--swatch:#55FF55"><code>0x0A</code> Green</div>
-              <div class="color-swatch" style="--swatch:#55FFFF"><code>0x0B</code> Cyan</div>
-              <div class="color-swatch" style="--swatch:#FF5555"><code>0x0C</code> Red</div>
-              <div class="color-swatch" style="--swatch:#FF55FF"><code>0x0D</code> Magenta</div>
-              <div class="color-swatch" style="--swatch:#FFFF55"><code>0x0E</code> Yellow</div>
-              <div class="color-swatch" style="--swatch:#FFFFFF"><code>0x0F</code> White</div>
-            </div>
-          </details>
-        </div>
-
-        <!-- INT 0x22: File System API -->
-        <div class="docs-block">
-          <div class="docs-block-header">
-            <h4>INT 0x22 &mdash; File System API</h4>
-          </div>
-          <p>Manages files on FAT12 disks. Filenames must be in <code>8.3</code> format (e.g. <code>FILE.TXT</code>), case-insensitive (auto-uppercased).</p>
-
-          <div class="docs-category">
-            <h5>Initialization</h5>
-            <table class="docs-table">
-              <thead>
-                <tr><th>AH</th><th>Function</th><th>Input</th><th>Output / Notes</th></tr>
-              </thead>
-              <tbody>
-                <tr><td><code>0x00</code></td><td>Re-Initialize File System</td><td>&mdash;</td><td>Resets floppy controller. <code>CF</code> on error.</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="docs-category">
-            <h5>File Operations</h5>
-            <table class="docs-table">
-              <thead>
-                <tr><th>AH</th><th>Function</th><th>Input</th><th>Output / Notes</th></tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><code>0x01</code></td>
-                  <td>Get File List</td>
-                  <td><code>SI</code> = buffer for 18-byte entries</td>
-                  <td><code>BX</code> = size low, <code>CX</code> = size high (32-bit total),<br><code>DX</code> = file count</td>
-                </tr>
-                <tr><td><code>0x02</code></td><td>Load File</td><td><code>SI</code> = filename, <code>CX</code> = load address</td><td><code>BX</code> = file size. <code>CF</code> on error.</td></tr>
-                <tr><td><code>0x03</code></td><td>Write File</td><td><code>SI</code> = filename, <code>BX</code> = buffer, <code>CX</code> = size</td><td>Creates or overwrites file. <code>CF</code> on error.</td></tr>
-                <tr><td><code>0x04</code></td><td>Check if File Exists</td><td><code>SI</code> = filename</td><td><code>CF</code> clear = exists, set = not found.</td></tr>
-                <tr><td><code>0x05</code></td><td>Create Empty File</td><td><code>SI</code> = filename</td><td><code>CF</code> on error (exists or dir full).</td></tr>
-                <tr><td><code>0x06</code></td><td>Remove File</td><td><code>SI</code> = filename</td><td>Frees clusters. <code>CF</code> on error.</td></tr>
-                <tr><td><code>0x07</code></td><td>Rename File</td><td><code>SI</code> = old name, <code>BX</code> = new name</td><td><code>CF</code> on error.</td></tr>
-                <tr><td><code>0x08</code></td><td>Get File Size</td><td><code>SI</code> = filename</td><td><code>BX</code> = size in bytes. <code>CF</code> if not found.</td></tr>
-                <tr><td><code>0x10</code></td><td>Load Huge File</td><td><code>SI</code> = filename, <code>CX</code> = load offset, <code>DX</code> = load segment</td><td>Loads files &gt;32&nbsp;KB across segments. <code>CF</code> on error.</td></tr>
-                <tr>
-                  <td><code>0x13</code></td>
-                  <td>Write Huge File</td>
-                  <td><code>SI</code> = filename, <code>CX</code> = source offset, <code>DX</code> = source segment,<br><code>BX</code> = size low word, <code>DI</code> = size high word</td>
-                  <td>Writes files &gt;64&nbsp;KB from arbitrary <code>segment:offset</code>. Replaces existing file. <code>CF</code> on error. <span class="docs-since">v0.9</span></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="docs-category">
-            <h5>Directory Operations</h5>
-            <table class="docs-table">
-              <thead>
-                <tr><th>AH</th><th>Function</th><th>Input</th><th>Output / Notes</th></tr>
-              </thead>
-              <tbody>
-                <tr><td><code>0x09</code></td><td>Change Directory</td><td><code>SI</code> = dirname</td><td><code>CF</code> on error (not found).</td></tr>
-                <tr><td><code>0x0A</code></td><td>Go to Parent Directory</td><td>&mdash;</td><td><code>CF</code> if already at root.</td></tr>
-                <tr><td><code>0x0B</code></td><td>Create Directory</td><td><code>SI</code> = dirname</td><td><code>CF</code> on error.</td></tr>
-                <tr><td><code>0x0C</code></td><td>Remove Directory</td><td><code>SI</code> = dirname</td><td><code>CF</code> on error (not empty or not found).</td></tr>
-                <tr><td><code>0x0D</code></td><td>Check if Directory</td><td><code>SI</code> = name</td><td><code>CF</code> clear = is directory, set = not.</td></tr>
-                <tr><td><code>0x0E</code></td><td>Save Current Directory</td><td>&mdash;</td><td>Saves current dir state internally.</td></tr>
-                <tr><td><code>0x0F</code></td><td>Restore Current Directory</td><td>&mdash;</td><td>Restores previously saved dir state.</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="docs-category">
-            <h5>Drive Management</h5>
-            <table class="docs-table">
-              <thead>
-                <tr><th>AH</th><th>Function</th><th>Input</th><th>Output / Notes</th></tr>
-              </thead>
-              <tbody>
-                <tr><td><code>0x11</code></td><td>List Drives</td><td>&mdash;</td><td>Prints available drives with size info.</td></tr>
-                <tr><td><code>0x12</code></td><td>Change Drive</td><td><code>SI</code> = drive letter pointer</td><td>Switches to another disk. <code>CF</code> on error.</td></tr>
-                <tr><td><code>0x14</code></td><td>Get Current Drive Letter</td><td>&mdash;</td><td><code>AL</code> = current drive letter.</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-          <div class="docs-note">
-            <strong>Limitations:</strong> Root directory max 224 entries. Standard load (<code>0x02</code>) limited to 64&nbsp;KiB; use <code>0x10</code> (Load Huge File) for larger files across segments, and <code>0x13</code> (Write Huge File) to save files larger than 64&nbsp;KB.
-          </div>
-        </div>
-      </div>
-
-      <!-- Program Examples -->
-      <div class="docs-section reveal" id="examplesSection">
-        <h3>Program Examples</h3>
-        <p>Below are example programs demonstrating the use of PRos APIs, written in NASM for the 16-bit x86 architecture.</p>
-
-        <details>
-          <summary>Hello, World</summary>
-          <p><strong>Description:</strong> A simple program to output a text string to the terminal.</p>
-          <pre><code class="language-nasm">
-[BITS 16]
-[ORG 0x8000]
-
-start:
-    mov ah, 0x01        ; API output print white string function
-    mov si, hello_msg   ; String to output
-    int 0x21            ; Call the API function
-    ret                 ; Return to the terminal
-
-hello_msg db 'Hello, PRos!', 10, 13, 0
-          </code></pre>
-        </details>
-        <details>
-          <summary>Print Colored Strings</summary>
-          <p><strong>Description:</strong> A program to output the same string in multiple colors using different API functions.</p>
-          <pre><code class="language-nasm">
-[BITS 16]
-[ORG 0x8000]
-
-start:
-    mov ah, 0x01        ; API output print white string function
-    mov si, hello_msg   ; String to output
-    int 0x21            ; Call the API function
-
-    mov ah, 0x02        ; API output print green string function
-    mov si, hello_msg
-    int 0x21
-
-    mov ah, 0x03        ; API output print cyan string function
-    mov si, hello_msg
-    int 0x21
-
-    mov ah, 0x04        ; API output print red string function
-    mov si, hello_msg
-    int 0x21
-
-    ret                 ; Return to the terminal
-
-hello_msg db 'Hello, PRos!', 10, 13, 0
-          </code></pre>
-        </details>
-      </div>
-
-      <!-- PLE format -->
-      <div class="docs-section reveal" id="pleSection">
-        <h3>PLE (PRos Large Executable)</h3>
-        <p><strong>PLE</strong> is the native executable format introduced in x16-PRos v0.9. It is a hybrid between a flat <code>.BIN</code> and MZ <code>EXE</code> file, designed for programs that outgrew the 64 KB segment limit.</p>
-
-        <div class="docs-category">
-          <h5>Key features</h5>
-          <ul>
-            <li><strong>Multi-segment.</strong> A PLE contains an instruction table that tells the loader how to lay out each segment in memory.</li>
-            <li><strong>Embedded metadata.</strong> Every PLE file carries a 32-byte description and a 16-byte author name in the header.</li>
-            <li><strong>Embedded logo.</strong> A 64x64 image (4096 bytes) is shipped inside the executable and shown on a splash screen before the program starts.</li>
-          </ul>
-        </div>
-
-        <div class="docs-category">
-          <h5>Header layout</h5>
-          <table class="docs-table">
-            <thead>
-              <tr><th>Offset</th><th>Size</th><th>Field</th></tr>
-            </thead>
-            <tbody>
-              <tr><td><code>0x00</code></td><td>4 B</td><td>Magic <code>"PLE\0"</code></td></tr>
-              <tr><td><code>0x04</code></td><td>2 B</td><td>Format version (currently <code>1</code>)</td></tr>
-              <tr><td><code>0x06</code></td><td>2 B</td><td>Entry segment (relative to base)</td></tr>
-              <tr><td><code>0x08</code></td><td>2 B</td><td>Entry IP</td></tr>
-              <tr><td><code>0x0A</code></td><td>2 B</td><td>Stack segment (relative)</td></tr>
-              <tr><td><code>0x0C</code></td><td>2 B</td><td>Stack SP</td></tr>
-              <tr><td><code>0x0E</code></td><td>2 B</td><td>Segment / instruction count</td></tr>
-              <tr><td><code>0x10</code></td><td>32 B</td><td>Description string (NUL-padded)</td></tr>
-              <tr><td><code>0x30</code></td><td>16 B</td><td>Author string (NUL-padded)</td></tr>
-              <tr><td><code>0x40</code></td><td>4096 B</td><td>Embedded 64&times;64 logo</td></tr>
-              <tr><td><code>0x1040</code></td><td>n &times; 8 B</td><td>Load instruction table (segment, file offset, length)</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-        <div class="docs-category">
-          <h5>Writing a PLE program</h5>
-          <p>The header layout is wrapped in <code>programs/PLE/ple.inc</code>, a small NASM macro library. A minimal program looks like this:</p>
-          <pre><code class="language-nasm">
-%include "ple.inc"
-
-PLE_HEADER start, "Just another hello world :)", "PRoX-dev"
-PLE_LOGO          "logo/hello.raw"
-
-start:
-    push cs
-    pop ds
-
-    mov ah, 0x01
-    mov si, hello_msg
-    int 0x21
-
-    retf
-
-hello_msg db 'Hello, PRos! Live long and prosper!', 10, 13, 0
-
-PLE_END
-          </code></pre>
-          <p><code>PLE_HEADER</code>, <code>PLE_LOGO</code>, <code>PLE_CODE</code>, <code>PLE_DATA</code>, <code>PLE_END</code> handle the header, logo embedding, segment table and final patches. Use <code>PLE_DATA</code> to declare a separate data segment when the code+data of a single segment exceed 64 KB.</p>
-        </div>
-
-        <div class="docs-category">
-          <h5>Building the logo</h5>
-          <p>The repository ships a converter script - <code>scripts/img2pleimg.py</code> that turns any PNG/JPG into required format.</p>
-          <pre><code class="language-bash">
-python3 scripts/img2pleimg.py my-logo.png logo/hello.raw
-          </code></pre>
-        </div>
-
-        <div class="docs-note">
-          <strong>When to pick PLE.</strong> Use <code>.BIN</code> for small cli utilities, MZ <code>EXE</code> when you need cross-tool compatibility, and <strong>PLE</strong> when your program is large, wants an embedded splash, or needs the multi-segment loader. PLE is the recommended format for large x16-PRos programs.
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== News page ===== -->
-  <section id="newsPage">
-    <div class="news-header">
-      <h2>Project News</h2>
-      <p>Latest updates and announcements from the x16-PRos project and it`s community.</p>
-    </div>
-    <div class="news-grid" id="newsGrid"></div>
-  </section>
-
-  <!-- News article modal -->
-  <div id="newsModal" class="news-modal-overlay">
-    <div class="news-modal">
-      <button class="news-modal-close" aria-label="Close">&times;</button>
-      <div class="news-modal-header">
-        <h3 class="news-modal-title"></h3>
-        <div class="news-modal-meta"></div>
-      </div>
-      <div class="news-modal-content"></div>
-    </div>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <div>Licensed under <a href="https://opensource.org/license/BSD-3-clause">3-Clause BSD</a>. Copyright 2025-2026, PRosDev.org</div>
-  </footer>
-</div>
-
 <!-- Download modal -->
 <div id="downloadModal" class="modal-overlay">
-  <div class="modal modal-download">
+  <div class="modal modal-download" role="dialog" aria-modal="true" aria-labelledby="dlTitle">
     <button class="modal-close" aria-label="Close">&times;</button>
-    <h3>Download x16-PRos</h3>
 
-    <div class="download-latest">
-      <a href="disk_images/x16-PRos v0.9.img" class="image-card" download>
-        <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 1025 1024" fill="#448fb1"><path d="M960.06 1024h-64V576q0-26-19-45t-45-19h-640q-27 0-45.5 19t-18.5 45v448h-64q-26 0-45-19t-19-45V64q0-26 19-45t45-19h832l128 128v832q0 26-19 45t-45 19zm-192-960h-640v256q0 27 18.5 45.5t45.5 18.5h512q26 0 45-18.5t19-45.5V64zm-256 64h128v192h-128V128zm-288 448h576q13 0 22.5 9.5t9.5 22.5t-9.5 22.5t-22.5 9.5h-576q-13 0-22.5-9.5t-9.5-22.5t9.5-22.5t22.5-9.5zm0 192h576q13 0 22.5 9.5t9.5 22.5t-9.5 22.5t-22.5 9.5h-576q-13 0-22.5-9.5t-9.5-22.5t9.5-22.5t22.5-9.5zm0 192h576q13 0 22.5 9.5t9.5 22.5t-9.5 22.5t-22.5 9.5h-576q-13 0-22.5-9.5t-9.5-22.5t9.5-22.5t22.5-9.5z"/></svg>
-        <h4>v0.9 - Latest</h4>
-        <p>Bootable Floppy/USB image for real hardware and emulators.</p>
-        <p class="size">1.44 MB &middot; IMG</p>
-      </a>
+    <div class="dl-hero">
+      <svg class="dl-floppy" viewBox="0 0 64 64" role="img" aria-label="Floppy disk">
+        <path class="fd-body" d="M6 9a3 3 0 0 1 3-3h37l12 12v37a3 3 0 0 1-3 3H9a3 3 0 0 1-3-3z"/>
+        <path class="fd-fold" d="M46 6l12 12H46z"/>
+        <rect class="fd-shutter" x="20" y="6" width="17" height="17" rx="1"/>
+        <rect class="fd-slot" x="30" y="9" width="4" height="11" rx="1"/>
+        <rect class="fd-label" x="14" y="33" width="36" height="25" rx="2"/>
+        <line class="fd-rule" x1="18" y1="52" x2="46" y2="52"/>
+      </svg>
+
+      <h3 id="dlTitle">x16-PRos v1.0 (latest)</h3>
     </div>
 
+    <a class="dl-btn" href="disk_images/x16-PRos v1.0.img" download>Download</a>
+
+    <p class="dl-hint">Write it raw to a USB stick or a floppy, or hand it straight to an emulator.
+    <a href="docs/real-hardware.html">How to do that</a>.</p>
+
     <details class="older-versions">
-      <summary>Older versions</summary>
+      <summary><span>Older versions</span></summary>
       <div class="older-versions-grid">
-        <a href="disk_images/x16-PRos v0.8.img" class="older-version-item" download>v0.8</a>
-        <a href="disk_images/x16-PRos v0.7.img" class="older-version-item" download>v0.7</a>
-        <a href="disk_images/x16-PRos v0.6.5.img" class="older-version-item" download>v0.6.5</a>
-        <a href="disk_images/x16-PRos v0.6.img" class="older-version-item" download>v0.6</a>
-        <a href="disk_images/x16-PRos v0.5.9.img" class="older-version-item" download>v0.5.9</a>
-        <a href="disk_images/x16-PRos v0.5.img" class="older-version-item" download>v0.5</a>
-        <a href="disk_images/x16-PRos v0.4.img" class="older-version-item" download>v0.4</a>
-        <a href="disk_images/x16-PRos v0.3.img" class="older-version-item" download>v0.3</a>
-        <a href="disk_images/x16-PRos v0.2.img" class="older-version-item" download>v0.2</a>
+        <a href="disk_images/x16-PRos v0.9.img" download>v0.9</a>
+        <a href="disk_images/x16-PRos v0.8.img" download>v0.8</a>
+        <a href="disk_images/x16-PRos v0.7.img" download>v0.7</a>
+        <a href="disk_images/x16-PRos v0.6.5.img" download>v0.6.5</a>
+        <a href="disk_images/x16-PRos v0.6.img" download>v0.6</a>
+        <a href="disk_images/x16-PRos v0.5.9.img" download>v0.5.9</a>
+        <a href="disk_images/x16-PRos v0.5.img" download>v0.5</a>
+        <a href="disk_images/x16-PRos v0.4.img" download>v0.4</a>
+        <a href="disk_images/x16-PRos v0.3.img" download>v0.3</a>
+        <a href="disk_images/x16-PRos v0.2.img" download>v0.2</a>
       </div>
     </details>
   </div>
 </div>
 
-<!-- Fullscreen gallery overlay -->
 <div id="fullscreenGallery" class="fs-overlay">
   <button class="fs-close">&#x2715;</button>
   <button class="fs-prev">&lsaquo;</button>
@@ -942,25 +420,17 @@ python3 scripts/img2pleimg.py my-logo.png logo/hello.raw
   <button class="fs-next">&rsaquo;</button>
 </div>
 
-<!-- Program detail modal -->
-<div id="programModal" class="program-modal-overlay" aria-hidden="true">
-  <div class="program-modal" role="dialog" aria-modal="true" aria-label="Program details">
-    <div id="programModalBody"></div>
-  </div>
+
+  <footer>
+    <div>Licensed under <a href="https://opensource.org/license/BSD-3-clause">3-Clause BSD</a>. Copyright 2025-2026, PRosDev.org</div>
+  </footer>
 </div>
 
-<!-- Data & component scripts -->
-<script src="js/data/softwarePrograms.js" defer></script>
-<script src="js/data/morePrograms.js" defer></script>
 <script src="js/data/galleryData.js" defer></script>
-<script src="js/data/newsData.js" defer></script>
-<script src="js/components/softwareGrid.js" defer></script>
 <script src="js/ui/downloadModal.js" defer></script>
 <script src="js/ui/typingAnimations.js" defer></script>
 <script src="js/ui/scrollTop.js" defer></script>
 <script src="js/ui/gallery.js" defer></script>
-<script src="js/ui/softwareProgramModal.js" defer></script>
-<script src="js/ui/news.js" defer></script>
 <script src="js/app.js" defer></script>
 
 </body>

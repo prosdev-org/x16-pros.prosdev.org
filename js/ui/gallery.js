@@ -7,6 +7,7 @@ function initGallery(galleryData) {
   const galleryTitle = document.getElementById("galleryTitle");
   const galleryDesc = document.getElementById("galleryDesc");
   const thumbnailsContainer = document.getElementById("galleryThumbnails");
+  const dotsContainer = document.getElementById("galleryDots");
   const prevBtn = document.querySelector(".gallery-nav.prev");
   const nextBtn = document.querySelector(".gallery-nav.next");
 
@@ -17,23 +18,14 @@ function initGallery(galleryData) {
   const fsNext = document.querySelector(".fs-next");
   const fsOpenBtn = document.getElementById("galleryFullscreenBtn");
 
-  if (
-    !galleryImage ||
-    !galleryTitle ||
-    !galleryDesc ||
-    !thumbnailsContainer ||
-    !prevBtn ||
-    !nextBtn ||
-    !fsOverlay ||
-    !fsImg ||
-    !fsClose ||
-    !fsPrev ||
-    !fsNext
-  ) {
+  if (!galleryImage || !prevBtn || !nextBtn) {
     return;
   }
 
-  thumbnailsContainer.innerHTML = galleryData
+  const hasFullscreen = Boolean(fsOverlay && fsImg && fsClose && fsPrev && fsNext);
+
+  if (thumbnailsContainer) {
+    thumbnailsContainer.innerHTML = galleryData
     .map(
       (item, index) => `
       <div class="thumbnail${index === 0 ? " active" : ""}" data-index="${index}">
@@ -41,9 +33,27 @@ function initGallery(galleryData) {
       </div>
     `
     )
-    .join("");
+      .join("");
+  }
 
-  const thumbnails = Array.from(thumbnailsContainer.querySelectorAll(".thumbnail"));
+  const thumbnails = thumbnailsContainer
+    ? Array.from(thumbnailsContainer.querySelectorAll(".thumbnail"))
+    : [];
+
+  if (dotsContainer) {
+    dotsContainer.innerHTML = galleryData
+      .map(
+        (item, index) =>
+          `<button class="gallery-dot${index === 0 ? " active" : ""}" data-index="${index}"` +
+          ` aria-label="Show ${item.title || "screenshot " + (index + 1)}"></button>`
+      )
+      .join("");
+  }
+
+  const dots = dotsContainer
+    ? Array.from(dotsContainer.querySelectorAll(".gallery-dot"))
+    : [];
+
   let currentIndex = 0;
 
   function updateGallery(index) {
@@ -57,16 +67,22 @@ function initGallery(galleryData) {
       };
     }, 120);
 
-    galleryTitle.textContent = item.title;
-    galleryDesc.textContent = item.desc;
+    galleryImage.alt = item.title || "";
+    if (galleryTitle) galleryTitle.textContent = item.title;
+    if (galleryDesc) galleryDesc.textContent = item.desc;
 
     thumbnails.forEach((thumb) => thumb.classList.remove("active"));
     if (thumbnails[index]) {
       thumbnails[index].classList.add("active");
     }
 
+    dots.forEach((dot, i) => {
+      dot.classList.toggle("active", i === index);
+      dot.setAttribute("aria-current", i === index ? "true" : "false");
+    });
+
     currentIndex = index;
-    if (fsOverlay.style.display === "flex") {
+    if (hasFullscreen && fsOverlay.style.display === "flex") {
       fsImg.src = item.src;
     }
   }
@@ -82,11 +98,13 @@ function initGallery(galleryData) {
   }
 
   function openFullscreenGallery() {
+    if (!hasFullscreen) return;
     fsOverlay.style.display = "flex";
     fsImg.src = galleryData[currentIndex].src;
   }
 
   function closeFullscreenGallery() {
+    if (!hasFullscreen) return;
     fsOverlay.style.display = "none";
   }
 
@@ -102,23 +120,34 @@ function initGallery(galleryData) {
     });
   });
 
+  dots.forEach((dot) => {
+    dot.addEventListener("click", () => {
+      const index = Number(dot.dataset.index);
+      if (!Number.isNaN(index)) {
+        updateGallery(index);
+      }
+    });
+  });
+
   galleryImage.addEventListener("click", openFullscreenGallery);
   if (fsOpenBtn) {
     fsOpenBtn.addEventListener("click", openFullscreenGallery);
   }
 
-  fsClose.addEventListener("click", closeFullscreenGallery);
-  fsNext.addEventListener("click", nextImage);
-  fsPrev.addEventListener("click", prevImage);
+  if (hasFullscreen) {
+    fsClose.addEventListener("click", closeFullscreenGallery);
+    fsNext.addEventListener("click", nextImage);
+    fsPrev.addEventListener("click", prevImage);
 
-  fsOverlay.addEventListener("click", (event) => {
-    if (event.target === fsOverlay) {
-      closeFullscreenGallery();
-    }
-  });
+    fsOverlay.addEventListener("click", (event) => {
+      if (event.target === fsOverlay) {
+        closeFullscreenGallery();
+      }
+    });
+  }
 
   document.addEventListener("keydown", (event) => {
-    if (fsOverlay.style.display !== "flex") {
+    if (!hasFullscreen || fsOverlay.style.display !== "flex") {
       return;
     }
 

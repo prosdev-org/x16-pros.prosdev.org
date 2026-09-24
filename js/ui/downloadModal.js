@@ -25,6 +25,12 @@ function initDownloadModal() {
       modal.classList.remove("show");
     }
   });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      modal.classList.remove("show");
+    }
+  });
 }
 
 window.initDownloadModal = initDownloadModal;

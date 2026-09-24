@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link href="../styles/base.css" rel="stylesheet" />
+  <link href="../styles/layout.css" rel="stylesheet" />
+  <link href="../styles/components.css" rel="stylesheet" />
+  <link href="../styles/effects.css" rel="stylesheet" />
+  <link href="../styles/gallery.css" rel="stylesheet" />
+  <link href="../styles/software.css" rel="stylesheet" />
+  <link href="../styles/docs.css" rel="stylesheet" />
+  <link href="../styles/credits.css" rel="stylesheet" />
+  <link href="../styles/modal.css" rel="stylesheet" />
+  <link href="../styles/dev-features.css" rel="stylesheet" />
+  <link href="../styles/news.css" rel="stylesheet" />
+  <link href="../styles/pages.css" rel="stylesheet" />
+  <link href="../styles/responsive.css" rel="stylesheet" />
+  <link href="../prism.css" rel="stylesheet" />
+
+  <title>x16-PRos: program examples</title>
+  <meta name="description" content="Example programs for x16-PRos" />
+</head>
+<body>
+
+<button id="scrollTopBtn" aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 717 614">
+    <path fill="currentColor" d="M360 337L115 582L0 464l354-355l363 363l-112 112z"/>
+  </svg>
+</button>
+
+<div class="sky-container">
+  <span class="star"></span><span class="star"></span><span class="star"></span>
+  <span class="star"></span><span class="star"></span>
+</div>
+
+<div class="container">
+
+  <header>
+    <a class="brand" href="../index.html">
+      <div class="logo"><img src="../logo.png" alt="x16-PRos Logo"></div>
+      <div>
+        <h1>x16-PRos</h1>
+        <div style="font-size:12px;color:var(--muted)">Minimalistic 16-bit OS</div>
+      </div>
+    </a>
+    <nav class="nav">
+        <a class="btn" href="../index.html">About project</a>
+        <a class="btn" href="../software.html">Software</a>
+        <a class="btn active" href="../docs/index.html">Docs</a>
+        <a class="btn" href="../news.html">News</a>
+        <a class="btn support" href="https://dalink.to/PRoXdev" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> Support project</a>
+    </nav>
+  </header>
+
+  <div class="page-head">
+    <div class="crumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Docs</a><span>/</span>Examples</div>
+    <h1>Program examples</h1>
+    <p>Complete programs you can assemble and run, from four lines to a windowed application.</p>
+  </div>
+
+  <div class="article">
+    <aside class="article-toc">
+      <h4>On this page</h4>
+      <ul>
+        <li><a href="#build">Building a program</a></li>
+        <li><a href="#hello">Hello, world</a></li>
+        <li><a href="#colour">Coloured <output></output></a></li>
+        <li><a href="#args">Reading the command line</a></li>
+        <li><a href="#file">Reading a file</a></li>
+        <li><a href="#more">More to read</a></li>
+      </ul>
+    </aside>
+    <div class="article-body">
+      <section id="build">
+        <h2>Building a program</h2>
+        <p>Every example below is a complete file. Assemble one with NASM on your own machine:</p>
+        <pre><code class="language-bash">nasm -f bin hello.asm -o HELLO.BIN</code></pre>
+        <p>Then copy it onto the disk image with mtools, or put the source in
+        <code>programs/</code> and let <code>build-linux.sh</code> pick it up.</p>
+      </section>
+
+      <section id="hello">
+        <h2>Hello, world</h2>
+        <p>A <code>.BIN</code> program is a flat binary loaded at offset <code>0x8000</code>. It ends
+        with a near <code>ret</code>, which hands control back to the shell.</p>
+        <pre><code class="language-nasm">[BITS 16]
+[ORG 0x8000]
+
+start:
+    mov ah, 0x01          ; print a white string
+    mov si, hello_msg
+    int 0x21
+
+    ret                   ; back to the terminal
+
+hello_msg db 'Hello, PRos!', 10, 13, 0</code></pre>
+      </section>
+
+      <section id="colour">
+        <h2>Coloured output</h2>
+        <p>There is four printing functions in fixed colours. For anything else, set a colour once and print with
+        function <code>0x08</code>.</p>
+        <pre><code class="language-nasm">[BITS 16]
+[ORG 0x8000]
+
+start:
+    mov ah, 0x02          ; green
+    mov si, msg
+    int 0x21
+
+    mov ah, 0x07          ; set the current colour
+    mov bl, 0x0E          ; yellow
+    int 0x21
+
+    mov ah, 0x08          ; print with current colour
+    mov si, msg
+    int 0x21
+
+    ret
+
+msg db 'Hello, PRos!', 10, 13, 0</code></pre>
+      </section>
+
+      <section id="args">
+        <h2>Reading the command line</h2>
+        <p>The shell copies whatever followed the program name into a buffer and hands the pointer to
+        the program in <code>SI</code> register.</p>
+        <pre><code class="language-nasm">[BITS 16]
+[ORG 0x8000]
+
+start:
+    mov [params], si
+
+    mov ah, 0x01
+    mov si, label
+    int 0x21
+
+    mov ah, 0x01
+    mov si, [params]
+    int 0x21
+
+    mov ah, 0x05
+    int 0x21
+    ret
+
+params  dw 0
+label   db 'cmd args: ', 0</code></pre>
+      </section>
+
+      <section id="file">
+        <h2>Reading a file</h2>
+        <p>Load a whole file into memory and print it. <code>0x02</code> loads at an offset inside the
+        program's own segment; for anything that might exceed 64 KB, use <code>0x10</code> and give it
+        a segment of its own.</p>
+        <pre><code class="language-nasm">[BITS 16]
+[ORG 0x8000]
+
+start:
+    mov ah, 0x04          ; does it exist?
+    mov si, fname
+    int 0x22
+    jc  .missing
+
+    mov ah, 0x02          ; load it
+    mov si, fname
+    mov cx, buffer
+    int 0x22
+
+    mov bx, buffer        ; NUL-terminate what we read
+    add bx, ax
+    mov byte [bx], 0
+
+    mov ah, 0x01
+    mov si, buffer
+    int 0x21
+    ret
+
+.missing:
+    mov ah, 0x04
+    mov si, err
+    int 0x21
+    ret
+
+fname  db 'README.TXT', 0
+err    db 'no such file', 10, 13, 0
+buffer times 4096 db 0</code></pre>
+      </section>
+      <section id="more">
+        <h2>More to read</h2>
+        <ul>
+          <li><a href="api.html">API reference</a> - every function of all three interrupts.</li>
+          <li><a href="ple.html">The PLE format</a> - segments, stack and the macros.</li>
+          <li><a href="https://github.com/PRoX2011/x16-PRos/tree/main/programs" target="_blank" rel="noopener">programs/</a> -
+          the source of all 45 bundled programs.</li>
+        </ul>
+      </section>
+    </div>
+  </div>
+
+  <div class="article-foot"><a href="ple.html">&larr; The PLE format</a><span></span></div>
+
+  <footer>
+    <div>Licensed under <a href="https://opensource.org/license/BSD-3-clause">3-Clause BSD</a>. Copyright 2025-2026, PRosDev.org</div>
+  </footer>
+</div>
+
+<script src="../prism.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-nasm.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
+<script src="../js/ui/scrollTop.js" defer></script>
+<script src="../js/app.js" defer></script>
+
+</body>
+</html>

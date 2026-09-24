@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link href="../styles/base.css" rel="stylesheet" />
+  <link href="../styles/layout.css" rel="stylesheet" />
+  <link href="../styles/components.css" rel="stylesheet" />
+  <link href="../styles/effects.css" rel="stylesheet" />
+  <link href="../styles/gallery.css" rel="stylesheet" />
+  <link href="../styles/software.css" rel="stylesheet" />
+  <link href="../styles/docs.css" rel="stylesheet" />
+  <link href="../styles/credits.css" rel="stylesheet" />
+  <link href="../styles/modal.css" rel="stylesheet" />
+  <link href="../styles/dev-features.css" rel="stylesheet" />
+  <link href="../styles/news.css" rel="stylesheet" />
+  <link href="../styles/pages.css" rel="stylesheet" />
+  <link href="../styles/responsive.css" rel="stylesheet" />
+  <link href="../prism.css" rel="stylesheet" />
+
+  <title>x16-PRos: running in an emulator</title>
+  <meta name="description" content="Running x16-PRos under QEMU, DOSBox, VirtualBox and v86." />
+</head>
+<body>
+
+<button id="scrollTopBtn" aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 717 614">
+    <path fill="currentColor" d="M360 337L115 582L0 464l354-355l363 363l-112 112z"/>
+  </svg>
+</button>
+
+<div class="sky-container">
+  <span class="star"></span><span class="star"></span><span class="star"></span>
+  <span class="star"></span><span class="star"></span>
+</div>
+
+<div class="container">
+
+  <header>
+    <a class="brand" href="../index.html">
+      <div class="logo"><img src="../logo.png" alt="x16-PRos Logo"></div>
+      <div>
+        <h1>x16-PRos</h1>
+        <div style="font-size:12px;color:var(--muted)">Minimalistic 16-bit OS</div>
+      </div>
+    </a>
+    <nav class="nav">
+        <a class="btn" href="../index.html">About project</a>
+        <a class="btn" href="../software.html">Software</a>
+        <a class="btn active" href="../docs/index.html">Docs</a>
+        <a class="btn" href="../news.html">News</a>
+        <a class="btn support" href="https://dalink.to/PRoXdev" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> Support project</a>
+    </nav>
+  </header>
+
+  <div class="page-head">
+    <div class="crumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Docs</a><span>/</span>Emulator</div>
+    <h1>Running in an emulator</h1>
+    <p>The quickest way to try x16-PRos.</p>
+  </div>
+
+  <div class="article">
+    <aside class="article-toc">
+      <h4>On this page</h4>
+      <ul>
+        <li><a href="#qemu">QEMU</a></li>
+        <li><a href="#dosbox">DOSBox</a></li>
+        <li><a href="#vbox">VirtualBox</a></li>
+        <li><a href="#v86">In the browser</a></li>
+      </ul>
+    </aside>
+    <div class="article-body">
+      <section id="qemu">
+        <h2>QEMU</h2>
+        <p>The simplest option and the one the project is developed against. Install it from your package
+        manager:</p>
+        <pre><code class="language-bash">sudo apt install qemu-system-x86     # Debian, Ubuntu
+sudo pacman -S qemu-full             # Arch
+sudo dnf install qemu-system-x86     # Fedora</code></pre>
+        <p>Then boot the floppy image:</p>
+        <pre><code class="language-bash">qemu-system-x86_64 -fda x16-PRos.img</code></pre>
+        <h3>With sound</h3>
+        <p>x16-PRos drives the PC speaker, AdLib and Sound Blaster. To hear any of it, hand QEMU an
+        audio backend and attach the devices:</p>
+        <pre><code class="language-bash">qemu-system-x86_64 \
+  -audiodev pa,id=snd0 \
+  -machine pcspk-audiodev=snd0 \
+  -device adlib,audiodev=snd0 \
+  -fda x16-PRos.img</code></pre>
+        <p>Use <code>-audiodev alsa,id=snd0</code> if you are not running PulseAudio or PipeWire.</p>
+        <h3>With a hard disk</h3>
+        <p>To try the installer, or to run the bundled copy of DOOM, attach a hard disk image as well:</p>
+        <pre><code class="language-bash">qemu-system-x86_64 -fda x16-PRos.img -hda HDD.img</code></pre>
+        <p>Building the project from source produces both images and a <code>run-linux.sh</code> that
+        wires all of this up for you.</p>
+      </section>
+
+      <section id="dosbox">
+        <h2>DOSBox</h2>
+        <p>Worth using for one specific reason: it can slow the emulated CPU down. Old DOS games
+        assume a machine of a certain speed, and under QEMU they run far too fast to be playable.</p>
+        <pre><code class="language-bash">dosbox -c "boot x16-PRos.img"</code></pre>
+        <p>Adjust the speed with <kbd>Ctrl</kbd>+<kbd>F11</kbd> and <kbd>Ctrl</kbd>+<kbd>F12</kbd>
+        while the system is running.</p>
+      </section>
+
+      <section id="vbox">
+        <h2>VirtualBox</h2>
+        <p>Create a machine of type <strong>Other / DOS</strong>, disable EFI, and attach the image as a
+        floppy. For a hard disk install add an IDE disk.</p>
+      </section>
+
+      <section id="v86">
+        <h2>In the browser</h2>
+        <p>x16-PRos also boots under <a href="https://copy.sh/v86/" target="_blank" rel="noopener">v86</a>.
+        Load the image as a floppy. It is the fastest way to show
+        somebody the system without them installing anything.</p>
+      </section>
+    </div>
+  </div>
+
+  <div class="article-foot"><a href="real-hardware.html">&larr; Real hardware</a><a href="terminal.html">Terminal commands &rarr;</a></div>
+
+  <footer>
+    <div>Licensed under <a href="https://opensource.org/license/BSD-3-clause">3-Clause BSD</a>. Copyright 2025-2026, PRosDev.org</div>
+  </footer>
+</div>
+
+<script src="../prism.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-nasm.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
+<script src="../js/ui/scrollTop.js" defer></script>
+<script src="../js/app.js" defer></script>
+
+</body>
+</html>

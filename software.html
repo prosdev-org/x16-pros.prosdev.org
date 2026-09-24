@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link href="styles/base.css" rel="stylesheet" />
+  <link href="styles/layout.css" rel="stylesheet" />
+  <link href="styles/components.css" rel="stylesheet" />
+  <link href="styles/effects.css" rel="stylesheet" />
+  <link href="styles/gallery.css" rel="stylesheet" />
+  <link href="styles/software.css" rel="stylesheet" />
+  <link href="styles/docs.css" rel="stylesheet" />
+  <link href="styles/credits.css" rel="stylesheet" />
+  <link href="styles/modal.css" rel="stylesheet" />
+  <link href="styles/dev-features.css" rel="stylesheet" />
+  <link href="styles/news.css" rel="stylesheet" />
+  <link href="styles/pages.css" rel="stylesheet" />
+  <link href="styles/responsive.css" rel="stylesheet" />
+
+  <title>x16-PRos: software package</title>
+  <meta name="description" content="All 45 programs bundled with x16-PRos, with screenshots and links to the source of each one." />
+</head>
+<body>
+
+<button id="scrollTopBtn" aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 717 614">
+    <path fill="currentColor" d="M360 337L115 582L0 464l354-355l363 363l-112 112z"/>
+  </svg>
+</button>
+
+<div class="sky-container">
+  <span class="star"></span><span class="star"></span><span class="star"></span>
+  <span class="star"></span><span class="star"></span>
+</div>
+
+<div class="container">
+
+  <header>
+    <a class="brand" href="index.html">
+      <div class="logo"><img src="logo.png" alt="x16-PRos Logo"></div>
+      <div>
+        <h1>x16-PRos</h1>
+        <div style="font-size:12px;color:var(--muted)">Minimalistic 16-bit OS</div>
+      </div>
+    </a>
+    <nav class="nav">
+        <a class="btn" href="index.html">About project</a>
+        <a class="btn active" href="software.html">Software</a>
+        <a class="btn" href="docs/index.html">Docs</a>
+        <a class="btn" href="news.html">News</a>
+        <a class="btn support" href="https://dalink.to/PRoXdev" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> Support project</a>
+    </nav>
+  </header>
+
+  <div class="page-head">
+    <div class="crumbs"><a href="index.html">Home</a><span>/</span>Software package</div>
+    <h1>Standard software package</h1>
+  </div>
+
+  <div class="prog-grid">
+      <div class="prog">
+        <img src="images/screenshots/gui.png" alt="GUI.PLE" loading="lazy">
+        <div class="body">
+          <div class="name">GUI.PLE</div>
+          <div class="desc">Window manager: desktop with icons, draggable and resizable windows</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/PLE/src/gui/gui.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/GUI/SETTINGS.png" alt="SETTINGS.PLE" loading="lazy">
+        <div class="body">
+          <div class="name">SETTINGS.PLE</div>
+          <div class="desc">GUI settings: icon corners, label gap and wallpaper</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/PLE/src/windowed/settings.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/GUI/CALC.png" alt="CALC.PLE" loading="lazy">
+        <div class="body">
+          <div class="name">CALC.PLE</div>
+          <div class="desc">Calculator for simple math</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/PLE/src/windowed/calc.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/GUI/CLOCK.png" alt="CLOCK.PLE" loading="lazy">
+        <div class="body">
+          <div class="name">CLOCK.PLE</div>
+          <div class="desc">Digital clock</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/PLE/src/windowed/clock.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/GUI/EYES.png" alt="EYES.PLE" loading="lazy">
+        <div class="body">
+          <div class="name">EYES.PLE</div>
+          <div class="desc">Googly eyes follow the cursor</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/PLE/src/windowed/eyes.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/GUI/HELLO.png" alt="HELLO.PLE" loading="lazy">
+        <div class="body">
+          <div class="name">HELLO.PLE</div>
+          <div class="desc">Just another hello world :)</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/PLE/src/windowed/hello.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/WRITER.png" alt="WRITER.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">WRITER.BIN</div>
+          <div class="desc">Simple editor for text files</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/write.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/HEXEDIT.png" alt="HEXEDIT.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">HEXEDIT.BIN</div>
+          <div class="desc">Hex editor</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/hexedit.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/THEME.png" alt="THEME.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">THEME.BIN</div>
+          <div class="desc">Theme selector, applies one of the bundled colour themes</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/theme.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/FONT.png" alt="FONT.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">FONT.BIN</div>
+          <div class="desc">Font selector, lists .FNT files from FONTS.DIR and applies them</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/font.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/SETTINGS.png" alt="SETTINGS.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">SETTINGS.BIN</div>
+          <div class="desc">x16-PRos system settings: username, timezone and more</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/settings.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/LAUNCH.png" alt="LAUNCH.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">LAUNCH.BIN</div>
+          <div class="desc">TUI program launcher</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/launch.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/BCHART.png" alt="BCHART.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">BCHART.BIN</div>
+          <div class="desc">Barchart software for creating simple diagrams</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/barchart.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/CALC.png" alt="CALC.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">CALC.BIN</div>
+          <div class="desc">Simple calculator</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/calc.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/CALENDAR.png" alt="CALENDAR.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">CALENDAR.BIN</div>
+          <div class="desc">Calendar viewer with month navigation</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/calendar.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/CHARS.png" alt="CHARS.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">CHARS.BIN</div>
+          <div class="desc">Prints the whole cp866 character set</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/chars.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/CPU.png" alt="CPU.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">CPU.BIN</div>
+          <div class="desc">Shows CPU and register information</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/cpu.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/CREDITS.png" alt="CREDITS.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">CREDITS.BIN</div>
+          <div class="desc">Contributors and sponsors list</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/credits.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/DLIST.png" alt="DLIST.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">DLIST.BIN</div>
+          <div class="desc">Lists the available drives with size and usage</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/dlist.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/ED.png" alt="ED.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">ED.BIN</div>
+          <div class="desc">Line editor for text files, see EDMAN.TXT</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/ed.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/FDISK.png" alt="FDISK.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">FDISK.BIN</div>
+          <div class="desc">Floppy disk format utility</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/fdisk.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/FETCH.png" alt="FETCH.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">FETCH.BIN</div>
+          <div class="desc">Print system fetch (I use PRos btw)</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/fetch.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/GREP.png" alt="GREP.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">GREP.BIN</div>
+          <div class="desc">Searches a file for a string</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/grep.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/HEAD.png" alt="HEAD.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">HEAD.BIN</div>
+          <div class="desc">Prints the first 10 lines of a file</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/head.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/HELLO.png" alt="HELLO.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">HELLO.BIN</div>
+          <div class="desc">Hello world, in English and in Russian</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/hello.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/HELP.png" alt="HELP.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">HELP.BIN</div>
+          <div class="desc">Shows all kshell commands</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/help.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/IMFPLAY.png" alt="IMFPLAY.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">IMFPLAY.BIN</div>
+          <div class="desc">IMF music player</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/imfplay.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/MEMORY.png" alt="MEMORY.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">MEMORY.BIN</div>
+          <div class="desc">Memory viewer</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/memory.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/PAINT.png" alt="PAINT.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">PAINT.BIN</div>
+          <div class="desc">Paint program</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/paint.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/PIANO.png" alt="PIANO.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">PIANO.BIN</div>
+          <div class="desc">Simple piano to play melodies using PC Speaker</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/piano.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/PRASM.png" alt="PRASM.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">PRASM.BIN</div>
+          <div class="desc">Native two-pass assembler</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/prasm.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/PROCENTC.png" alt="PROCENTC.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">PROCENTC.BIN</div>
+          <div class="desc">Percentages calculator</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/procentc.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/SETUP.png" alt="SETUP.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">SETUP.BIN</div>
+          <div class="desc">First-boot wizard that installs the OS and sets it up</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/setup/setup.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/TAIL.png" alt="TAIL.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">TAIL.BIN</div>
+          <div class="desc">Prints the last 10 lines of a file</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/tail.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/TREE.png" alt="TREE.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">TREE.BIN</div>
+          <div class="desc">Directory tree viewer</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/tree.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/WAVPLAY.png" alt="WAVPLAY.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">WAVPLAY.BIN</div>
+          <div class="desc">WAV player through Sound Blaster</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/wavplay.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/BRAINF.png" alt="BRAINF.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">BRAINF.BIN</div>
+          <div class="desc">Brainfuck interpreter</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/brainf.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/CLOCK.png" alt="CLOCK.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">CLOCK.BIN</div>
+          <div class="desc">Clock application</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/clock.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/EYE.png" alt="EYE.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">EYE.BIN</div>
+          <div class="desc">Eye exercise, follow the dot around the screen</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/eye.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/MANDEL.png" alt="MANDEL.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">MANDEL.BIN</div>
+          <div class="desc">Mandelbrot set renderer</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/mandel.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/MINE.png" alt="MINE.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">MINE.BIN</div>
+          <div class="desc">Minesweeper game</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/mine.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/PONG.png" alt="PONG.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">PONG.BIN</div>
+          <div class="desc">Pong game</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/pong.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/SPACE.png" alt="SPACE.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">SPACE.BIN</div>
+          <div class="desc">Space arcade game</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/space.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/TETRIS.png" alt="TETRIS.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">TETRIS.BIN</div>
+          <div class="desc">Tetris game</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/tetris.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img src="images/screenshots/programs/TETRIS2.png" alt="TETRIS2.BIN" loading="lazy">
+        <div class="body">
+          <div class="name">TETRIS2.BIN</div>
+          <div class="desc">Tetris, but 2</div>
+          <a class="src" href="https://github.com/PRoX2011/x16-PRos/blob/main/programs/tetris-df.asm" target="_blank" rel="noopener">View source &rarr;</a>
+        </div>
+      </div>
+  </div>
+
+
+  <footer>
+    <div>Licensed under <a href="https://opensource.org/license/BSD-3-clause">3-Clause BSD</a>. Copyright 2025-2026, PRosDev.org</div>
+  </footer>
+</div>
+
+<script src="js/ui/scrollTop.js" defer></script>
+<script src="js/app.js" defer></script>
+
+</body>
+</html>

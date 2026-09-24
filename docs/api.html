@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" href="../favicon.ico" type="image/x-icon" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <link href="../styles/base.css" rel="stylesheet" />
+  <link href="../styles/layout.css" rel="stylesheet" />
+  <link href="../styles/components.css" rel="stylesheet" />
+  <link href="../styles/effects.css" rel="stylesheet" />
+  <link href="../styles/gallery.css" rel="stylesheet" />
+  <link href="../styles/software.css" rel="stylesheet" />
+  <link href="../styles/docs.css" rel="stylesheet" />
+  <link href="../styles/credits.css" rel="stylesheet" />
+  <link href="../styles/modal.css" rel="stylesheet" />
+  <link href="../styles/dev-features.css" rel="stylesheet" />
+  <link href="../styles/news.css" rel="stylesheet" />
+  <link href="../styles/pages.css" rel="stylesheet" />
+  <link href="../styles/responsive.css" rel="stylesheet" />
+  <link href="../prism.css" rel="stylesheet" />
+
+  <title>x16-PRos: API reference</title>
+  <meta name="description" content="x16-PRos API reference: INT 0x21 output, INT 0x22 file system and streaming, INT 0x23 memory, tasks and mouse." />
+</head>
+<body>
+
+<button id="scrollTopBtn" aria-label="Scroll to top">
+  <svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 717 614">
+    <path fill="currentColor" d="M360 337L115 582L0 464l354-355l363 363l-112 112z"/>
+  </svg>
+</button>
+
+<div class="sky-container">
+  <span class="star"></span><span class="star"></span><span class="star"></span>
+  <span class="star"></span><span class="star"></span>
+</div>
+
+<div class="container">
+
+  <header>
+    <a class="brand" href="../index.html">
+      <div class="logo"><img src="../logo.png" alt="x16-PRos Logo"></div>
+      <div>
+        <h1>x16-PRos</h1>
+        <div style="font-size:12px;color:var(--muted)">Minimalistic 16-bit OS</div>
+      </div>
+    </a>
+    <nav class="nav">
+        <a class="btn" href="../index.html">About project</a>
+        <a class="btn" href="../software.html">Software</a>
+        <a class="btn active" href="../docs/index.html">Docs</a>
+        <a class="btn" href="../news.html">News</a>
+        <a class="btn support" href="https://dalink.to/PRoXdev" target="_blank" rel="noopener"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg> Support project</a>
+    </nav>
+  </header>
+
+  <div class="page-head">
+    <div class="crumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Docs</a><span>/</span>API reference</div>
+    <h1>API reference</h1>
+    <p>The three interrupts a x16-PRos program talks to, and every function they expose.</p>
+  </div>
+
+  <div class="article">
+    <aside class="article-toc">
+      <h4>On this page</h4>
+      <ul>
+        <li><a href="#conventions">Calling convention</a></li>
+        <li><a href="#int21">INT 0x21 &middot; Output</a></li>
+        <li><a href="#int22">INT 0x22 &middot; File system</a></li>
+        <li><a href="#int23">INT 0x23 &middot; System</a></li>
+        <li><a href="#more">Where to go next</a></li>
+      </ul>
+    </aside>
+    <div class="article-body">
+      <section id="conventions">
+        <h2>Calling convention</h2>
+        <p>Every service is reached with a software interrupt. The function number goes in
+        <code>AH</code>, the arguments in the other registers. Unless a function is documented as
+        returning something, all registers are preserved. Failures are reported by setting the carry
+        flag.</p>
+      </section>
+
+      <section id="int21">
+        <div class="int-head">
+          <span class="int-num">INT 0x21</span>
+          <span class="int-name">Output API</span>
+        </div>
+        <p>Text output in VGA <code>0x12</code> (640&times;480, 16 colours).</p>
+
+        <div class="grp">
+          <h3>Display</h3>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>AH</th><th>Function</th><th>Input</th><th>Notes</th></tr></thead>
+            <tbody>
+            <tr><td><code>0x00</code></td><td>Initialize output</td><td>&mdash;</td><td>Sets VGA mode <code>0x12</code></td></tr>
+            <tr><td><code>0x01</code></td><td>Print string, white</td><td><code>SI</code> = string</td><td>Colour <code>0x0F</code></td></tr>
+            <tr><td><code>0x02</code></td><td>Print string, green</td><td><code>SI</code> = string</td><td>Colour <code>0x0A</code></td></tr>
+            <tr><td><code>0x03</code></td><td>Print string, cyan</td><td><code>SI</code> = string</td><td>Colour <code>0x0B</code></td></tr>
+            <tr><td><code>0x04</code></td><td>Print string, red</td><td><code>SI</code> = string</td><td>Colour <code>0x0C</code></td></tr>
+            <tr><td><code>0x05</code></td><td>Print newline</td><td>&mdash;</td><td>Outputs CR+LF</td></tr>
+            <tr><td><code>0x06</code></td><td>Clear screen</td><td>&mdash;</td><td>Raw VGA defaults, theme is not reapplied</td></tr>
+            <tr><td><code>0x07</code></td><td>Set text colour</td><td><code>BL</code> = colour</td><td>Used by function <code>0x08</code></td></tr>
+            <tr><td><code>0x08</code></td><td>Print string, current colour</td><td><code>SI</code> = string</td><td>Colour set by <code>0x07</code></td></tr>
+            <tr><td><code>0x0C</code></td><td>Clear screen with theme</td><td>&mdash;</td><td>Reapplies <code>CONF.DIR/THEME.CFG</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+
+        <div class="grp">
+          <h3>Fonts</h3>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>AH</th><th>AL</th><th>Function</th><th>Input</th></tr></thead>
+            <tbody>
+            <tr><td><code>0x09</code></td><td><code>0x00</code></td><td>Restore the BIOS ROM font</td><td>&mdash;</td></tr>
+            <tr><td><code>0x09</code></td><td><code>0x01</code></td><td>Load the built-in cp866 font</td><td>&mdash;</td></tr>
+            <tr><td><code>0x09</code></td><td><code>0x02</code></td><td>Load a font from a file</td><td><code>SI</code> = filename</td></tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+
+        <div class="grp">
+          <h3>Date and time</h3>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>AH</th><th>Function</th><th>Output</th></tr></thead>
+            <tbody>
+            <tr><td><code>0x0A</code></td><td>Get system time</td><td><code>CH</code> = hours, <code>CL</code> = minutes, <code>DH</code> = seconds</td></tr>
+            <tr><td><code>0x0B</code></td><td>Get system date</td><td><code>CH</code> = century, <code>CL</code> = year, <code>DH</code> = month, <code>DL</code> = day</td></tr>
+            </tbody>
+          </table>
+        </div>
+          <p>Both read the RTC through BIOS <code>INT 0x1A</code> and apply the offset from
+          <code>CONF.DIR/TIMEZONE.CFG</code>.</p>
+        </div>
+      </section>
+
+      <section id="int22">
+        <div class="int-head">
+          <span class="int-num">INT 0x22</span>
+          <span class="int-name">File system API</span>
+        </div>
+        <p>Names are 8.3 and case-insensitive, uppercased on the way in. Everything
+        happens relative to the current directory of the current drive.</p>
+
+        <div class="grp">
+          <h3>Files</h3>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>AH</th><th>Function</th><th>Input</th><th>Output</th></tr></thead>
+            <tbody>
+            <tr><td><code>0x00</code></td><td>Re-initialize the file system</td><td>&mdash;</td><td>CF on error</td></tr>
+            <tr><td><code>0x01</code></td><td>Get file list</td><td><code>SI</code> = buffer</td><td><code>BX</code>:<code>CX</code> = total size, <code>DX</code> = file count</td></tr>
+            <tr><td><code>0x02</code></td><td>Load file</td><td><code>SI</code> = name, <code>CX</code> = offset</td><td><code>BX</code> = size</td></tr>
+            <tr><td><code>0x03</code></td><td>Write file</td><td><code>SI</code> = name, <code>BX</code> = data, <code>CX</code> = size</td><td>CF on error</td></tr>
+            <tr><td><code>0x04</code></td><td>File exists</td><td><code>SI</code> = name</td><td>CF clear if it exists</td></tr>
+            <tr><td><code>0x05</code></td><td>Create empty file</td><td><code>SI</code> = name</td><td>CF on error</td></tr>
+            <tr><td><code>0x06</code></td><td>Delete file</td><td><code>SI</code> = name</td><td>CF on error</td></tr>
+            <tr><td><code>0x07</code></td><td>Rename file</td><td><code>SI</code> = old, <code>DI</code> = new</td><td>CF on error</td></tr>
+            <tr><td><code>0x08</code></td><td>Get file size</td><td><code>SI</code> = name</td><td><code>BX</code> = size</td></tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+
+        <div class="grp">
+          <h3>Directories</h3>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>AH</th><th>Function</th><th>Input</th><th>Output</th></tr></thead>
+            <tbody>
+            <tr><td><code>0x09</code></td><td>Change directory</td><td><code>SI</code> = name</td><td>CF on error</td></tr>
+            <tr><td><code>0x0A</code></td><td>Go to the parent</td><td>&mdash;</td><td>CF at the root</td></tr>
+            <tr><td><code>0x0B</code></td><td>Create directory</td><td><code>SI</code> = name</td><td>CF on error</td></tr>
+            <tr><td><code>0x0C</code></td><td>Delete directory</td><td><code>SI</code> = name</td><td>CF unless empty</td></tr>
+            <tr><td><code>0x0D</code></td><td>Is it a directory</td><td><code>SI</code> = name</td><td>CF clear if it is</td></tr>
+            <tr><td><code>0x0E</code></td><td>Save current directory</td><td>&mdash;</td><td>Remembers drive and path</td></tr>
+            <tr><td><code>0x0F</code></td><td>Restore current directory</td><td>&mdash;</td><td>Returns to the saved one</td></tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+
+        <div class="grp">
+          <h3>Large files</h3>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>AH</th><th>Function</th><th>Input</th><th>Output</th></tr></thead>
+            <tbody>
+            <tr><td><code>0x10</code></td><td>Load huge file</td><td><code>SI</code> = name, <code>CX</code> = offset, <code>DX</code> = segment</td><td><code>DX</code>:<code>AX</code> = size</td></tr>
+            <tr><td><code>0x13</code></td><td>Write huge file</td><td><code>SI</code> = name, <code>CX</code>:<code>DX</code> = source, <code>BX</code>/<code>DI</code> = size</td><td>CF on error</td></tr>
+            </tbody>
+          </table>
+        </div>
+          <p>These two are not limited to 64 KB &mdash; the data may span segments.</p>
+        </div>
+
+        <div class="grp">
+          <h3>Drives</h3>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>AH</th><th>Function</th><th>Input</th><th>Output</th></tr></thead>
+            <tbody>
+            <tr><td><code>0x11</code></td><td>List drives</td><td>&mdash;</td><td>Prints a table of every detected drive</td></tr>
+            <tr><td><code>0x12</code></td><td>Change drive</td><td><code>SI</code> = letter</td><td>CF if there is no such drive</td></tr>
+            <tr><td><code>0x14</code></td><td>Get current drive</td><td>&mdash;</td><td><code>AL</code> = drive letter</td></tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+
+        <div class="grp">
+          <h3>Streaming <span class="int-tag new">new</span></h3>
+          <p>Up to eight files can be open at once. Reading and writing happen in pieces, so the size
+          of a file is not limited by how much memory is free. Some of the MS-DOS comp. layer calls is built on top
+          of this.</p>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>AH</th><th>AL</th><th>Function</th><th>Input</th><th>Output</th></tr></thead>
+            <tbody>
+            <tr><td><code>0x15</code></td><td><code>0x00</code></td><td>Open</td><td><code>SI</code> = name</td><td><code>BX</code> = handle, <code>CX</code>:<code>DX</code> = size</td></tr>
+            <tr><td><code>0x15</code></td><td><code>0x01</code></td><td>Read</td><td><code>BX</code> = handle, <code>CX</code> = bytes, <code>DX</code>:<code>DI</code> = destination</td><td><code>AX</code> = bytes read, 0 at EOF</td></tr>
+            <tr><td><code>0x15</code></td><td><code>0x02</code></td><td>Write</td><td><code>BX</code> = handle, <code>CX</code> = bytes, <code>DX</code>:<code>DI</code> = source</td><td><code>AX</code> = bytes written</td></tr>
+            <tr><td><code>0x15</code></td><td><code>0x03</code></td><td>Seek</td><td><code>BX</code> = handle, <code>CX</code>:<code>DX</code> = position</td><td>CF on a bad handle</td></tr>
+            <tr><td><code>0x15</code></td><td><code>0x04</code></td><td>Close</td><td><code>BX</code> = handle</td><td>Updates the directory entry</td></tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+      </section>
+
+      <section id="int23">
+        <div class="int-head">
+          <span class="int-num">INT 0x23</span>
+          <span class="int-name">System API</span>
+        </div>
+        <p>Memory, tasks and the mouse.</p>
+
+        <div class="grp">
+          <h3>Memory</h3>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>AH</th><th>Function</th><th>Input</th><th>Output</th></tr></thead>
+            <tbody>
+            <tr><td><code>0x00</code></td><td>Get version</td><td>&mdash;</td><td><code>AX</code> = version</td></tr>
+            <tr><td><code>0x01</code></td><td>Allocate</td><td><code>BX</code> = bytes</td><td><code>AX</code> = segment, CF on failure</td></tr>
+            <tr><td><code>0x02</code></td><td>Free</td><td><code>AX</code> = segment</td><td>CF if the segment is unknown</td></tr>
+            <tr><td><code>0x03</code></td><td>Get free bytes</td><td>&mdash;</td><td><code>DX</code>:<code>AX</code> = free bytes</td></tr>
+            </tbody>
+          </table>
+        </div>
+          <p>The heap runs from segment <code>0x3000</code> to <code>0xA000</code>, 448 KB in total,
+          shared by every running program.</p>
+        </div>
+
+        <div class="grp">
+          <h3>Tasks</h3>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>AH</th><th>Function</th><th>Input</th><th>Output</th></tr></thead>
+            <tbody>
+            <tr><td><code>0x10</code></td><td>Run a PLE program</td><td><code>SI</code> = filename</td><td>CF on load failure</td></tr>
+            <tr><td><code>0x11</code></td><td>Run a PLE program in the background</td><td><code>SI</code> = filename</td><td><code>AX</code> = task id</td></tr>
+            <tr><td><code>0x12</code></td><td>Terminate the current task</td><td>&mdash;</td><td>Does not return</td></tr>
+            <tr><td><code>0x13</code></td><td>Yield</td><td>&mdash;</td><td>Hands the CPU to the next ready task</td></tr>
+            <tr><td><code>0x14</code></td><td>Sleep</td><td><code>CX</code> = BIOS ticks</td><td>One tick is about 55 ms</td></tr>
+            <tr><td><code>0x15</code></td><td>Get current task id</td><td>&mdash;</td><td><code>AL</code> = id</td></tr>
+            <tr><td><code>0x16</code></td><td>Read a key, yielding while idle</td><td>&mdash;</td><td><code>AX</code> = as <code>INT 16h</code> AH=0</td></tr>
+            <tr><td><code>0x17</code></td><td>Query a task slot</td><td><code>BL</code> = id</td><td><code>AL</code> = state, <code>AH</code> = flags, <code>CX</code> = base segment, <code>DL</code> = parent</td></tr>
+            <tr><td><code>0x18</code></td><td>Kill a task</td><td><code>BL</code> = id</td><td>CF on failure</td></tr>
+            <tr><td><code>0x19</code></td><td>Get a task name</td><td><code>BL</code> = id, <code>DI</code> = buffer</td><td>Buffer must hold 16 bytes</td></tr>
+            <tr><td><code>0x34</code></td><td>Reparent a task</td><td><code>BL</code> = id, <code>BH</code> = new parent</td><td>CF on a bad id</td></tr>
+            </tbody>
+          </table>
+        </div>
+          <p>Scheduling is cooperative, not preemptive: a task keeps the CPU until it yields, sleeps or
+          waits for a key. There are eight slots, one of which belongs to the kernel.</p>
+        </div>
+
+        <div class="grp">
+          <h3>Mouse</h3>
+        <div class="dtable-wrap">
+          <table class="dtable">
+            <thead><tr><th>AH</th><th>Function</th><th>Input</th><th>Output</th></tr></thead>
+            <tbody>
+            <tr><td><code>0x20</code></td><td>Get state</td><td>&mdash;</td><td><code>AX</code> = x, <code>BX</code> = y, <code>CL</code> = buttons, <code>CH</code> = visible</td></tr>
+            <tr><td><code>0x21</code></td><td>Get text cell</td><td>&mdash;</td><td><code>AX</code> = column, <code>BX</code> = row</td></tr>
+            <tr><td><code>0x22</code></td><td>Hide the cursor</td><td>&mdash;</td><td>&mdash;</td></tr>
+            <tr><td><code>0x23</code></td><td>Show the cursor</td><td>&mdash;</td><td>&mdash;</td></tr>
+            <tr><td><code>0x24</code></td><td>Enable or disable</td><td><code>AL</code> = 1 or 0</td><td>&mdash;</td></tr>
+            <tr><td><code>0x25</code></td><td>Drag-select</td><td><code>AL</code> = 1 or 0</td><td>Text selection in the terminal</td></tr>
+            <tr><td><code>0x26</code></td><td>Set cursor shape</td><td><code>AL</code> = 0 arrow, 1 resize</td><td>&mdash;</td></tr>
+            </tbody>
+          </table>
+        </div>
+        </div>
+      </section>
+
+      <section id="more">
+        <h2>Where to go next</h2>
+        <p>The reference above tracks
+        <a href="https://github.com/PRoX2011/x16-PRos/blob/main/docs/API.md" target="_blank" rel="noopener">docs/API.md</a> in the
+        repository, which carries the per-function detail and the error codes. For complete programs
+        see the <a href="examples.html">examples</a>, and for the executable format itself see
+        <a href="ple.html">the PLE article</a>.</p>
+      </section>
+    </div>
+  </div>
+
+  <div class="article-foot"><a href="terminal.html">&larr; Terminal commands</a><a href="ple.html">The PLE format &rarr;</a></div>
+
+  <footer>
+    <div>Licensed under <a href="https://opensource.org/license/BSD-3-clause">3-Clause BSD</a>. Copyright 2025-2026, PRosDev.org</div>
+  </footer>
+</div>
+
+<script src="../prism.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-nasm.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js" defer></script>
+<script src="../js/ui/scrollTop.js" defer></script>
+<script src="../js/app.js" defer></script>
+
+</body>
+</html>
