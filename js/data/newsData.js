@@ -1,5 +1,20 @@
 window.newsData = [
   {
+  "id": "x16-pros-windows-3.11",
+  "date": "October 16, 2026",
+  "author": "PRoX-dev",
+  "title": "Microsoft Windows 3.11 now fully works in x16-PRos",
+  "summary": "Not only does it start: Word, Excel, PowerPoint and other big software run under it. Windows itself was installed with Windows Setup, also run inside x16-PRos.",
+  "image": "images/news/16-10-2026.png",
+  "content": [
+    '<img src="images/news/16-10-2026.png" alt="Microsoft Windows 3.11 running on x16-PRos">',
+    "<strong>Hello everyone!</strong>",
+    "<p>Today I would like to share some very important news for the project: <strong>Microsoft Windows 3.11</strong> now fully works in x16-PRos.</p>",
+    "<p>And by &quot;works&quot; I don't mean that it just starts there, but that <strong>Word</strong>, <strong>Excel</strong>, <strong>PowerPoint</strong> and other big software run under that very Windows.</p>",
+    "<p>Windows itself is not a ready-made build (as it was in the past with Windows 1.0 and 2.03): it was installed through <strong>Windows Setup</strong>, which I also ran inside x16-PRos.</p>",
+  ]
+  },
+  {
   "id": "x16-pros-v1.0-release",
   "date": "September 24, 2026",
   "author": "PRoX-dev",
